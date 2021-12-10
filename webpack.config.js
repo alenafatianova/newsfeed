@@ -10,7 +10,7 @@ const mode = process.env.NODE_ENV || 'production';
 module.exports = {
   mode,
   entry: {
-    main: './src/script.tsx',
+    main: './src/index.tsx',
     initColorScheme: './src/initColorScheme.ts',
   },
   output: {
@@ -51,7 +51,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: './src/app/index.html',
     }),
     new HtmlInlineScriptWebpackPlugin([/initColorScheme\..+\.js$/]),
     new MiniCssExtractPlugin({

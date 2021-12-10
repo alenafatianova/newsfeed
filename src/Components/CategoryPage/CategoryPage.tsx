@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import './CategoryPage.css';
-import { CategoryNames, NewsAPI } from '../../types';
+import { CategoryNames, NewsAPI } from '../../app/types';
 import { useParams } from 'react-router-dom';
-import { categoryIds, categoryTitles } from '../../utils';
+import { categoryIds, categoryTitles } from '../../app/utils';
 import { SidebarArticleCard } from '../SidebarArticleCard/SidebarArticleCard';
 import { Hero } from '../Hero/Hero';
 import { ArticleCard } from '../ArticleCard/ArticleCard';

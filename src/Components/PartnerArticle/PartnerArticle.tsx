@@ -1,7 +1,7 @@
 import React, { useEffect, useState, FC } from 'react';
 import './PartnerArticle.css';
-import { getMainPartnerArticle } from '../../api';
-import { IPartnerArticle } from '../../types';
+import { getMainPartnerArticle } from '../../app/api';
+import { IPartnerArticle } from '../../app/types';
 
 export const PartnerArticle: FC = () => {
   const [article, setArticle] = useState<IPartnerArticle | null>(null);

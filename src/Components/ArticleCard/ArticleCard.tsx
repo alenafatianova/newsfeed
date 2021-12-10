@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import './ArticleCard.css';
 import { Source } from '../Source/Source';
 import classNames from 'classnames';
-import { beautifyDate, categoryTitles } from '../../utils';
-import { CategoryNames } from '../../types';
+import { beautifyDate, categoryTitles } from '../../app/utils';
+import { CategoryNames } from '../../app/types';
 
 interface Props {
   id: number;

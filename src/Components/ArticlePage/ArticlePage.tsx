@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { useParams } from 'react-router-dom';
 import './ArticlePage.css';
-import { Article, ArticleItemAPI, RelatedArticlesAPI, Source as SourceType } from '../../types';
-import { beautifyDate, categoryTitles } from '../../utils';
+import { Article, ArticleItemAPI, RelatedArticlesAPI, Source as SourceType } from '../../app/types';
+import { beautifyDate, categoryTitles } from '../../app/utils';
 import { SidebarArticleCard } from '../SidebarArticleCard/SidebarArticleCard';
 import { Hero } from '../Hero/Hero';
 import { ArticleCard } from '../ArticleCard/ArticleCard';

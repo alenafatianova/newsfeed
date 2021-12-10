@@ -22,7 +22,7 @@ import {
   getPartnerArticle,
   updatePartnerArticle,
   uploadFile,
-} from '../../api';
+} from '../../app/api';
 
 export const AdminArticleItem: FC = () => {
   const { id }: { id?: string } = useParams();

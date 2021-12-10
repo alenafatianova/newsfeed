@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import { ArticleCard } from '../ArticleCard/ArticleCard';
 import './HomePage.css';
-import { NewsAPI, Category, Source } from '../../types';
+import { NewsAPI, Category, Source } from '../../app/types';
 import { SidebarArticleCard } from '../SidebarArticleCard/SidebarArticleCard';
 import { Hero } from '../Hero/Hero';
 import { Link } from 'react-router-dom';
-import { categoryIds } from '../../utils';
+import { categoryIds } from '../../app/utils';
 import { Title } from '../Title/Title';
 import { PartnerArticle } from '@components/PartnerArticle/PartnerArticle';
 

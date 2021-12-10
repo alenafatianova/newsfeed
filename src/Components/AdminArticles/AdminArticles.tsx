@@ -8,8 +8,8 @@ import CardMedia from '@mui/material/CardMedia';
 import { CardActionArea } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
-import { IPartnerArticle } from '../../types';
-import { getPartnersArticles } from '../../api';
+import { IPartnerArticle } from '../../app/types';
+import { getPartnersArticles } from '../../app/api';
 
 export const AdminArticles: FC = () => {
   const [articles, setArticles] = useState<IPartnerArticle[]>([]);
