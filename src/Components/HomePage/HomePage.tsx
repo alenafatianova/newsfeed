@@ -7,6 +7,7 @@ import { Hero } from '../Hero/Hero';
 import { Link } from 'react-router-dom';
 import { categoryIds } from '../../utils';
 import { Title } from '../Title/Title';
+import { PartnerArticle } from '@components/PartnerArticle/PartnerArticle';
 
 type CategoriesRecord = Record<Category['id'], Category>;
 type SourcesRecord = Record<Source['id'], Source>;
@@ -122,7 +123,9 @@ export const HomePage: FC = () => {
           </section>
         </div>
       </section>
-      <div className="home-page__promo" />
+      <div className="home-page__promo">
+        <PartnerArticle />
+      </div>
       <section className="container grid home-page__section">
         <section className="home-page__content">
           {articles.slice(4).map((item) => {
