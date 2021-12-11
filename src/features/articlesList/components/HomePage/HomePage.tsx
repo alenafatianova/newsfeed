@@ -1,54 +1,33 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import './HomePage.css';
-import { NewsAPI, Category, Source } from '@app/types';
-import { categoryIds } from '@app/utils';
+import { categoryIds } from '@features/categories/constants';
 import { ArticleCard } from '@components/ArticleCard/ArticleCard';
 import { SidebarArticleCard } from '@components/SidebarArticleCard/SidebarArticleCard';
 import { Hero } from '@components/Hero/Hero';
 import { Title } from '@components/Title/Title';
 import { PartnerArticle } from '@features/partnersArticles/components/PartnerArticle/PartnerArticle';
-
-type CategoriesRecord = Record<Category['id'], Category>;
-type SourcesRecord = Record<Source['id'], Source>;
+import { fetchNews, fetchTrends } from '@features/articlesList/actions';
+import { Dispatch } from '@app/store';
+import { getNews, getTrends } from '@features/articlesList/selectors';
+import { fetchCategoryArticles } from '@features/categoryArticles/actions';
+import { getCategoryNews } from '@features/categoryArticles/selectors';
+import { getCategories } from '@features/categories/selectors';
+import { getSources } from '@features/sources/selectors';
 
 export const HomePage: FC = () => {
-  const [articles, setArticles] = React.useState<NewsAPI['items']>([]);
-  const [karpovArticles, setKarpovArticles] = React.useState<NewsAPI['items']>([]);
-  const [trendArticles, setTrendArticles] = React.useState<NewsAPI['items']>([]);
-  const [categories, setCategories] = React.useState<CategoriesRecord>({});
-  const [sources, setSources] = React.useState<SourcesRecord>([]);
+  const dispatch = useDispatch<Dispatch>();
+  const articles = useSelector(getNews);
+  const trendArticles = useSelector(getTrends);
+  const karpovArticles = useSelector(getCategoryNews(categoryIds['karpov.courses']));
+  const categories = useSelector(getCategories);
+  const sources = useSelector(getSources);
 
   React.useEffect(() => {
-    Promise.all<NewsAPI>([
-      fetch('https://frontend.karpovcourses.net/api/v2/ru/news').then((res) => res.json()),
-      fetch(`https://frontend.karpovcourses.net/api/v2/ru/news/${categoryIds['karpov.courses']}`).then((res) =>
-        res.json()
-      ),
-      fetch('https://frontend.karpovcourses.net/api/v2/ru/trends').then((res) => res.json()),
-    ]).then(([articles, karpovArticles, trendArticles]) => {
-      setArticles(articles.items);
-      setKarpovArticles(karpovArticles.items);
-      setTrendArticles(trendArticles.items);
-
-      setCategories(
-        [articles.categories, karpovArticles.categories, trendArticles.categories]
-          .flat()
-          .reduce(function (acc: CategoriesRecord, categoryItem) {
-            acc[categoryItem.id] = categoryItem;
-            return acc;
-          }, {})
-      );
-
-      setSources(
-        [articles.sources, karpovArticles.sources, trendArticles.sources]
-          .flat()
-          .reduce(function (acc: SourcesRecord, sourceItem) {
-            acc[sourceItem.id] = sourceItem;
-            return acc;
-          }, {})
-      );
-    });
+    dispatch(fetchNews());
+    dispatch(fetchTrends());
+    dispatch(fetchCategoryArticles(categoryIds['karpov.courses']));
   }, []);
 
   const firstArticle = articles[0];

@@ -1,26 +1,27 @@
 import React, { FC } from 'react';
 import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import './CategoryPage.css';
-import { CategoryNames, NewsAPI } from '@app/types';
-import { categoryIds, categoryTitles } from '@app/utils';
+import { CategoryNames } from '@features/categories/types';
+import { categoryIds, categoryTitles } from '@features/categories/constants';
 import { SidebarArticleCard } from '@components/SidebarArticleCard/SidebarArticleCard';
 import { Hero } from '@components/Hero/Hero';
 import { ArticleCard } from '@components/ArticleCard/ArticleCard';
+import { Dispatch } from '@app/store';
+import { fetchCategoryArticles } from '@features/categoryArticles/actions';
+import { getCategoryNews } from '@features/categoryArticles/selectors';
+import { getCategories } from '@features/categories/selectors';
+import { getSources } from '@features/sources/selectors';
 
 export const CategoryPage: FC = () => {
   const { category }: { category: CategoryNames } = useParams();
-  const [articles, setArticles] = React.useState<NewsAPI>({
-    items: [],
-    categories: [],
-    sources: [],
-  });
+  const dispatch = useDispatch<Dispatch>();
+  const articles = useSelector(getCategoryNews(categoryIds[category]));
+  const categories = useSelector(getCategories);
+  const sources = useSelector(getSources);
 
   React.useEffect(() => {
-    fetch('https://frontend.karpovcourses.net/api/v2/ru/news/' + categoryIds[category] || '')
-      .then((response) => response.json())
-      .then((response: NewsAPI) => {
-        setArticles(response);
-      });
+    dispatch(fetchCategoryArticles(categoryIds[category]));
   }, [category]);
 
   return (
@@ -28,9 +29,9 @@ export const CategoryPage: FC = () => {
       <Hero title={categoryTitles[category]} image="test" className="category-page__hero" />
       <div className="container grid">
         <section className="category-page__content">
-          {articles.items.slice(3).map((item) => {
-            const category = articles.categories.find(({ id }) => item.category_id === id);
-            const source = articles.sources.find(({ id }) => item.source_id === id);
+          {articles.slice(3).map((item) => {
+            const category = categories.find(({ id }) => item.category_id === id);
+            const source = sources.find(({ id }) => item.source_id === id);
 
             return (
               <ArticleCard
@@ -47,8 +48,9 @@ export const CategoryPage: FC = () => {
           })}
         </section>
         <section className="category-page__sidebar">
-          {articles.items.slice(0, 3).map((item) => {
-            const source = articles.sources.find(({ id }) => item.source_id === id);
+          {articles.slice(0, 3).map((item) => {
+            const source = sources.find(({ id }) => item.source_id === id);
+
             return (
               <SidebarArticleCard
                 className="category-page__sidebar-item"

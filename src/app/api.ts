@@ -14,7 +14,12 @@ import {
 } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { getAuth } from 'firebase/auth';
-import { IPartnerArticle } from './types';
+import { ArticleItemAPI } from '@features/articleItem/types';
+import { Category } from '@features/categories/types';
+import { IPartnerArticle } from '@features/partnersArticles/types';
+import { NewsAPI } from '@features/articlesList/types';
+import { RelatedArticlesAPI } from '@features/relatedNews/types';
+import { Source } from '@features/sources/types';
 
 export let firebaseApp: FirebaseApp;
 
@@ -147,4 +152,34 @@ export const getMainPartnerArticle = async (): Promise<IPartnerArticle | null> =
   }
 
   return article;
+};
+
+export const apiFetchNews = (): Promise<NewsAPI> => {
+  return fetch('https://frontend.karpovcourses.net/api/v2/ru/news').then((response) => response.json());
+};
+
+export const apiFetchTrends = (): Promise<NewsAPI> => {
+  return fetch('https://frontend.karpovcourses.net/api/v2/ru/trends').then((response) => response.json());
+};
+
+export const apiFetchCategory = (id: number): Promise<NewsAPI> => {
+  return fetch(`https://frontend.karpovcourses.net/api/v2/ru/news/${id}`).then((response) => response.json());
+};
+
+export const apiFetchCategories = (): Promise<Category[]> => {
+  return fetch('https://frontend.karpovcourses.net/api/v2/categories').then((response) => response.json());
+};
+
+export const apiFetchSources = (): Promise<Source[]> => {
+  return fetch('https://frontend.karpovcourses.net/api/v2/sources').then((response) => response.json());
+};
+
+export const apiFetchRelatedArticles = (id: number): Promise<RelatedArticlesAPI> => {
+  return fetch(`https://frontend.karpovcourses.net/api/v2/news/related/${id}?count=9`).then((response) =>
+    response.json()
+  );
+};
+
+export const apiFetchArticleItem = (id: number): Promise<ArticleItemAPI> => {
+  return fetch(`https://frontend.karpovcourses.net/api/v2/news/full/${id}`).then((response) => response.json());
 };

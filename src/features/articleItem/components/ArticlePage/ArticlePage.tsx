@@ -1,37 +1,38 @@
 import React, { FC } from 'react';
 import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import './ArticlePage.css';
-import { Article, ArticleItemAPI, RelatedArticlesAPI, Source as SourceType } from '@app/types';
-import { beautifyDate, categoryTitles } from '@app/utils';
+import { beautifyDate } from '@app/utils';
+import { categoryTitles } from '@features/categories/constants';
 import { SidebarArticleCard } from '@components/SidebarArticleCard/SidebarArticleCard';
 import { Hero } from '@components/Hero/Hero';
 import { ArticleCard } from '@components/ArticleCard/ArticleCard';
 import { Title } from '@components/Title/Title';
 import { Source } from '@features/sources/components/Source/Source';
+import { getCachedArticleItem } from '@features/articleItem/selectors';
+import { getRelatedArticles } from '@features/relatedNews/selectors';
+import { getSources } from '@features/sources/selectors';
+import { fetchArticleItem } from '@features/articleItem/actions';
+import { fetchRelatedArticles } from '@features/relatedNews/actions';
+import { setArticleItem } from '@features/articleItem/slice';
 
 export const ArticlePage: FC = () => {
   const { id }: { id?: string } = useParams();
-  const [articleItem, setArticleItem] = React.useState<ArticleItemAPI | null>(null);
-  const [relatedArticles, setRelatedArticles] = React.useState<Article[] | null>(null);
-  const [sources, setSources] = React.useState<SourceType[]>([]);
+  const dispatch = useDispatch();
+  const articleItem = useSelector(getCachedArticleItem(Number(id)));
+  const relatedArticles = useSelector(getRelatedArticles(Number(id)));
+  const sources = useSelector(getSources);
 
   React.useEffect(() => {
-    fetch(`https://frontend.karpovcourses.net/api/v2/news/full/${id}`)
-      .then((response) => response.json())
-      .then(setArticleItem);
+    dispatch(fetchArticleItem(Number(id)));
+    dispatch(fetchRelatedArticles(Number(id)));
 
-    Promise.all([
-      fetch(`https://frontend.karpovcourses.net/api/v2/news/related/${id}?count=9`).then((response) => response.json()),
-      fetch('https://frontend.karpovcourses.net/api/v2/sources').then((response) => response.json()),
-    ]).then((responses) => {
-      const articles: RelatedArticlesAPI = responses[0];
-      const sources: SourceType[] = responses[1];
-      setRelatedArticles(articles.items);
-      setSources(sources);
-    });
+    return () => {
+      dispatch(setArticleItem(null));
+    };
   }, [id]);
 
-  if (articleItem === null || relatedArticles === null) {
+  if (articleItem === null) {
     return null;
   }
 

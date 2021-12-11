@@ -8,7 +8,7 @@ import CardMedia from '@mui/material/CardMedia';
 import { CardActionArea } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
-import { IPartnerArticle } from '@app/types';
+import { IPartnerArticle } from '@features/partnersArticles/types';
 import { getPartnersArticles } from '@app/api';
 
 export const AdminArticles: FC = () => {
