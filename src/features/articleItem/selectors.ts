@@ -1,5 +1,9 @@
 import { RootState } from '@app/store';
 import { ArticleItemAPI } from '@features/articleItem/types';
+import { getCategories } from '@features/categories/selectors';
+import { Category } from '@features/categories/types';
+import { getSources } from '@features/sources/selectors';
+import { Source } from '@features/sources/types';
 
 export const getArticleItem = (state: RootState): ArticleItemAPI | null => state.articleItem.item;
 
@@ -27,8 +31,8 @@ export const getCachedArticleItem =
 
     return {
       ...articleInList,
-      category: state.categories[articleInList.category_id],
-      source: state.sources[articleInList.source_id],
+      category: getCategories(state).find(({ id }) => id === articleInList.category_id) as Category,
+      source: getSources(state).find(({ id }) => id === articleInList.source_id) as Source,
       link: '',
       text: '',
     };
