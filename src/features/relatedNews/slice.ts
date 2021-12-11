@@ -10,15 +10,7 @@ export const relatedArticlesSlice = createSlice({
   initialState,
   reducers: {
     setRelatedArticles: (state, action: PayloadAction<{ id: number; articles: Article[] }>) => {
-      const id = action.payload.id;
-      const articles = action.payload.articles;
-
-      if (state[id]) {
-        state[id].push(...articles);
-      } else {
-        state[id] = [];
-        state[id].push(...articles);
-      }
+      state[action.payload.id] = action.payload.articles;
     },
   },
 });
