@@ -13,8 +13,8 @@ import {
   limit,
 } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { IPartnerArticle } from './types';
 import { getAuth } from 'firebase/auth';
+import { IPartnerArticle } from './types';
 
 export let firebaseApp: FirebaseApp;
 

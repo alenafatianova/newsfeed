@@ -11,7 +11,7 @@ module.exports = {
   mode,
   entry: {
     main: './src/index.tsx',
-    initColorScheme: './src/initColorScheme.ts',
+    initColorScheme: './src/features/colorScheme/initColorScheme.ts',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -43,7 +43,9 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.ts', '.tsx'],
     alias: {
-      '@components': path.resolve('./src/Components'),
+      '@components': path.resolve('./src/components'),
+      '@features': path.resolve('./src/features'),
+      '@app': path.resolve('./src/app'),
     },
   },
   optimization: {
