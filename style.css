@@ -1,0 +1,238 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;900&display=swap");
+
+:root {
+  --color-primary: #262a2f;
+  --color-accent: #ff5533;
+  --color-grey: #868686;
+  --color-white: #ffffff;
+
+  --grid-column-width: 101px;
+  --grid-gap: 20px;
+
+  --y: 4px
+}
+
+* {
+  all: unset;
+  display: revert;
+}
+
+body {
+  font-family: "Rubik", sans-serif;
+  background-color: #ebebeb;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.header {
+  padding-top: 38px;
+  padding-bottom: 150px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, var(--grid-column-width));
+  gap: var(--grid-gap);
+}
+
+.container, .footer_container {
+  max-width: 1435px;
+  margin: 0 auto;
+}
+
+.navigation_list {
+  display: flex;
+  list-style: none;
+  grid-column: 5/-1;
+}
+
+.navigation_logo {
+  grid-column: span 4;
+  padding-right: 52px;
+}
+
+.navigation_item, .footer_navigation_item {
+  margin-right: 60px;
+}
+.navigation_item:last-child {
+  margin-right: 0px;
+}
+
+.navigation_link, .footer_navigation_link {
+  font-size: 24px;
+  color: var(--color-primary);
+  font-weight: 900;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.navigation_link:hover, .footer_navigation_link:hover {
+  color: var(--color-accent);
+}
+
+.navigation_link_active, .footer_navigation_link_active {
+  color: var(--color-accent);
+}
+
+.logo_image {
+  width: 100%;
+}
+
+.articles_left_column {
+  grid-column: span 9;
+}
+
+.articles_right_column {
+  grid-column: 10/-1;
+}
+
+.main_article {
+  display: grid;
+  grid-template-columns: repeat(9, var(--grid-column-width));
+  gap: var(--grid-gap);
+  padding-bottom: 55px;
+}
+
+.main_article:last-child {
+  margin-bottom: 0;
+}
+
+.main_article_category {
+  font-size: 14px;
+  color: var(--color-accent);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.main_article_source,
+.article_source {
+  font-size: 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--color-grey);
+}
+
+.main_article_text {
+  font-weight: 400;
+  font-size: 22px;
+  margin-bottom: 33px;
+
+  /* display only 3 lines in the text box */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.main_article_title {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 34px;
+
+  /* display only 3 lines in the text box */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.main_article_image_container {
+  position: relative;
+  grid-column: span 3;
+  min-height: 185px;
+  max-height: 344px;
+}
+
+.main_article_image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.main_article_content {
+  grid-column: 4/-1;
+  padding-right: 63px;
+}
+
+
+
+.article_date {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  margin-right: 6px;
+  margin-left: 20px;
+}
+
+.article_title {
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 14px;
+  margin-left: 20px;
+}
+
+.article_source::before {
+  content: "\00B7";
+  padding-right: 14px;
+  padding-left: 7px;
+}
+
+.short_article {
+  margin-bottom: 35px;
+  border-left: 11px solid var(--color-primary);
+}
+
+/* .short_article::before {
+  content: "";
+  position: absolute;
+  width: 9px;
+  height: 110px;
+  background-color: var(--color-primary);
+} */
+
+.footer {
+    padding-top: 22px;
+    padding-bottom: 56px;
+    background-color: var(--color-primary);
+}
+
+.footer_navigation_link {
+    color: var(--color-white);
+}
+
+.footer_navigation_logo {
+    grid-column: span 2;
+    padding-right: 56px;
+}
+
+.footer_navigation_list {
+    display: flex;
+    list-style: none;
+    grid-column: 3/-1;
+    margin-bottom: 50px;
+    align-items: center;
+}
+
+.footer_courses_link {
+    color: var(--color-white);
+    font-weight: 400;
+}
+
+.footer_additional_links {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.course_link {
+    color: var(--color-accent);
+    font-size: 24px;
+    font-weight: 700;
+    text-decoration: revert;
+}
+
+.copyright_year {
+    color: var(--color-grey);
+}
