@@ -141,6 +141,7 @@ body {
   grid-column: span 3;
   min-height: 185px;
   max-height: 344px;
+  overflow: hidden;
 }
 
 .main_article_image {
