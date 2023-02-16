@@ -31,3 +31,7 @@
 .copyright_year {
     color: var(--color-grey);
 }
+
+.footer_navigation_link--active {
+    color: var(--color-accent);
+}

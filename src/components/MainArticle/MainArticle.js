@@ -1,11 +1,12 @@
 import React from "react";
+import './MainArticle.css'
 
 export const MainArticle = ({
     title,
     image,
     description,
     category,
-    source,
+    source, 
     key
   }) => {
     return (

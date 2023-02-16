@@ -1,7 +1,9 @@
 import React, { useEffect, useState, Fragment } from 'react';
-import { Navigation } from './Navigation.js';
-import { Articles } from './Articles.js';
-import { categoryIds } from './utils.js';
+import { Navigation } from '../Navigation/Navigation.js';
+import { Articles } from '../Articles/Articles.js';
+import { Footer } from '../Footer/Footer.js'
+import { categoryIds } from '../../utils.js';
+import './App.css'
 
 
 export const App = () => {
@@ -40,28 +42,7 @@ export const App = () => {
           <Articles articles={articles}/>
         </main>
   
-        <footer className="footer">
-          <div className="container">
-            <Navigation 
-            className={'footer_navigation_link'}
-            onNavClick={onNavClick}
-            category={category}
-            />
-            <div className="footer_additional_links">
-              <span className="footer_courses_link">
-                Сделано на Frontend курсе в
-                <a
-                  href="https://karpov.courses/frontend"
-                  className="course_link"
-                  target="_blank"
-                >
-                  Karpov.Courses
-                </a>
-              </span>
-              <span className="copyright_year">© 2021</span>
-            </div>
-          </div>
-        </footer>
+       <Footer onNavClick={onNavClick} category={category} />
       </Fragment>
     );
   };

@@ -1,5 +1,6 @@
-import { categoryName } from "./utils.js";
+import { categoryName } from "../../utils.js";
 import React from "react";
+import './Navigation.css'
 
 export const Navigation = ({ category, onNavClick, className }) => {
     return (

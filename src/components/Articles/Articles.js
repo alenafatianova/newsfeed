@@ -1,6 +1,7 @@
 import React from "react";
-import { MainArticle } from "./MainArticle.js"
-import { SmallArticle } from "./SmallArticle.js"
+import { MainArticle } from "../MainArticle/MainArticle.js"
+import { ShortArticle } from "../ShortArticle/ShortArticle.js"
+import './Article.css'
 
 
 export const Articles = ({ articles }) => {
@@ -32,7 +33,7 @@ export const Articles = ({ articles }) => {
               <section className="articles_short">
                 {articles?.items?.slice(3, 12).map((item) => {
                   return (
-                    <SmallArticle
+                    <ShortArticle
                       //key={item.title}
                       title={item?.title}
                       date={item?.date}

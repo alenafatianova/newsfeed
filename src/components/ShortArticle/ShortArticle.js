@@ -1,6 +1,7 @@
-import React from "react"
+import React from "react";
+import './ShortArticle.css';
 
-export const SmallArticle = ({ title, date, source, key }) => {
+export const ShortArticle = ({ title, date, source, key }) => {
     return (
       <article className="short_article" key={key}>
         <h2 className="article_title">{title}</h2>

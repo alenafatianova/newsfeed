@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;900&display=swap");
+
 :root {
   --color-primary: #262a2f;
   --color-accent: #ff5533;
@@ -21,24 +23,4 @@ body {
   background-color: #ebebeb;
   font-size: calc(var(--yr) * 5.5);
   font-weight: 400;
-}
-
-.header {
-  padding-top: calc(var(--yr) * 9.5);
-  padding-bottom: calc(var(--yr) * 37.5);
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(12, var(--grid-column-width));
-  gap: var(--grid-gap);
-}
-
-.container {
-  max-width: var(--container-width);
-  margin: 0 auto;
-}
-
-.logo_image {
-  width: 100%;
 }
