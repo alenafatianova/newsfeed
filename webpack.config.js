@@ -1,10 +1,12 @@
 const path = require('path')
+const htmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-    mode: 'development',
+    mode: process.env.NODE_ENV || 'production',
     entry: './src/script.js',
     output: {
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'bundle.[contenthash].js'
     },
     module: {
         rules: [{
@@ -15,7 +17,17 @@ module.exports = {
         {
             test: /\.css$/,
             use: ['style-loader', 'css-loader']
+        },
+        {
+            test: /\.svg$/,
+            type: 'asset/resource'
         }
     ]
+    },
+    plugins: [new htmlWebpackPlugin({
+        template: './src/index.html'
+    })],
+    devServer: {
+        open: true
     }
 }
