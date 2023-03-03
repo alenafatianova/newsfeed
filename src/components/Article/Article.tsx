@@ -3,15 +3,15 @@ import './Article.css';
 import { RelatedSmallArticle } from '../RelatedSmallArticle/RelatedSmallArticle';
 import { SingleLineTitleArticle } from '../SingleLineTitleArticle/SingleLineTitleArticle';
 import { ArticleItem, beautifyDate, Categories, Items, RelatedArticleItem, Sources } from '../../types';
+import { useParams } from 'react-router-dom';
 
 interface Article {
-  id: number;
   categories: Categories[];
   sources: Sources[];
-  onArticleClick: (id: number) => void;
 }
 
-export const Article: React.FC<Article> = ({ id, categories, sources, onArticleClick }) => {
+export const Article: React.FC<Article> = ({ categories, sources }) => {
+  const { id } : {id?: number | string} = useParams()
   const [articleItem, setArticleItem] = useState<ArticleItem | null>(null);
   const [relatedArticle, setRelatedArticle] = useState<Items[] | null>(null);
 
@@ -79,11 +79,11 @@ export const Article: React.FC<Article> = ({ id, categories, sources, onArticleC
               return (
                 <RelatedSmallArticle
                   key={article.id}
+                  id={article.id}
                   source={source?.name || ''}
                   title={article.title}
                   image={article.image}
                   category={category?.name || ''}
-                  onArticleClick={() => onArticleClick(article.id)}
                 />
               );
             })}
@@ -107,7 +107,7 @@ export const Article: React.FC<Article> = ({ id, categories, sources, onArticleC
                   category={category?.name || ''}
                   text={article.description}
                   title={article.title}
-                  onArticleClick={() => onArticleClick(article.id)}
+                  id={article.id}
                 />
               );
             })}

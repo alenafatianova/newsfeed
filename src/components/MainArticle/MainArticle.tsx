@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
 import './MainArticle.css';
 
 type MainArticleType = {
@@ -7,13 +8,13 @@ type MainArticleType = {
   category?: string;
   description: string;
   source?: string;
-  onArticleClick: (e: React.MouseEvent<HTMLElement>) => void;
-  articleId: number | null;
+  id: number | null;
 };
 
-export const MainArticle = ({ title, image, category, description, source, onArticleClick }: MainArticleType): any=> {
+export const MainArticle: FC<MainArticleType> = ({ title, image, category, description, source, id }) => {
   return (
-    <article className="main-article" onClick={onArticleClick}>
+  <Link to={`article/${id}`} className='main-article'>
+    <article className="main-article-container">
       <div className="main-article__image-container">
         <img className="article-img main-article__img" src={image} alt="Фото новости" />
       </div>
@@ -24,5 +25,6 @@ export const MainArticle = ({ title, image, category, description, source, onArt
         <span className="article-source main-article__caption">{source}</span>
       </div>
     </article>
+  </Link>
   );
 };

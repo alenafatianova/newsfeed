@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import './RelatedSmallArticle.css';
 
 interface RelatedArticleProp {
@@ -6,12 +7,14 @@ interface RelatedArticleProp {
   category: string;
   title: string;
   source: string;
-  onArticleClick: (e: React.MouseEvent<HTMLElement>) => void;
+  id: number | string
 }
 
-export const RelatedSmallArticle: FC<RelatedArticleProp> = ({ image, category, title, source, onArticleClick }) => {
+export const RelatedSmallArticle: FC<RelatedArticleProp> = ({ image, category, title, source }) => {
+  const { id } = useParams()
   return (
-    <article className="related-small-article" onClick={onArticleClick}>
+   <Link to={`article/${id}`}>
+    <article className="related-small-article">
       <img className="related-small-article__image" src={image} />
       <div className="related-small-article__content">
         <span className="article-category related-small-article__category">{category}</span>
@@ -19,5 +22,6 @@ export const RelatedSmallArticle: FC<RelatedArticleProp> = ({ image, category, t
         <span className="article-source related-small-article__source">{source}</span>
       </div>
     </article>
+   </Link>
   );
 };

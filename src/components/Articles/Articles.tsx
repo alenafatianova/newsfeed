@@ -6,11 +6,9 @@ import './Articles.css';
 
 interface ArticlesType {
   articles: NewsResponse;
-  articleId: number | null;
-  onArticleClick: (id: number) => void;
 }
 
-export const Articles: React.FC<ArticlesType> = ({ articles, articleId, onArticleClick }) => {
+export const Articles: React.FC<ArticlesType> = ({ articles }) => {
   return (
     <section className="articles">
       <div className="container grid">
@@ -20,14 +18,13 @@ export const Articles: React.FC<ArticlesType> = ({ articles, articleId, onArticl
             const source = articles.sources.find(({ id }) => item.source_id === id);
             return (
               <MainArticle
-                key={item.title}
+                key={item.id}
                 title={item.title}
                 description={item.description}
                 image={item.image}
                 category={category?.name || ''}
                 source={source?.name || ''}
-                articleId={articleId}
-                onArticleClick={() => onArticleClick(item.id)}
+                id={item.id}
               />
             );
           })}
@@ -41,8 +38,7 @@ export const Articles: React.FC<ArticlesType> = ({ articles, articleId, onArticl
                 title={item.title}
                 source={source?.name}
                 date={item.date}
-                articleId={articleId}
-                onArticleClick={() => onArticleClick(item.id)}
+                id={item.id}
               />
             );
           })}
