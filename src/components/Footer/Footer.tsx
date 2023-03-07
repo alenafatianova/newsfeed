@@ -1,20 +1,14 @@
-import React, { FC } from 'react'
+import React from 'react'
 import { Navigation } from '../Navigation/Navigation'
 import './Footer.css'
 
-interface IFooter {
-  onNavClick: (e: React.MouseEvent<HTMLElement>) => void
-  category: string
-}
 
-export const Footer:FC<IFooter> = ({ onNavClick, category }) => {
+export const Footer: React.FC = () => {
   return (
         <footer className="footer">
           <div className="container">
             <Navigation
               placement="footer"
-              onNavClick={onNavClick}
-              currentCategory={category}
               className="footer__navigation"
             />
             <div className="footer__bottom">

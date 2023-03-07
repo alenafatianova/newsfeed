@@ -13,7 +13,7 @@ type MainArticleType = {
 
 export const MainArticle: FC<MainArticleType> = ({ title, image, category, description, source, id }) => {
   return (
-  <Link to={`article/${id}`} className='main-article'>
+  <Link to={`/article/${id}`} className='main-article'>
     <article className="main-article-container">
       <div className="main-article__image-container">
         <img className="article-img main-article__img" src={image} alt="Фото новости" />

@@ -1,13 +1,9 @@
-import React, { FC } from 'react'
+import React from 'react'
 import { Navigation } from '../Navigation/Navigation'
 import './Header.css'
 
-interface IHeader {
-  onNavClick: (e: React.MouseEvent<HTMLElement>) => void
-  category: string
-}
 
-export const Header: FC<IHeader> = ({ onNavClick, category }) => {
+export const Header: React.FC = () => {
   return (
     <div>
           <header className="header">
@@ -15,8 +11,6 @@ export const Header: FC<IHeader> = ({ onNavClick, category }) => {
             <Navigation
               placement="header"
               className="header__navigation"
-              onNavClick={onNavClick}
-              currentCategory={category}
             />
           </div>
         </header>
