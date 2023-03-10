@@ -1,16 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { NewsResponse } from '../../types';
+import { categoryIds } from '../../utils';
 import { MainArticle } from '../MainArticle/MainArticle';
 import { SmallArticle } from '../SmallArticle/SmallArticle';
 import './Articles.css';
 
-interface ArticlesType {
-  articles: NewsResponse;
-  articleId: number | null;
-  onArticleClick: (id: number) => void;
-}
+export const Articles: React.FC = () => {
 
-export const Articles: React.FC<ArticlesType> = ({ articles, articleId, onArticleClick }) => {
+  const { categoryID = 'index' } : {categoryID?: string} = useParams()
+  const [articles, setArticles] = useState<NewsResponse>({ items: [], categories: [], sources: [] });
+
+  useEffect(() => {
+    fetch('https://frontend.karpovcourses.net/api/v2/ru/news/' + categoryIds[categoryID] || '')
+      .then((response) => response.json())
+      .then((response: NewsResponse) => {
+        setArticles(response);
+      });
+  }, [categoryID]);
+
   return (
     <section className="articles">
       <div className="container grid">
@@ -20,14 +28,13 @@ export const Articles: React.FC<ArticlesType> = ({ articles, articleId, onArticl
             const source = articles.sources.find(({ id }) => item.source_id === id);
             return (
               <MainArticle
-                key={item.title}
+                key={item.id}
                 title={item.title}
                 description={item.description}
                 image={item.image}
                 category={category?.name || ''}
                 source={source?.name || ''}
-                articleId={articleId}
-                onArticleClick={() => onArticleClick(item.id)}
+                id={item.id}
               />
             );
           })}
@@ -37,12 +44,11 @@ export const Articles: React.FC<ArticlesType> = ({ articles, articleId, onArticl
             const source = articles.sources.find(({ id }) => item.source_id === id);
             return (
               <SmallArticle
-                key={item.title}
+                key={item.id}
                 title={item.title}
                 source={source?.name}
                 date={item.date}
-                articleId={articleId}
-                onArticleClick={() => onArticleClick(item.id)}
+                id={item.id}
               />
             );
           })}
