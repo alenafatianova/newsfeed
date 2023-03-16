@@ -31,7 +31,11 @@ deploy:
   stage: deploy
   before_script:
   - apk update && apk add rsync openssh
+  - mkdir ~/.ssh
+  - chmod 600 ~/.ssh
+  - echo "$SSH_PRIVATE_KEY" >> ~/.ssh/id_rsa
+  - chmod 600 ~/.ssh/id_rsa
   script:
-  - rsync -a --delete dist/ admin@65.108.85.62:/home/admin/newsfeed
+  - rsync -a --delete dist/ alena@65.109.161.96:/home/admin/newsfeed
   only:
   - master
