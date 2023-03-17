@@ -44,6 +44,6 @@ deploy:
     name: production
   resource_group: production
   script:
-  - rsync -a --delete dist/ alena@65.109.161.96:/home/admin/newsfeed
+  - rsync -a --delete dist/ alena@65.109.161.96:/home/alena/newsfeed
   only:
   - master
