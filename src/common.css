@@ -1,5 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;900&display=swap");
 
+*:not(svg *) {
+  all: unset;
+  display: revert;
+}
+
 :root {
   --color-primary: #262a2f;
   --color-accent: #f53;
@@ -8,11 +13,6 @@
   --container-width: 1440px;
   --grid-column-width: 98px;
   --grid-gap: 20px;
-}
-
-* {
-  all: unset;
-  display: revert;
 }
 
 body {
