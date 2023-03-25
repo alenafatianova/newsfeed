@@ -13,7 +13,6 @@ import {
   Typography,
 } from '@mui/material';
 import React from 'react';
-import './AdminArticlesItem.css';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useParams } from 'react-router-dom';
 
