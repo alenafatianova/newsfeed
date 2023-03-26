@@ -6,35 +6,32 @@ import { ArticleItem, Categories, Items, RelatedArticleItem, Sources } from '../
 import { useParams } from 'react-router-dom';
 import { ArticleItemInfo } from '../ArticleItemInfo/ArticleItemInfo';
 
-
-
 export const Article: React.FC = () => {
-  const { id } : {id?: number} = useParams()
+  const { id }: { id?: number } = useParams();
   const [articleItem, setArticleItem] = useState<ArticleItem | null>(null);
   const [relatedArticles, setRelatedArticles] = useState<Items[] | null>(null);
-  const [categories, setCategories] = useState<Categories[] | null>([])
-  const [sources, setSources ] = useState<Sources[] | null>([])
+  const [categories, setCategories] = useState<Categories[] | null>([]);
+  const [sources, setSources] = useState<Sources[] | null>([]);
 
   useEffect(() => {
     fetch(`https://frontend.karpovcourses.net/api/v2/news/full/${id}`)
       .then((response) => response.json())
       .then(setArticleItem);
 
+    Promise.all([
+      fetch(`https://frontend.karpovcourses.net/api/v2/news/related/${id}?count=9`).then((response) => response.json()),
+      fetch(`https://frontend.karpovcourses.net/api/v2/categories`).then((response) => response.json()),
+      fetch(`https://frontend.karpovcourses.net/api/v2/sources`).then((response) => response.json()),
+    ]).then((response) => {
+      const articles: RelatedArticleItem = response[0];
+      setRelatedArticles(articles.items);
 
-  Promise.all([
-    fetch(`https://frontend.karpovcourses.net/api/v2/news/related/${id}?count=9`).then(response => response.json()),
-    fetch(`https://frontend.karpovcourses.net/api/v2/categories`).then(response => response.json()),
-    fetch(`https://frontend.karpovcourses.net/api/v2/sources`).then(response => response.json())
-  ]).then(response => {
-    const articles: RelatedArticleItem = response[0]
-    setRelatedArticles(articles.items)
+      const categories = response[1];
+      setCategories(categories);
 
-    const categories = response[1]
-    setCategories(categories)
-
-    const sources = response[2]
-    setSources(sources)
-  })
+      const sources = response[2];
+      setSources(sources);
+    });
   }, [id]);
 
   if (articleItem === null || relatedArticles === null) {
@@ -43,15 +40,15 @@ export const Article: React.FC = () => {
 
   const renderArticleItemInfo = (articleItem: ArticleItem) => {
     return (
-      <ArticleItemInfo 
-      categoryName={articleItem.category.name} 
-      date={articleItem.date} 
-      sourceLink={articleItem.source?.site} 
-      sourceName={articleItem.source.name} 
-      author={articleItem.author}
-  />
-    )
-  }
+      <ArticleItemInfo
+        categoryName={articleItem.category.name}
+        date={articleItem.date}
+        sourceLink={articleItem.source?.site}
+        sourceName={articleItem.source.name}
+        author={articleItem.author}
+      />
+    );
+  };
 
   return (
     <section className="article-page">
@@ -105,7 +102,6 @@ export const Article: React.FC = () => {
               );
             })}
           </div>
-
         </div>
       </article>
 

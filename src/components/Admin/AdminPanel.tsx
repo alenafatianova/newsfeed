@@ -16,7 +16,6 @@ import ListItemText from '@mui/material/ListItemText';
 import ArticleIcon from '@mui/icons-material/Article';
 import { Link } from 'react-router-dom';
 
-
 const drawerWidth = 300;
 
 export const AdminPanel: React.FC = ({ children }) => {
@@ -40,10 +39,9 @@ export const AdminPanel: React.FC = ({ children }) => {
       >
         <Toolbar />
         <Box sx={{ overflow: 'auto' }}>
-         
           <List>
             <ListItem>
-              <ListItemButton component={Link} to='/admin'>
+              <ListItemButton component={Link} to="/admin">
                 <ListItemIcon>
                   <ArticleIcon />
                 </ListItemIcon>

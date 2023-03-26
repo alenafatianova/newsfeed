@@ -20,7 +20,6 @@ import { InputRefs, InputValues, InputError, InputNameType } from './types';
 
 // страница редактирования партнерских статей
 export const AdminArticlesItem: React.FC = () => {
-
   const { id } = useParams();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -33,26 +32,26 @@ export const AdminArticlesItem: React.FC = () => {
   };
 
   const inputRefs: InputRefs = {
-    "company-name": useRef<HTMLInputElement>(),
+    'company-name': useRef<HTMLInputElement>(),
     articleTitle: useRef<HTMLInputElement>(),
     description: useRef<HTMLTextAreaElement>(),
     text: useRef<HTMLTextAreaElement>(),
-    image: useRef<HTMLInputElement>()
-  }
-  const [inputFile, setInputFile] = useState<File | null>(null)
+    image: useRef<HTMLInputElement>(),
+  };
+  const [inputFile, setInputFile] = useState<File | null>(null);
   const [inputValues, setInputValues] = useState<InputValues>({
-    "company-name": "",
-    articleTitle: "",
-    description: "",
-    text: "",
-    image: ""
+    'company-name': '',
+    articleTitle: '',
+    description: '',
+    text: '',
+    image: '',
   });
   const [inputErrors, setInputErrors] = useState<InputError>({
-    "company-name": "",
-    articleTitle: "",
-    description: "",
-    text: "",
-    image: ""
+    'company-name': '',
+    articleTitle: '',
+    description: '',
+    text: '',
+    image: '',
   });
 
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -61,10 +60,10 @@ export const AdminArticlesItem: React.FC = () => {
     const value = input.value;
 
     setInputValues({
-      ...inputValues, 
-      [name]: value
-    })
-  }
+      ...inputValues,
+      [name]: value,
+    });
+  };
 
   const onSubmitForm = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -73,65 +72,62 @@ export const AdminArticlesItem: React.FC = () => {
     const data = new FormData();
 
     Object.entries(inputValues).forEach(([name, value]) => {
-      if(name === 'image') {
-        data.append(name, inputFile || new File([], ''))
+      if (name === 'image') {
+        data.append(name, inputFile || new File([], ''));
       } else {
-        data.append(name, value)
+        data.append(name, value);
       }
-    })
+    });
 
-   // 2. проверка данных на соответсвие условиям
-      const errors = await getErrors(
-        Array.from(data.entries()) as [InputNameType, FormDataEntryValue][]
-      );
-      const errorEntries = Object.entries(errors)
-      
-      // 3. Подсветить ошибки
-      setInputErrors(errors)
+    // 2. проверка данных на соответсвие условиям
+    const errors = await getErrors(Array.from(data.entries()) as [InputNameType, FormDataEntryValue][]);
+    const errorEntries = Object.entries(errors);
+
+    // 3. Подсветить ошибки
+    setInputErrors(errors);
 
     // 3.1 Фокус на первом ошибочном инпуте
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const errorInput = errorEntries.find(([_, value]) => value.length > 0)
+    const errorInput = errorEntries.find(([_, value]) => value.length > 0);
     if (errorInput) {
-      const inputErrorName = errorInput[0] as InputNameType
-      const inputRef = inputRefs[inputErrorName] 
+      const inputErrorName = errorInput[0] as InputNameType;
+      const inputRef = inputRefs[inputErrorName];
       if (inputRef.current) {
         inputRef.current.focus();
-      } 
+      }
       return;
     }
 
     // 4. Если все ок, то отправить данные на бэк
-    fetch("https://httpbin.org/post", {
-      method: "POST", 
-      body: data
+    fetch('https://httpbin.org/post', {
+      method: 'POST',
+      body: data,
     });
-  }
+  };
 
-  
-  const showFile = (event:ChangeEvent<HTMLInputElement>) => {
-      const files = event.currentTarget.files;
-   
-      if (files === null || !files.length) {
-        return;
-      };
+  const showFile = (event: ChangeEvent<HTMLInputElement>) => {
+    const files = event.currentTarget.files;
 
-      const file = files[0];
+    if (files === null || !files.length) {
+      return;
+    }
 
-      if (file.size === 0 || !file.type.startsWith("image/")) {
-        return;
-      };
+    const file = files[0];
 
-      setInputFile(file)
+    if (file.size === 0 || !file.type.startsWith('image/')) {
+      return;
+    }
 
-      getImage(file).then((image) => {
-        setInputValues({
-          ...inputValues,
-          image: image.src
-        });
-      }); 
-  }
-  
+    setInputFile(file);
+
+    getImage(file).then((image) => {
+      setInputValues({
+        ...inputValues,
+        image: image.src,
+      });
+    });
+  };
+
   return (
     <Box component={'form'} noValidate onSubmit={onSubmitForm}>
       <Grid container spacing={2}>
@@ -148,7 +144,7 @@ export const AdminArticlesItem: React.FC = () => {
 
       <Grid item xs={3}>
         <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <Button type='submit' sx={{ mr: 1 }} color="success" variant="contained">
+          <Button type="submit" sx={{ mr: 1 }} color="success" variant="contained">
             Сохранить
           </Button>
 
@@ -184,12 +180,12 @@ export const AdminArticlesItem: React.FC = () => {
         <Grid item xs={7}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <TextField 
-                fullWidth 
-                name='company-name'
+              <TextField
+                fullWidth
+                name="company-name"
                 error={Boolean(inputErrors['company-name'].length)}
-                label="Компания" 
-                variant="outlined" 
+                label="Компания"
+                variant="outlined"
                 value={inputValues['company-name']}
                 onChange={onInputChange}
                 ref={inputRefs['company-name']}
@@ -198,12 +194,12 @@ export const AdminArticlesItem: React.FC = () => {
             </Grid>
 
             <Grid item xs={12}>
-              <TextField 
-                fullWidth 
-                name='articleTitle'
+              <TextField
+                fullWidth
+                name="articleTitle"
                 error={Boolean(inputErrors.articleTitle.length)}
-                label="Название статьи" 
-                variant="outlined" 
+                label="Название статьи"
+                variant="outlined"
                 value={inputValues.articleTitle}
                 onChange={onInputChange}
                 ref={inputRefs.articleTitle}
@@ -212,14 +208,14 @@ export const AdminArticlesItem: React.FC = () => {
             </Grid>
 
             <Grid item xs={12}>
-              <TextField 
-                fullWidth 
-                multiline 
-                name='description'
+              <TextField
+                fullWidth
+                multiline
+                name="description"
                 error={Boolean(inputErrors.description.length)}
-                maxRows={4} 
-                label="Подводка" 
-                variant="outlined" 
+                maxRows={4}
+                label="Подводка"
+                variant="outlined"
                 value={inputValues.description}
                 ref={inputRefs.description}
                 onChange={onInputChange}
@@ -228,14 +224,14 @@ export const AdminArticlesItem: React.FC = () => {
             </Grid>
 
             <Grid item xs={12}>
-              <TextField 
-                fullWidth 
-                multiline 
-                name='text'
+              <TextField
+                fullWidth
+                multiline
+                name="text"
                 error={Boolean(inputErrors.text.length)}
-                maxRows={12} 
-                label="Текст" 
-                variant="outlined" 
+                maxRows={12}
+                label="Текст"
+                variant="outlined"
                 value={inputValues.text}
                 onChange={onInputChange}
                 ref={inputRefs.text}
@@ -246,20 +242,20 @@ export const AdminArticlesItem: React.FC = () => {
         </Grid>
         <Grid item xs={5}>
           <Card>
-          <CardActionArea>
-          <CardMedia height={140} image={inputValues.image} component="img" />
-            <CardContent>
-            <TextField
-                fullWidth 
-                type={'file'}
-                name="image"
-                error={Boolean(inputValues.image.length && <img src={inputValues.image} alt="attached-file"/>)} 
-                onChange={showFile}
-                ref={inputRefs.image}
-                helperText={inputErrors.image}
-              />
-            </CardContent>
-          </CardActionArea>
+            <CardActionArea>
+              <CardMedia height={140} image={inputValues.image} component="img" />
+              <CardContent>
+                <TextField
+                  fullWidth
+                  type={'file'}
+                  name="image"
+                  error={Boolean(inputValues.image.length && <img src={inputValues.image} alt="attached-file" />)}
+                  onChange={showFile}
+                  ref={inputRefs.image}
+                  helperText={inputErrors.image}
+                />
+              </CardContent>
+            </CardActionArea>
           </Card>
         </Grid>
       </Grid>
