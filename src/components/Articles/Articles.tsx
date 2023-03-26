@@ -7,8 +7,7 @@ import { SmallArticle } from '../SmallArticle/SmallArticle';
 import './Articles.css';
 
 export const Articles: React.FC = () => {
-
-  const { categoryID = 'index' } : {categoryID?: string} = useParams()
+  const { categoryID = 'index' }: { categoryID?: string } = useParams();
   const [articles, setArticles] = useState<NewsResponse>({ items: [], categories: [], sources: [] });
 
   useEffect(() => {
@@ -43,13 +42,7 @@ export const Articles: React.FC = () => {
           {articles.items.slice(3, 12).map((item) => {
             const source = articles.sources.find(({ id }) => item.source_id === id);
             return (
-              <SmallArticle
-                key={item.id}
-                title={item.title}
-                source={source?.name}
-                date={item.date}
-                id={item.id}
-              />
+              <SmallArticle key={item.id} title={item.title} source={source?.name} date={item.date} id={item.id} />
             );
           })}
         </section>

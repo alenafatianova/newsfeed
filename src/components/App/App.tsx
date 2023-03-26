@@ -2,28 +2,78 @@ import { Articles } from '../Articles/Articles';
 import { Article } from '../Article/Article';
 import React, { useEffect } from 'react';
 import './App.css';
-import {  Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 
-import { Header } from '../Header/Header';
-import { Footer } from '../Footer/Footer';
+import { AdminPanel } from '../Admin/AdminPanel';
+import { Page } from '../Page/Page';
+import { AdminArticlesItem } from '../AdminArticlesItem/AdminArticlesItem';
+import { AdminArticles } from '../AdminArticles/AdminArticles';
 
 export const App: React.FC = () => {
-
-  const { pathname } = useLocation()
+  const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [pathname])
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <React.Fragment>
-      <Header />
       <Routes>
-          <Route path='/:categoryID' element={<Articles/>} />
-          <Route path="/" element={<Articles />}/>
-          <Route path='/article/:id' element={<Article />}/>
+        <Route
+          path="/:categoryID"
+          element={
+            <Page>
+              {' '}
+              <Articles />{' '}
+            </Page>
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <Page>
+              {' '}
+              <Articles />{' '}
+            </Page>
+          }
+        />
+        <Route
+          path="/article/:id"
+          element={
+            <Page>
+              {' '}
+              <Article />{' '}
+            </Page>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <AdminPanel>
+              {' '}
+              <AdminArticles />{' '}
+            </AdminPanel>
+          }
+        />
+        <Route
+          path="/admin/create"
+          element={
+            <AdminPanel>
+              {' '}
+              <AdminArticlesItem />{' '}
+            </AdminPanel>
+          }
+        />
+        <Route
+          path="/admin/edit/:id"
+          element={
+            <AdminPanel>
+              {' '}
+              <AdminArticlesItem />{' '}
+            </AdminPanel>
+          }
+        />
       </Routes>
-      <Footer />
     </React.Fragment>
   );
 };

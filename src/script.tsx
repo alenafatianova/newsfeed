@@ -7,5 +7,6 @@ import { App } from './components/App/App';
 ReactDOM.render(
   <Router>
     <App />
-  </Router>, 
-document.getElementById('root'));
+  </Router>,
+  document.getElementById('root')
+);

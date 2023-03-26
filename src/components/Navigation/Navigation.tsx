@@ -10,7 +10,6 @@ type NavigationType = {
 };
 
 export const Navigation: FC<NavigationType> = ({ className = '', placement = 'header' }) => {
-
   return (
     <nav className={`grid navigation navigation--${placement} ${className}`}>
       <NavLink to="/" className="navigation--logo">
@@ -22,8 +21,8 @@ export const Navigation: FC<NavigationType> = ({ className = '', placement = 'he
             <li className="navigation--item" key={item}>
               <NavLink
                 to={`/${item}`}
-                className={"navigation--link"}
-                style={({isActive}) => ({color: isActive ? 'navigation--link--active' : '' })}
+                className={'navigation--link'}
+                style={({ isActive }) => ({ color: isActive ? 'navigation--link--active' : '' })}
               >
                 {categoryNames[item]}
               </NavLink>
