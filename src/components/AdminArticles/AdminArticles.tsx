@@ -39,7 +39,7 @@ export const AdminArticles: React.FC = () => {
             <Card>
               <CardMedia
                 component={Link}
-                to={`/admin.edit/${article.id}`}
+                to={`/admin/edit/${article.id}`}
                 sx={{ height: 140 }}
                 image={article.image}
                 title={article.articleTitle}
