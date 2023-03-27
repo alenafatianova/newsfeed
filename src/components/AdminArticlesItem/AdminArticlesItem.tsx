@@ -27,7 +27,7 @@ export const AdminArticlesItem: React.FC = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [snackBarMessage, setSnackBarMessage] = useState<string | null>(null);
   const open = Boolean(anchorEl);
-  
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -44,24 +44,19 @@ export const AdminArticlesItem: React.FC = () => {
   };
 
   const deleteArticle = (id: string) => {
-    if(!id) return 
+    if (!id) return;
     deletePartnerArticle(id)
-    .then(() => {
-      setSnackBarMessage(`✅ Статья удалена!`)
-    })
-    .catch((err) => {
-      setSnackBarMessage(`❌ ${err.message}`)
-    });
-  }
+      .then(() => {
+        setSnackBarMessage(`✅ Статья удалена!`);
+      })
+      .catch((err) => {
+        setSnackBarMessage(`❌ ${err.message}`);
+      });
+  };
 
   const action = (
     <>
-      <IconButton
-        size="small"
-        aria-label="close"
-        color="inherit"
-        onClick={onCloseSnackBar}
-      >
+      <IconButton size="small" aria-label="close" color="inherit" onClick={onCloseSnackBar}>
         <CloseIcon fontSize="small" />
       </IconButton>
     </>
@@ -137,39 +132,37 @@ export const AdminArticlesItem: React.FC = () => {
     // 4. Если все ок, то отправить данные на бэк
     if (id) {
       updatePartnerArticle(id, inputValues)
-      .then(() => {
-        setSnackBarMessage(`✅ Статья обновлена!`)
-      })
-      .catch((err) => {
-        setSnackBarMessage(`❌ ${err.message}`)
-      });
-
+        .then(() => {
+          setSnackBarMessage(`✅ Статья обновлена!`);
+        })
+        .catch((err) => {
+          setSnackBarMessage(`❌ ${err.message}`);
+        });
     } else {
       createPartnerArticle(inputValues)
-      .then(() => {
-        setSnackBarMessage(`✅ Статья создана!`)
-      })
-      .catch((err) => {
-        setSnackBarMessage(`❌ ${err.message}`)
-      });
+        .then(() => {
+          setSnackBarMessage(`✅ Статья создана!`);
+        })
+        .catch((err) => {
+          setSnackBarMessage(`❌ ${err.message}`);
+        });
     }
   };
 
   useEffect(() => {
-    if(!id) return
+    if (!id) return;
 
     (async () => {
-      const data = await getPartnerArticle(id)
+      const data = await getPartnerArticle(id);
       setInputValues({
         'company-name': data['company-name'],
         articleTitle: data.articleTitle,
         description: data.description,
         text: data.text,
         image: data.image,
-      })
-    })()
-  }, [id])
-  
+      });
+    })();
+  }, [id]);
 
   const showFile = (event: ChangeEvent<HTMLInputElement>) => {
     const files = event.currentTarget.files;
@@ -198,7 +191,7 @@ export const AdminArticlesItem: React.FC = () => {
     <Box component={'form'} noValidate onSubmit={onSubmitForm}>
       <Grid container spacing={2}>
         <Grid item xs={9} sx={{ mb: 3 }}>
-        <Typography variant="h4" gutterBottom>
+          <Typography variant="h4" gutterBottom>
             {id ? `Редактирование статьи ${inputValues.articleTitle}` : 'Создать новую'}
           </Typography>
         </Grid>
@@ -321,11 +314,11 @@ export const AdminArticlesItem: React.FC = () => {
           </Card>
         </Grid>
         <Snackbar
-        open={typeof snackBarMessage === 'string'}
-        autoHideDuration={6000}
-        onClose={onCloseSnackBar}
-        message={snackBarMessage}
-        action={action}
+          open={typeof snackBarMessage === 'string'}
+          autoHideDuration={6000}
+          onClose={onCloseSnackBar}
+          message={snackBarMessage}
+          action={action}
         />
       </Grid>
     </Box>

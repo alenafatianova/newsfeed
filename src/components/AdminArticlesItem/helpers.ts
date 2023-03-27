@@ -87,4 +87,3 @@ export const getErrors = async (data: [InputNameType, FormDataEntryValue][]): Pr
   }
   return errors;
 };
-
