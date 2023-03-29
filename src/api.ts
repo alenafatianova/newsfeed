@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs, addDoc, getDoc, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { IPartnersPosts } from './types';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 export const initializeAPI = (): any => {
   initializeApp({
@@ -14,6 +15,7 @@ export const initializeAPI = (): any => {
   });
 
   getFirestore();
+  getStorage();
 };
 
 const partnersPostCollection = 'partners-posts';
@@ -84,6 +86,20 @@ export const deletePartnerArticle = async (id: string): Promise<any> => {
   const ref = doc(db, partnersPostCollection, id);
   try {
     await deleteDoc(ref);
+  } catch (err) {
+    return Promise.reject(err);
+  }
+};
+
+export const uploadFile = async (file: File): Promise<string> => {
+  const storage = getStorage();
+  const storageRef = ref(storage, `${file.name} - ${Date.now()}`);
+
+  try {
+    const snapshot = await uploadBytes(storageRef, file);
+    const url = getDownloadURL(snapshot.ref);
+
+    return url;
   } catch (err) {
     return Promise.reject(err);
   }

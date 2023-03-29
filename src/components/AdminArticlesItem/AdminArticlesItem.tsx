@@ -18,7 +18,13 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useParams } from 'react-router-dom';
 import { getErrors, getImage } from './helpers';
 import { InputRefs, InputValues, InputError, InputNameType } from './types';
-import { createPartnerArticle, deletePartnerArticle, getPartnerArticle, updatePartnerArticle } from '../../api';
+import {
+  createPartnerArticle,
+  deletePartnerArticle,
+  getPartnerArticle,
+  updatePartnerArticle,
+  uploadFile,
+} from '../../api';
 import CloseIcon from '@mui/icons-material/Close';
 
 // страница редактирования партнерских статей
@@ -69,7 +75,7 @@ export const AdminArticlesItem: React.FC = () => {
     text: useRef<HTMLTextAreaElement>(),
     image: useRef<HTMLInputElement>(),
   };
-  const [inputFile, setInputFile] = useState<File | null>(null);
+
   const [inputValues, setInputValues] = useState<InputValues>({
     'company-name': '',
     articleTitle: '',
@@ -103,11 +109,7 @@ export const AdminArticlesItem: React.FC = () => {
     const data = new FormData();
 
     Object.entries(inputValues).forEach(([name, value]) => {
-      if (name === 'image') {
-        data.append(name, inputFile || new File([], ''));
-      } else {
-        data.append(name, value);
-      }
+      data.append(name, value);
     });
 
     // 2. проверка данных на соответсвие условиям
@@ -164,7 +166,7 @@ export const AdminArticlesItem: React.FC = () => {
     })();
   }, [id]);
 
-  const showFile = (event: ChangeEvent<HTMLInputElement>) => {
+  const showFile = async (event: ChangeEvent<HTMLInputElement>) => {
     const files = event.currentTarget.files;
 
     if (files === null || !files.length) {
@@ -177,14 +179,28 @@ export const AdminArticlesItem: React.FC = () => {
       return;
     }
 
-    setInputFile(file);
+    // получение изображения
+    const image = await getImage(file);
 
-    getImage(file).then((image) => {
+    // проверка изображения на соответствие условиям
+    if (image.width < 200 || image.height < 200) {
+      setInputErrors({
+        ...inputErrors,
+        image: 'Изображение должно быть минимум 200x200',
+      });
+      return;
+    }
+
+    // подгрузка изображения
+    try {
+      const url = await uploadFile(file);
       setInputValues({
         ...inputValues,
-        image: image.src,
+        image: url,
       });
-    });
+    } catch (err: any) {
+      setSnackBarMessage(`${err.message}`);
+    }
   };
 
   return (
