@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { NewsResponse } from '../../types';
 import { categoryIds } from '../../utils';
 import { MainArticle } from '../MainArticle/MainArticle';
+import { PartnersArticles } from '../PartnersArticles/PartnersArticles';
 import { SmallArticle } from '../SmallArticle/SmallArticle';
 import './Articles.css';
 
@@ -46,6 +47,12 @@ export const Articles: React.FC = () => {
             );
           })}
         </section>
+      </div>
+
+      <div className="partners-article">
+        <div>
+          <PartnersArticles />
+        </div>
       </div>
     </section>
   );

@@ -1,5 +1,17 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs, addDoc, getDoc, doc, updateDoc, deleteDoc } from 'firebase/firestore';
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  addDoc,
+  getDoc,
+  doc,
+  updateDoc,
+  deleteDoc,
+  query,
+  orderBy,
+  limit,
+} from 'firebase/firestore';
 import { IPartnersPosts } from './types';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
@@ -40,7 +52,7 @@ export const getPartnersArticles = async (): Promise<IPartnersPosts[]> => {
   return articles;
 };
 
-export const createPartnerArticle = async (data: Omit<IPartnersPosts, 'id'>): Promise<void> => {
+export const createPartnerArticle = async (data: Omit<IPartnersPosts, 'id' | 'created'>): Promise<void> => {
   const db = getFirestore();
 
   try {
@@ -70,7 +82,7 @@ export const getPartnerArticle = async (id: string): Promise<IPartnersPosts> => 
   }
 };
 
-export const updatePartnerArticle = async (id: string, data: Omit<IPartnersPosts, 'id'>): Promise<any> => {
+export const updatePartnerArticle = async (id: string, data: Omit<IPartnersPosts, 'id' | 'created'>): Promise<any> => {
   const db = getFirestore();
   const updatedArticle = doc(db, partnersPostCollection, id);
 
@@ -103,4 +115,26 @@ export const uploadFile = async (file: File): Promise<string> => {
   } catch (err) {
     return Promise.reject(err);
   }
+};
+
+// sorted article
+export const getSortedPartnerArticle = async (): Promise<IPartnersPosts | null> => {
+  const db = getFirestore();
+  let article: IPartnersPosts | null = null;
+
+  try {
+    const q = query(collection(db, partnersPostCollection), orderBy('created', 'desc'), limit(1));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      const data = doc.data() as Omit<IPartnersPosts, 'id'>;
+
+      article = {
+        id: doc.id,
+        ...data,
+      };
+    });
+  } catch (err) {
+    return Promise.reject(err);
+  }
+  return article;
 };
