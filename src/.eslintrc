@@ -17,7 +17,6 @@
   },
   "rules": {
     "@typescript-eslint/no-explicit-any": "off",
-    "semi": "off",
-    "no-console": "warn"
+    "semi": "off"
   }
 }

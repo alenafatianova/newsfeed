@@ -9,6 +9,7 @@ import { Page } from '../Page/Page';
 import { AdminArticlesItem } from '../AdminArticlesItem/AdminArticlesItem';
 import { AdminArticles } from '../AdminArticles/AdminArticles';
 import { RequireAuth } from '../RequireAuth/RequireAuth';
+import { LoginContainer } from '../../Features/Auth/Login/LoginContainer';
 
 export const App: React.FC = () => {
   const { pathname } = useLocation();
@@ -50,34 +51,41 @@ export const App: React.FC = () => {
         <Route
           path="/admin"
           element={
-          <RequireAuth>
+            <RequireAuth>
               <AdminPanel>
-              <AdminArticles />
+                <AdminArticles />
               </AdminPanel>
-          </RequireAuth>
+            </RequireAuth>
           }
         />
         <Route
           path="/admin/create"
           element={
-           <RequireAuth>
-             <AdminPanel>
-              <AdminArticlesItem />
+            <RequireAuth>
+              <AdminPanel>
+                <AdminArticlesItem />
               </AdminPanel>
-           </RequireAuth>
+            </RequireAuth>
           }
         />
         <Route
           path="/admin/edit/:id"
           element={
-           <RequireAuth>
-             <AdminPanel>
-              <AdminArticlesItem />
+            <RequireAuth>
+              <AdminPanel>
+                <AdminArticlesItem />
               </AdminPanel>
-           </RequireAuth>
+            </RequireAuth>
           }
         />
-        <Route path={'/login'}> login page</Route>
+        <Route
+          path={'/login'}
+          element={
+            <Page>
+              <LoginContainer />
+            </Page>
+          }
+        />
       </Routes>
     </React.Fragment>
   );
