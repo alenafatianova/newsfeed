@@ -15,18 +15,26 @@ import ListItemText from '@mui/material/ListItemText';
 
 import ArticleIcon from '@mui/icons-material/Article';
 import { Link } from 'react-router-dom';
+import { IconButton } from '@mui/material';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { useAuthContext } from '../../Features/Auth/AuthContextProvider';
 
 const drawerWidth = 300;
 
 export const AdminPanel: React.FC = ({ children }) => {
+  const { logout } = useAuthContext()
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <Toolbar>
-          <Typography variant="h6" noWrap component="div">
+          <Typography variant="h6" noWrap component="div" sx={{flexGrow: 1}}>
             Admin panel
           </Typography>
+
+          <IconButton color={'inherit'} onClick={logout}>
+            <LogoutIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Drawer

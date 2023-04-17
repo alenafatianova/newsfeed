@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContextType } from './types';
 import { FirebaseApp } from 'firebase/app';
-import { getAuth, signInWithEmailAndPassword, User, browserLocalPersistence } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, User, browserLocalPersistence, signOut } from 'firebase/auth';
 
 type FirebaseAppType = {
   firebaseApp: FirebaseApp;
@@ -11,6 +11,7 @@ type FirebaseAppType = {
 const AuthContext = React.createContext<AuthContextType>({
   isAuth: null,
   loginWithEmailAndPassword: () => Promise.reject({}),
+  logout: () => undefined
 });
 
 export const useAuthContext = (): AuthContextType => {
@@ -21,11 +22,9 @@ export const AuthContextProvider: React.FC<FirebaseAppType> = ({ children, fireb
   const [isAuth, setIsAuth] = useState<AuthContextType['isAuth']>(null);
   const [user, setUser] = useState<User | null>(null);
   const [auth] = useState(getAuth(firebaseApp));
+  const logout = () => signOut(auth)
 
   useEffect(() => {
-    // if (!isAuth) {
-    //   return
-    // }
     auth.setPersistence(browserLocalPersistence);
     auth.languageCode = 'ru';
 
@@ -50,5 +49,5 @@ export const AuthContextProvider: React.FC<FirebaseAppType> = ({ children, fireb
       });
   };
 
-  return <AuthContext.Provider value={{ isAuth, user, loginWithEmailAndPassword }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ isAuth, user, loginWithEmailAndPassword, logout }}>{children}</AuthContext.Provider>;
 };
