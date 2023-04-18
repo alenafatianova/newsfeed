@@ -4,5 +4,5 @@ export type AuthContextType = {
   user?: User | null;
   isAuth: boolean | null;
   loginWithEmailAndPassword: (email: string, password: string) => Promise<UserCredential | null>;
-  logout: () => void
+  logout: () => void;
 };

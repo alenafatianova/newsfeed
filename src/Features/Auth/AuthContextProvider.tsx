@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContextType } from './types';
 import { FirebaseApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword, User, browserLocalPersistence, signOut } from 'firebase/auth';
+import { doc, getDoc, getFirestore } from 'firebase/firestore';
 
 type FirebaseAppType = {
   firebaseApp: FirebaseApp;
@@ -11,7 +12,7 @@ type FirebaseAppType = {
 const AuthContext = React.createContext<AuthContextType>({
   isAuth: null,
   loginWithEmailAndPassword: () => Promise.reject({}),
-  logout: () => undefined
+  logout: () => undefined,
 });
 
 export const useAuthContext = (): AuthContextType => {
@@ -22,7 +23,12 @@ export const AuthContextProvider: React.FC<FirebaseAppType> = ({ children, fireb
   const [isAuth, setIsAuth] = useState<AuthContextType['isAuth']>(null);
   const [user, setUser] = useState<User | null>(null);
   const [auth] = useState(getAuth(firebaseApp));
-  const logout = () => signOut(auth)
+  const logout = () => signOut(auth);
+
+  const isUserAdmin = async (firebaseApp: FirebaseApp) => {
+    const db = getFirestore(firebaseApp);
+    return await getDoc(doc(db, '/internal/auth'));
+  };
 
   useEffect(() => {
     auth.setPersistence(browserLocalPersistence);
@@ -30,8 +36,17 @@ export const AuthContextProvider: React.FC<FirebaseAppType> = ({ children, fireb
 
     auth.onAuthStateChanged((user) => {
       if (user) {
-        setUser(user);
-        setIsAuth(true);
+        // check if user has admin's permissions
+        isUserAdmin(firebaseApp)
+          .then(() => {
+            setUser(user);
+            setIsAuth(true);
+          })
+          .catch(() => {
+            logout();
+            setUser(null);
+            setIsAuth(false);
+          });
       } else {
         setUser(null);
         setIsAuth(false);
@@ -40,6 +55,8 @@ export const AuthContextProvider: React.FC<FirebaseAppType> = ({ children, fireb
   }, [auth]);
 
   const loginWithEmailAndPassword = (email: string, password: string) => {
+    setUser(null);
+    setIsAuth(null);
     return signInWithEmailAndPassword(auth, email, password)
       .then((result) => {
         return result;
@@ -49,5 +66,7 @@ export const AuthContextProvider: React.FC<FirebaseAppType> = ({ children, fireb
       });
   };
 
-  return <AuthContext.Provider value={{ isAuth, user, loginWithEmailAndPassword, logout }}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ isAuth, user, loginWithEmailAndPassword, logout }}>{children}</AuthContext.Provider>
+  );
 };
