@@ -1,7 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContextType } from './types';
 import { FirebaseApp } from 'firebase/app';
-import { getAuth, signInWithEmailAndPassword, User, browserLocalPersistence, signOut } from 'firebase/auth';
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  User,
+  browserLocalPersistence,
+  signOut,
+  signInWithPopup,
+  ProviderId,
+  GoogleAuthProvider,
+  GithubAuthProvider,
+  UserCredential,
+} from 'firebase/auth';
 import { doc, getDoc, getFirestore } from 'firebase/firestore';
 
 type FirebaseAppType = {
@@ -9,9 +20,15 @@ type FirebaseAppType = {
   children: React.ReactNode;
 };
 
+export const ALLOWED_OAUTH_PROVIDERS: Record<string, any> = {
+  [ProviderId.GOOGLE]: new GoogleAuthProvider(),
+  [ProviderId.GITHUB]: new GithubAuthProvider(),
+};
+
 const AuthContext = React.createContext<AuthContextType>({
   isAuth: null,
   loginWithEmailAndPassword: () => Promise.reject({}),
+  loginWithOauthPopup: () => Promise.reject({}),
   logout: () => undefined,
 });
 
@@ -54,10 +71,10 @@ export const AuthContextProvider: React.FC<FirebaseAppType> = ({ children, fireb
     });
   }, [auth]);
 
-  const loginWithEmailAndPassword = (email: string, password: string) => {
+  const proccessLogin = (promise: Promise<UserCredential>): Promise<UserCredential> => {
     setUser(null);
     setIsAuth(null);
-    return signInWithEmailAndPassword(auth, email, password)
+    return promise
       .then((result) => {
         return result;
       })
@@ -66,7 +83,17 @@ export const AuthContextProvider: React.FC<FirebaseAppType> = ({ children, fireb
       });
   };
 
+  const loginWithEmailAndPassword = (email: string, password: string) => {
+    return proccessLogin(signInWithEmailAndPassword(auth, email, password));
+  };
+
+  const loginWithOauthPopup = (provider: string) => {
+    return proccessLogin(signInWithPopup(auth, ALLOWED_OAUTH_PROVIDERS[provider]));
+  };
+
   return (
-    <AuthContext.Provider value={{ isAuth, user, loginWithEmailAndPassword, logout }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ isAuth, user, loginWithEmailAndPassword, logout, loginWithOauthPopup }}>
+      {children}
+    </AuthContext.Provider>
   );
 };

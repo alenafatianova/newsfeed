@@ -2,15 +2,30 @@ import React, { Reducer, useReducer, useState } from 'react';
 import './LoginContainer.css';
 import { LoginField, LoginForm } from '@components/LoginForm/LoginForm';
 import { validateEmail } from './utils';
-import { useAuthContext } from '../AuthContextProvider';
-import { Typography } from '@mui/material';
+import { ALLOWED_OAUTH_PROVIDERS, useAuthContext } from '../AuthContextProvider';
+import { Link, Typography } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
+import GoogleIcon from '@mui/icons-material/Google';
+import LoginIcon from '@mui/icons-material/Login';
+import { ProviderId, UserCredential } from 'firebase/auth';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 type LoginStateType = Omit<LoginField, 'onFieldChange'>;
 
 type LoginActionType = {
   type: 'onFieldChange' | 'error';
   value: string;
+};
+
+const getOauthProviderIcon = (provider: string) => {
+  switch (provider) {
+    case ProviderId.GOOGLE:
+      return <GoogleIcon fontSize="inherit" />;
+    case ProviderId.GITHUB:
+      return <GitHubIcon fontSize="inherit" />;
+    default:
+      return <LoginIcon fontSize="inherit" />;
+  }
 };
 
 const reducer = (state: LoginStateType, action: LoginActionType): LoginStateType => {
@@ -45,7 +60,17 @@ export const LoginContainer: React.FC = () => {
   const navigateState = useNavigate();
   const location = useLocation();
   const [authError, setAuthError] = useState('');
-  const { loginWithEmailAndPassword } = useAuthContext();
+  const { loginWithEmailAndPassword, loginWithOauthPopup } = useAuthContext();
+
+  const proccessLogin = (promise: Promise<UserCredential>): void => {
+    promise
+      .then(() => {
+        navigateState(location?.state?.from || '/admin');
+      })
+      .catch((err) => {
+        setAuthError(err.message || 'error');
+      });
+  };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -67,13 +92,16 @@ export const LoginContainer: React.FC = () => {
     }
 
     if (isValid) {
-      loginWithEmailAndPassword(emailState?.value, passwordState?.value)
-        .then(() => {
-          navigateState(location?.state?.from || '/admin');
-        })
-        .catch((err) => {
-          setAuthError(err.message || 'error');
-        });
+      proccessLogin(loginWithEmailAndPassword(emailState?.value, passwordState?.value));
+    }
+  };
+
+  const onOauthClick = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    //const dataset = (e.target as HTMLElement)?.closest<HTMLLinkElement>('oauth-container-item')?.dataset
+    const dataset = e.currentTarget.closest('a')?.dataset;
+    if (dataset?.provider) {
+      proccessLogin(loginWithOauthPopup(dataset?.provider));
     }
   };
 
@@ -101,6 +129,15 @@ export const LoginContainer: React.FC = () => {
         className=""
         onFormSubmit={onSubmit}
       />
+      <div className="oauth-container">
+        {Object.keys(ALLOWED_OAUTH_PROVIDERS).map((key: string) => {
+          return (
+            <Link key={key} onClick={onOauthClick} href={'#'} className="oauth-container-item" data-provider={key}>
+              {getOauthProviderIcon(key)}
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 };
