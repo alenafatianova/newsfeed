@@ -1,20 +1,18 @@
 import React, { FC } from 'react';
 import { categoryNames } from '../../utils';
 import './Navigation.css';
-import logo from '../../images/logo.svg';
 import { NavLink } from 'react-router-dom';
+import { Logo } from '@components/Logo/Logo';
+import classNames from 'classnames';
 
 type NavigationType = {
-  placement: string;
   className: string;
 };
 
-export const Navigation: FC<NavigationType> = ({ className = '', placement = 'header' }) => {
+export const Navigation: FC<NavigationType> = ({ className = '' }) => {
   return (
-    <nav className={`grid navigation navigation--${placement} ${className}`}>
-      <NavLink to="/" className="navigation--logo">
-        <img className="navigation--logo-image" src={logo} alt="Логотип" />
-      </NavLink>
+    <nav className={classNames('navigation', className)}>
+      <Logo />
       <ul className="navigation--list">
         {['index', 'fashion', 'technologies', 'sport', 'karpov'].map((item) => {
           return (
@@ -22,7 +20,7 @@ export const Navigation: FC<NavigationType> = ({ className = '', placement = 'he
               <NavLink
                 to={`/${item}`}
                 className={'navigation--link'}
-                style={({ isActive }) => ({ color: isActive ? 'navigation--link--active' : '' })}
+                style={({ isActive }) => ({ color: isActive ? 'navigation--link active' : '' })}
               >
                 {categoryNames[item]}
               </NavLink>

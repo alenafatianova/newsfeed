@@ -2,13 +2,13 @@
   cursor: pointer;
   padding-left: 16px;
   font-size: 16px;
-  color: var(--color-grey);
+  color: var(--color-grey-2);
 }
 
 .article-item-info-author {
   padding-left: 8px;
   font-size: 14px;
-  color: var(--color-grey);
+  color: var(--color-grey-2);
 }
 
 .article-item-info-category_container {
