@@ -3,7 +3,9 @@
     "jsx": "react",
     "strict": true,
     "esModuleInterop": true,
-    "lib": ["es2019", "dom", "dom.iterable"]
+    "lib": ["es2019", "dom", "dom.iterable"],
+    "baseUrl": "src",
+    "paths": { "@components/*": ["components/*"] }
   },
   "include": ["src", "custom.d.ts"],
   "exclude": ["node_modules", "dist"]
