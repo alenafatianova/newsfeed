@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { NewsResponse } from '../../types';
-import { categoryIds } from '../../utils';
+import { categoryIds, categoryNames } from '../../utils';
 import { MainArticle } from '../MainArticle/MainArticle';
 import { PartnersArticles } from '../PartnersArticles/PartnersArticles';
 
 import './Articles.css';
 import { SidebarArticleCard } from '@components/SidebarArticleCard/SidebarArticleCard';
+import { Hero } from '@components/Hero/Hero';
 
 export const Articles: React.FC = () => {
   const { categoryID = 'index' }: { categoryID?: string } = useParams();
@@ -22,6 +23,7 @@ export const Articles: React.FC = () => {
 
   return (
     <section className="articles">
+      <Hero title={categoryNames[categoryID]} image="test" className="articles__hero" />
       <div className="container grid">
         <section className="articles__content">
           {articles.items.slice(0, 3).map((item) => {

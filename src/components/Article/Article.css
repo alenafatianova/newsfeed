@@ -90,3 +90,7 @@
 .article-page__related-articles-list > * {
   grid-column: span 4;
 }
+
+.article-page__hero {
+  margin-bottom: 36px;
+}

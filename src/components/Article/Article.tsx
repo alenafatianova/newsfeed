@@ -5,6 +5,7 @@ import { ArticleItem, Categories, Items, RelatedArticleItem, Sources } from '../
 import { useParams } from 'react-router-dom';
 import { ArticleItemInfo } from '../ArticleItemInfo/ArticleItemInfo';
 import { SidebarArticleCard } from '@components/SidebarArticleCard/SidebarArticleCard';
+import { Hero } from '@components/Hero/Hero';
 
 export const Article: React.FC = () => {
   const { id }: { id?: number } = useParams();
@@ -53,30 +54,11 @@ export const Article: React.FC = () => {
   return (
     <section className="article-page">
       <article className="article">
-        {articleItem?.image?.length ? (
-          <section
-            className="article__hero"
-            style={{
-              backgroundImage: `url(${articleItem?.image})`,
-            }}
-          >
-            <div className="container article__hero-content">
-              <div className="grid">
-                <h1 className="article__hero-title">{articleItem?.title}</h1>
-              </div>
-              {renderArticleItemInfo(articleItem)}
-            </div>
-          </section>
-        ) : null}
+        <Hero title={articleItem.title} image={articleItem.image} className="article-page__hero" />
 
         <div className="grid container article__main">
           <div className="article__content">
-            {!articleItem?.image?.length && (
-              <div className="article__title-container">
-                <h1 className="article__title">{articleItem?.title}</h1>
-                {renderArticleItemInfo(articleItem)}
-              </div>
-            )}
+            {renderArticleItemInfo(articleItem)}
 
             <p>{articleItem?.text}</p>
             <img src={articleItem?.image} />
