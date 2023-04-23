@@ -87,7 +87,7 @@
   text-transform: uppercase;
 }
 
-.article-page__related-articles-list > * {
+.article-page__related-articles-item {
   grid-column: span 4;
 }
 

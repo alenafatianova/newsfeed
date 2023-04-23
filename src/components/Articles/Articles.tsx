@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { NewsResponse } from '../../types';
 import { categoryIds, categoryNames } from '../../utils';
-import { MainArticle } from '../MainArticle/MainArticle';
 import { PartnersArticles } from '../PartnersArticles/PartnersArticles';
 
 import './Articles.css';
 import { SidebarArticleCard } from '@components/SidebarArticleCard/SidebarArticleCard';
 import { Hero } from '@components/Hero/Hero';
+import { ArticleCard } from '@components/ArticleCard/ArticleCard';
 
 export const Articles: React.FC = () => {
   const { categoryID = 'index' }: { categoryID?: string } = useParams();
@@ -30,13 +30,13 @@ export const Articles: React.FC = () => {
             const category = articles?.categories?.find(({ id }) => item?.category_id === id);
             const source = articles.sources.find(({ id }) => item.source_id === id);
             return (
-              <MainArticle
+              <ArticleCard
                 key={item.id}
                 title={item.title}
                 description={item.description}
                 image={item.image}
-                category={category?.name || ''}
-                source={source?.name || ''}
+                category={category?.name}
+                source={source?.name}
                 id={item.id}
               />
             );

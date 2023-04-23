@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import './Article.css';
-import { SingleLineTitleArticle } from '../SingleLineTitleArticle/SingleLineTitleArticle';
-import { ArticleItem, Categories, Items, RelatedArticleItem, Sources } from '../../types';
+import { ArticleItem, Items, RelatedArticleItem, Sources } from '../../types';
 import { useParams } from 'react-router-dom';
 import { ArticleItemInfo } from '../ArticleItemInfo/ArticleItemInfo';
 import { SidebarArticleCard } from '@components/SidebarArticleCard/SidebarArticleCard';
 import { Hero } from '@components/Hero/Hero';
+import { ArticleCard } from '@components/ArticleCard/ArticleCard';
 
 export const Article: React.FC = () => {
   const { id }: { id?: number } = useParams();
   const [articleItem, setArticleItem] = useState<ArticleItem | null>(null);
   const [relatedArticles, setRelatedArticles] = useState<Items[] | null>(null);
-  const [categories, setCategories] = useState<Categories[] | null>([]);
   const [sources, setSources] = useState<Sources[] | null>([]);
 
   useEffect(() => {
@@ -21,16 +20,12 @@ export const Article: React.FC = () => {
 
     Promise.all([
       fetch(`https://frontend.karpovcourses.net/api/v2/news/related/${id}?count=9`).then((response) => response.json()),
-      fetch(`https://frontend.karpovcourses.net/api/v2/categories`).then((response) => response.json()),
       fetch(`https://frontend.karpovcourses.net/api/v2/sources`).then((response) => response.json()),
     ]).then((response) => {
       const articles: RelatedArticleItem = response[0];
       setRelatedArticles(articles.items);
 
-      const categories = response[1];
-      setCategories(categories);
-
-      const sources = response[2];
+      const sources = response[1];
       setSources(sources);
     });
   }, [id]);
@@ -89,15 +84,14 @@ export const Article: React.FC = () => {
 
           <div className="grid article-page__related-articles-list">
             {relatedArticles?.slice(0, 3).map((article) => {
-              const category = categories?.find(({ id }) => article?.category_id === id);
               const source = sources?.find(({ id }) => article?.source_id === id);
               return (
-                <SingleLineTitleArticle
+                <ArticleCard
+                  className="article-page__related-articles-item"
                   key={article.id}
-                  image={article.image}
-                  source={source?.name || ''}
-                  category={category?.name || ''}
-                  text={article.description}
+                  date={article.date}
+                  source={source?.name}
+                  description={article.description}
                   title={article.title}
                   id={article.id}
                 />
