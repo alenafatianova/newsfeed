@@ -3,7 +3,7 @@ export interface Items {
   date: string;
   title: string;
   description: string;
-  id: number;
+  id: string;
   image: string;
   source_id: number;
   category_id: number;
@@ -26,7 +26,7 @@ export interface NewsResponse {
 }
 
 export interface ArticleItem {
-  id: number;
+  id: string;
   lang?: string;
   date: string;
   title: string;

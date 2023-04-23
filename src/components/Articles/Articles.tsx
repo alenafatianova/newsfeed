@@ -4,8 +4,9 @@ import { NewsResponse } from '../../types';
 import { categoryIds } from '../../utils';
 import { MainArticle } from '../MainArticle/MainArticle';
 import { PartnersArticles } from '../PartnersArticles/PartnersArticles';
-import { SmallArticle } from '../SmallArticle/SmallArticle';
+
 import './Articles.css';
+import { SidebarArticleCard } from '@components/SidebarArticleCard/SidebarArticleCard';
 
 export const Articles: React.FC = () => {
   const { categoryID = 'index' }: { categoryID?: string } = useParams();
@@ -22,7 +23,7 @@ export const Articles: React.FC = () => {
   return (
     <section className="articles">
       <div className="container grid">
-        <section className="articles__big-column">
+        <section className="articles__content">
           {articles.items.slice(0, 3).map((item) => {
             const category = articles?.categories?.find(({ id }) => item?.category_id === id);
             const source = articles.sources.find(({ id }) => item.source_id === id);
@@ -39,11 +40,19 @@ export const Articles: React.FC = () => {
             );
           })}
         </section>
-        <section className="articles__small-column">
+        <section className="articles__sidebar">
           {articles.items.slice(3, 12).map((item) => {
             const source = articles.sources.find(({ id }) => item.source_id === id);
             return (
-              <SmallArticle key={item.id} title={item.title} source={source?.name} date={item.date} id={item.id} />
+              <SidebarArticleCard
+                className="articles__sidebar-item"
+                key={item.id}
+                id={item.id}
+                title={item.title}
+                source={source?.name || ''}
+                image={item.image}
+                date={item.date}
+              />
             );
           })}
         </section>

@@ -8,7 +8,7 @@ type MainArticleType = {
   category?: string;
   description: string;
   source?: string;
-  id: number | null;
+  id: string;
 };
 
 export const MainArticle: FC<MainArticleType> = ({ title, image, category, description, source, id }) => {

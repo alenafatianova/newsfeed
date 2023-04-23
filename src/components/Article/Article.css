@@ -58,8 +58,12 @@
   grid-area: c;
 }
 
-.article__small-column {
+.sidebar__article {
   grid-area: r;
+}
+
+.sidebar__article-item:not(:last-child) {
+  margin-bottom: 32px;
 }
 
 .article__content > :first-child {

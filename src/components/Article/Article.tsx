@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './Article.css';
-import { RelatedSmallArticle } from '../RelatedSmallArticle/RelatedSmallArticle';
 import { SingleLineTitleArticle } from '../SingleLineTitleArticle/SingleLineTitleArticle';
 import { ArticleItem, Categories, Items, RelatedArticleItem, Sources } from '../../types';
 import { useParams } from 'react-router-dom';
 import { ArticleItemInfo } from '../ArticleItemInfo/ArticleItemInfo';
+import { SidebarArticleCard } from '@components/SidebarArticleCard/SidebarArticleCard';
 
 export const Article: React.FC = () => {
   const { id }: { id?: number } = useParams();
@@ -75,10 +75,6 @@ export const Article: React.FC = () => {
               <div className="article__title-container">
                 <h1 className="article__title">{articleItem?.title}</h1>
                 {renderArticleItemInfo(articleItem)}
-                {/* <div className="grid">
-                  <span className="article-category article__category">{articleItem?.category?.name}</span>
-                  <span className="article-date article__date">{beautifyDate(articleItem?.date)}</span>
-                </div> */}
               </div>
             )}
 
@@ -86,16 +82,16 @@ export const Article: React.FC = () => {
             <img src={articleItem?.image} />
           </div>
 
-          <div className="article__small-column">
+          <div className="sidebar__article">
             {relatedArticles.slice(3, 9).map((item) => {
-              const category = categories?.find(({ id }) => item.category_id === id);
               const source = sources?.find(({ id }) => item.source_id === id);
               return (
-                <RelatedSmallArticle
+                <SidebarArticleCard
+                  className="sidebar__article-item"
+                  date={item.date}
                   id={item.id}
                   key={item.id}
                   title={item.title}
-                  category={category?.name || ''}
                   source={source?.name || ''}
                   image={item.image}
                 />
