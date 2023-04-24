@@ -1,5 +1,4 @@
 import React from 'react';
-import './Source.css';
 import classNames from 'classnames';
 
 type SourceType = {
