@@ -9,6 +9,7 @@ import { AdminArticlesItem } from '../AdminArticlesItem/AdminArticlesItem';
 import { AdminArticles } from '../AdminArticles/AdminArticles';
 import { RequireAuth } from '../RequireAuth/RequireAuth';
 import { LoginContainer } from '../../Features/Auth/Login/LoginContainer';
+import { CategoryPage } from '@components/CategoryPage/CategoryPage';
 
 export const App: React.FC = () => {
   const { pathname } = useLocation();
@@ -21,11 +22,10 @@ export const App: React.FC = () => {
     <React.Fragment>
       <Routes>
         <Route
-          path="/:categoryID"
+          path="/:category"
           element={
             <Page>
-              {' '}
-              <Articles />{' '}
+              <CategoryPage />
             </Page>
           }
         />
@@ -33,8 +33,7 @@ export const App: React.FC = () => {
           path="/"
           element={
             <Page>
-              {' '}
-              <Articles />{' '}
+              <Articles />
             </Page>
           }
         />
@@ -42,8 +41,7 @@ export const App: React.FC = () => {
           path="/article/:id"
           element={
             <Page>
-              {' '}
-              <Article />{' '}
+              <Article />
             </Page>
           }
         />

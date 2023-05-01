@@ -3,6 +3,7 @@
   padding-bottom: 56px;
   background-color: var(--color-primary);
   color: var(--color-white);
+  margin-top: 64px;
 }
 
 .footer--link {

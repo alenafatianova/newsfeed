@@ -1,6 +1,7 @@
 import React from 'react';
 import './Hero.css';
 import classNames from 'classnames';
+import { Title } from '@components/Title/Title';
 
 type HeroPropsType = {
   image?: string;
@@ -16,7 +17,7 @@ export const Hero: React.FC<HeroPropsType> = ({ image, title, text, className })
       <div className="hero__in" style={{ backgroundImage: `url(${image})` }}>
         <div className="hero__container container">
           <div className="hero__content">
-            <h1 className="hero__title">{title}</h1>
+            <Title className="hero__title">{title}</Title>
             {text && text?.length > 0 && <p className="hero__text">{text}</p>}
           </div>
         </div>
