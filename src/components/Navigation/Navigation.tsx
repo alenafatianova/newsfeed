@@ -4,10 +4,32 @@ import './Navigation.css';
 
 import { Logo } from '@components/Logo/Logo';
 import classNames from 'classnames';
-import { NavigationItem } from './NavigationItem';
+import { NavLink } from 'react-router-dom';
 
 type NavigationType = {
   className: string;
+};
+
+type NavigationItemType = {
+  name?: string;
+  title?: string;
+};
+
+export const NavigationItem: React.FC<NavigationItemType> = ({ name, title }) => {
+  console.log('name:', name);
+  return (
+    <>
+      <li className="navigation--item" key={name}>
+        <NavLink
+          to={`/${name}`}
+          className={'navigation--link'}
+          style={({ isActive }) => ({ color: isActive ? 'navigation--link active' : '' })}
+        >
+          {title}
+        </NavLink>
+      </li>
+    </>
+  );
 };
 
 export const Navigation: FC<NavigationType> = ({ className = '' }) => {
@@ -17,7 +39,7 @@ export const Navigation: FC<NavigationType> = ({ className = '' }) => {
       <ul className="navigation--list">
         <NavigationItem title="Новости" />
         {Object.entries(categoryTitles).map(([name, title]) => {
-          <NavigationItem key={name} title={title} name={name} />;
+          return <NavigationItem key={name} name={name} title={title} />;
         })}
       </ul>
     </nav>

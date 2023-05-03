@@ -10,8 +10,12 @@ import { Hero } from '@components/Hero/Hero';
 import { ArticleCard } from '@components/ArticleCard/ArticleCard';
 
 export const CategoryPage: React.FC = () => {
-  const { category = 'karpov.courses' }: { category?: categoryNames } = useParams();
-  const [articles, setArticles] = useState<NewsResponse>({ items: [], categories: [], sources: [] });
+  const { category } = useParams() as { category: categoryNames };
+  const [articles, setArticles] = useState<NewsResponse>({
+    items: [],
+    categories: [],
+    sources: [],
+  });
 
   useEffect(() => {
     fetch('https://frontend.karpovcourses.net/api/v2/ru/news/' + categoryIds[category] || '')
@@ -33,12 +37,12 @@ export const CategoryPage: React.FC = () => {
               <ArticleCard
                 className="category-page__item"
                 key={item.id}
+                id={item.id}
                 title={item.title}
                 description={item.description}
                 image={item.image}
                 category={category?.name}
                 source={source?.name}
-                id={item.id}
               />
             );
           })}

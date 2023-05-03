@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import './Homepage.css';
 import { Hero } from '@components/Hero/Hero';
-import { Title } from '@mui/icons-material';
+
 import { Link } from 'react-router-dom';
 import { Categories, NewsResponse, Sources } from 'types';
 import { categoryIds } from '../../utils';
 import { ArticleCard } from '@components/ArticleCard/ArticleCard';
 import { SidebarArticleCard } from '@components/SidebarArticleCard/SidebarArticleCard';
+import { Title } from '@components/Title/Title';
 
 type categoriesRecord = Record<Categories['id'], Categories>;
 type sourcesRecord = Record<Sources['id'], Sources>;
@@ -64,7 +65,7 @@ export const Homepage: React.FC = () => {
       )}
 
       <section className="container home-page__section">
-        <Title component={'h2'} className="home-page__title">
+        <Title Component={'h2'} className="home-page__title">
           В тренде
         </Title>
         <div className="grid">
@@ -85,7 +86,7 @@ export const Homepage: React.FC = () => {
       </section>
 
       <section className="container home-page__section">
-        <Title component={'h2'} className="home-page__title">
+        <Title Component={'h2'} className="home-page__title">
           Karpov
         </Title>
         <div className="grid">
@@ -124,41 +125,42 @@ export const Homepage: React.FC = () => {
           </section>
         </div>
       </section>
-      <div className="home-page__promo">
-        <section className="container grid home-page__section">
-          <section className="home-page__content">
-            {articles.slice(4).map((item) => {
-              return (
-                <ArticleCard
-                  className={'home-page__article-card'}
-                  key={item.id}
-                  id={item.id}
-                  title={item.title}
-                  description={item.description}
-                  source={sources[item.source_id]?.name}
-                  image={item.image}
-                  date={item.date}
-                />
-              );
-            })}
-          </section>
-          <section className="home-page__sidebar">
-            {articles.slice(1, 4).map((item) => {
-              return (
-                <SidebarArticleCard
-                  className="home-page__sidebar-item"
-                  key={item.id}
-                  id={item.id}
-                  title={item.title}
-                  source={sources[item.source_id]?.name}
-                  date={item.date}
-                  image={item.image}
-                />
-              );
-            })}
-          </section>
+
+      <div className="home-page__promo" />
+
+      <section className="container grid home-page__section">
+        <section className="home-page__content">
+          {articles.slice(4).map((item) => {
+            return (
+              <ArticleCard
+                className={'home-page__article-card'}
+                key={item.id}
+                id={item.id}
+                title={item.title}
+                description={item.description}
+                source={sources[item.source_id]?.name}
+                image={item.image}
+                date={item.date}
+              />
+            );
+          })}
         </section>
-      </div>
+        <section className="home-page__sidebar">
+          {articles.slice(1, 4).map((item) => {
+            return (
+              <SidebarArticleCard
+                className="home-page__sidebar-item"
+                key={item.id}
+                id={item.id}
+                title={item.title}
+                source={sources[item.source_id]?.name}
+                date={item.date}
+                image={item.image}
+              />
+            );
+          })}
+        </section>
+      </section>
     </div>
   );
 };
