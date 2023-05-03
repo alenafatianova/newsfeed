@@ -1,32 +1,35 @@
-export interface Items {
+export type Items = {
   lang: string;
   date: string;
   title: string;
   description: string;
-  id: number;
+  id: string;
   image: string;
   source_id: number;
   category_id: number;
-}
+};
 
-export interface Categories {
+export type Categories = {
   id: number;
-  name: string;
-}
-export interface Sources {
+  name: categoryNames;
+};
+
+export type Sources = {
   id: number;
   name: string;
   site?: string;
-}
+};
 
-export interface NewsResponse {
+export type categoryNames = 'sport' | 'tech' | 'karpov.courses' | 'fashion' | 'other' | 'politics';
+
+export type NewsResponse = {
   items: Items[];
   categories: Categories[];
   sources: Sources[];
-}
+};
 
-export interface ArticleItem {
-  id: number;
+export type ArticleItem = {
+  id: string;
   lang?: string;
   date: string;
   title: string;
@@ -37,7 +40,7 @@ export interface ArticleItem {
   category: Categories;
   source: Sources;
   author?: string;
-}
+};
 
 export interface RelatedArticleItem {
   items: Items[];
