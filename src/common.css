@@ -20,12 +20,10 @@
   --grid-gap: 20px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background-zero: #131517;
-    --background-primary: var(--constant-black);
-    --foreground-primary: var(--constant-white);
-  }
+[scheme="dark"] {
+  --background-zero: #131517;
+  --background-primary: var(--constant-black);
+  --foreground-primary: var(--constant-white);
 }
 
 body {
