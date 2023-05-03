@@ -26,5 +26,5 @@
 
 .active,
 .navigation--link:hover {
-  color: var(--color-accent);
+  color: var(--constant-accent);
 }
