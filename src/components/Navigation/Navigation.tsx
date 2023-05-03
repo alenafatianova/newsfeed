@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
-import { categoryNames } from '../../utils';
+import { categoryTitles } from '../../utils';
 import './Navigation.css';
-import { NavLink } from 'react-router-dom';
+
 import { Logo } from '@components/Logo/Logo';
 import classNames from 'classnames';
+import { NavigationItem } from './NavigationItem';
 
 type NavigationType = {
   className: string;
@@ -14,18 +15,9 @@ export const Navigation: FC<NavigationType> = ({ className = '' }) => {
     <nav className={classNames('navigation', className)}>
       <Logo />
       <ul className="navigation--list">
-        {['index', 'fashion', 'technologies', 'sport', 'karpov'].map((item) => {
-          return (
-            <li className="navigation--item" key={item}>
-              <NavLink
-                to={`/${item}`}
-                className={'navigation--link'}
-                style={({ isActive }) => ({ color: isActive ? 'navigation--link active' : '' })}
-              >
-                {categoryNames[item]}
-              </NavLink>
-            </li>
-          );
+        <NavigationItem title="Новости" />
+        {Object.entries(categoryTitles).map(([name, title]) => {
+          <NavigationItem key={name} title={title} name={name} />;
         })}
       </ul>
     </nav>

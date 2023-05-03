@@ -1,4 +1,4 @@
-import { Articles } from '../Articles/Articles';
+import { Homepage } from '../Homepage/Homepage';
 import { Article } from '../Article/Article';
 import React, { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
@@ -33,7 +33,7 @@ export const App: React.FC = () => {
           path="/"
           element={
             <Page>
-              <Articles />
+              <Homepage />
             </Page>
           }
         />

@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import './Article.css';
-import { ArticleItem, Items, RelatedArticleItem, Sources as SourcesType, beautifyDate } from '../../types';
+import {
+  ArticleItem,
+  Items,
+  RelatedArticleItem,
+  Sources as SourcesType,
+  beautifyDate,
+  categoryNames,
+} from '../../types';
 import { useParams } from 'react-router-dom';
 import { SidebarArticleCard } from '@components/SidebarArticleCard/SidebarArticleCard';
 import { Hero } from '@components/Hero/Hero';
 import { ArticleCard } from '@components/ArticleCard/ArticleCard';
-// import { ArticlePage } from '@components/ArticlePage/ArticlePage';
 import { Source } from '@components/Source/Source';
 import { Title } from '@components/Title/Title';
+import { categoryTitles } from '../../utils';
 
 export const Article: React.FC = () => {
   const { id }: { id?: number } = useParams();
@@ -44,9 +51,9 @@ export const Article: React.FC = () => {
         <div className="article-page__info">
           <span className="article-page__category">{articleItem.category.name}</span>
           <span className="article-page__date">{beautifyDate(articleItem.date)}</span>
-          {articleItem.link.length > 0 && (
+          {articleItem && articleItem.link.length > 0 && (
             <Source className={'article-page__source'} href={articleItem.link}>
-              {articleItem.source?.name}
+              {categoryTitles[articleItem.source?.name as categoryNames]}
             </Source>
           )}
         </div>

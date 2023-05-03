@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { NewsResponse } from '../../types';
-import { categoryIds, categoryNames } from '../../utils';
+import { NewsResponse, categoryNames } from '../../types';
+import { categoryIds, categoryTitles } from '../../utils';
 import { PartnersArticles } from '../PartnersArticles/PartnersArticles';
 
 import './CategoryPage.css';
@@ -10,7 +10,7 @@ import { Hero } from '@components/Hero/Hero';
 import { ArticleCard } from '@components/ArticleCard/ArticleCard';
 
 export const CategoryPage: React.FC = () => {
-  const { category = 'index' }: { category?: string } = useParams();
+  const { category = 'karpov.courses' }: { category?: categoryNames } = useParams();
   const [articles, setArticles] = useState<NewsResponse>({ items: [], categories: [], sources: [] });
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export const CategoryPage: React.FC = () => {
 
   return (
     <section className="category-page">
-      <Hero title={categoryNames[category]} image="test" className="category-page__hero" />
+      <Hero title={categoryTitles[category as categoryNames]} image="test" className="category-page__hero" />
       <div className="container grid">
         <section className="category-page__content">
           {articles.items.slice(3).map((item) => {

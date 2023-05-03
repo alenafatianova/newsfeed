@@ -2,14 +2,15 @@ import React from 'react';
 import './ArticleCard.css';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
-import { beautifyDate } from '../../types';
+import { beautifyDate, categoryNames } from '../../types';
 import { Source } from '@components/Source/Source';
+import { categoryTitles } from '../../utils';
 
 type ArticleCardType = {
   id: string;
   title: string;
   image?: string;
-  category?: string;
+  category?: categoryNames;
   description?: string;
   source?: string;
   date?: string;
@@ -20,7 +21,7 @@ export const ArticleCard: React.FC<ArticleCardType> = ({
   id = '',
   title = '',
   image = '',
-  category = '',
+  category,
   description = '',
   source = '',
   date = '',
@@ -38,7 +39,9 @@ export const ArticleCard: React.FC<ArticleCardType> = ({
         <h2 className="article-card__title">{title}</h2>
         {hasDescription && <span className="article-card__description">{description}</span>}
         <div className="article-card__info">
-          {category && category?.length > 0 && <span className="article-card__category">{category}</span>}
+          {category && category?.length > 0 && (
+            <span className="article-card__category">{categoryTitles[category]}</span>
+          )}
           {date && date?.length > 0 && <span className="article-card__date">{beautifyDate(date)}</span>}
           {source && source.length > 0 && <Source>{source}</Source>}
         </div>
