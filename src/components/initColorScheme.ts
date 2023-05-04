@@ -1,3 +1,3 @@
 import { applyColorSceme, getSystemColorScheme, getSavedScheme } from '@components/colorSchemeUtils';
 
-applyColorSceme(getSavedScheme() || getSystemColorScheme())
+applyColorSceme(getSavedScheme() || getSystemColorScheme());

@@ -18,12 +18,16 @@
   --grid-column-width: 60px;
   --container-padding: 20px;
   --grid-gap: 20px;
+
+  color-scheme: light;
 }
 
 [scheme="dark"] {
   --background-zero: #131517;
   --background-primary: var(--constant-black);
   --foreground-primary: var(--constant-white);
+
+  color-scheme: dark;
 }
 
 body {

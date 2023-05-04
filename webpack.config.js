@@ -3,13 +3,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlInlinePlugin = require('html-inline-script-webpack-plugin')
+const HtmlInlinePlugin = require('html-inline-script-webpack-plugin');
+
+const mode = process.env.NODE_ENV || 'production';
 
 module.exports = {
   mode: process.env.NODE_ENV || 'production',
   entry: {
     main: './src/script.tsx',
-    initColorScheme: './src/initColorScheme.ts'
+    initColorScheme: './src/initColorScheme.ts',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -41,6 +43,9 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.ts', '.tsx'],
     alias: { '@components': path.resolve('./src/components') },
+  },
+  optimization: {
+    runtimeChunk: mode === 'production' ? false : 'single',
   },
   plugins: [
     new MiniCssExtractPlugin({

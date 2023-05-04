@@ -8,7 +8,7 @@ import { applyColorSceme, getSystemColorScheme, getSavedScheme, removeSavedSchem
 //   AUTO = 'auto',
 // }
 
-type colorSchemeValues = 'dark' | 'light' | 'auto'
+type colorSchemeValues = 'dark' | 'light' | 'auto';
 
 const matchMedia = window.matchMedia('(prefers-color-scheme:dark)');
 
@@ -17,7 +17,7 @@ export const ColorSchemeSwitcher: React.FC = () => {
 
   useEffect(() => {
     if (userScheme === 'auto') {
-      removeSavedScheme()
+      removeSavedScheme();
       applyColorSceme(getSystemColorScheme());
     } else {
       applyColorSceme(userScheme, true);
