@@ -1,30 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import './ColorSchemeSwitcher.css';
-import { applyColorSceme, getColorScheme } from '@components/colorSchemeUtils';
+import { applyColorSceme, getSystemColorScheme, getSavedScheme, removeSavedScheme } from '@components/colorSchemeUtils';
 
-enum colorSchemeValues {
-  LIGHT = 'light',
-  DARK = 'dark',
-  AUTO = 'auto',
-}
+// enum colorSchemeValues {
+//   LIGHT = 'light',
+//   DARK = 'dark',
+//   AUTO = 'auto',
+// }
+
+type colorSchemeValues = 'dark' | 'light' | 'auto'
 
 const matchMedia = window.matchMedia('(prefers-color-scheme:dark)');
 
 export const ColorSchemeSwitcher: React.FC = () => {
-  const [userScheme, setUserScheme] = useState<colorSchemeValues>(colorSchemeValues.AUTO);
+  const [userScheme, setUserScheme] = useState<colorSchemeValues>(getSavedScheme() || 'auto');
 
   useEffect(() => {
-    if (userScheme === colorSchemeValues.AUTO) {
-      applyColorSceme(getColorScheme());
+    if (userScheme === 'auto') {
+      removeSavedScheme()
+      applyColorSceme(getSystemColorScheme());
     } else {
-      applyColorSceme(userScheme);
+      applyColorSceme(userScheme, true);
     }
   }, [userScheme]);
 
   useEffect(() => {
     const systemColorScheme = () => {
-      if (userScheme === colorSchemeValues.AUTO) {
-        applyColorSceme(getColorScheme());
+      if (userScheme === 'auto') {
+        applyColorSceme(getSystemColorScheme());
       }
     };
 
