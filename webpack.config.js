@@ -54,9 +54,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html',
     }),
-    new HtmlInlinePlugin({
-      scriptMatchPattern: [/initColorScheme\..+\.js$/],
-    }),
+    new HtmlInlinePlugin([/initColorScheme\..+\.js$/]),
     new StylelintPlugin({
       files: 'src/{**/*,*}.css',
     }),
