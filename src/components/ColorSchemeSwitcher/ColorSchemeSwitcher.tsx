@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './ColorSchemeSwitcher.css';
-import { applyColorSceme, getSystemColorScheme, getSavedScheme, removeSavedScheme } from '@components/colorSchemeUtils';
+import { applyColorSceme, getSystemColorScheme, getSavedScheme, removeSavedScheme } from '../../colorSchemeUtils';
 
 // enum colorSchemeValues {
 //   LIGHT = 'light',
