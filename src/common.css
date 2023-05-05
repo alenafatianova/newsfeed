@@ -6,6 +6,7 @@
 }
 
 :root {
+  --constant-overlay-black-alpha64: rgba(0, 0, 0, 0.64);
   --constant-black: #262a2f;
   --constant-accent: #0083fc;
   --constant-grey: #a3a3a3;
@@ -38,6 +39,10 @@ body {
   font-weight: 400;
   color: var(--foreground-primary);
   min-width: calc(var(--container-width) + 2 * var(--container-padding));
+}
+
+.--prevent-scroll {
+  overflow: hidden;
 }
 
 .container {

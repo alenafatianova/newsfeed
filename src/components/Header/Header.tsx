@@ -5,7 +5,7 @@ import { ColorSchemeSwitcher } from '@components/ColorSchemeSwitcher/ColorScheme
 
 export const Header: React.FC = () => {
   return (
-    <div>
+    <div> 
       <header className="header">
         <div className="container header-container">
           <Navigation className="header--navigation" />
