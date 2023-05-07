@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './ColorSchemeSwitcher.css';
 import { applyColorSceme, getSystemColorScheme, getSavedScheme, removeSavedScheme } from '../../colorSchemeUtils';
-
-// enum colorSchemeValues {
-//   LIGHT = 'light',
-//   DARK = 'dark',
-//   AUTO = 'auto',
-// }
+import { AutoScheme } from '@components/Icons/AutoScheme';
+import { DarkScheme } from '@components/Icons/DarkScheme';
+import { LightScheme } from '@components/Icons/LightScheme';
+import { Dropdown } from '@components/Dropdown/Dropdown';
 
 type colorSchemeValues = 'dark' | 'light' | 'auto';
 
@@ -14,6 +12,7 @@ const matchMedia = window.matchMedia('(prefers-color-scheme:dark)');
 
 export const ColorSchemeSwitcher: React.FC = () => {
   const [userScheme, setUserScheme] = useState<colorSchemeValues>(getSavedScheme() || 'auto');
+  const targetRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (userScheme === 'auto') {
@@ -39,14 +38,13 @@ export const ColorSchemeSwitcher: React.FC = () => {
   }, [userScheme]);
 
   return (
-    <select
-      className={'color-scheme-switcher'}
-      onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setUserScheme(e.target.value as colorSchemeValues)}
-      value={userScheme}
-    >
-      <option value="dark">Dark</option>
-      <option value="light">Light</option>
-      <option value="auto">Auto</option>
-    </select>
+    <div className="color-scheme-switcher">
+      <button className="color-scheme-switcher__value" ref={targetRef}>
+        {userScheme === 'auto' && <AutoScheme />}
+        {userScheme === 'dark' && <DarkScheme />}
+        {userScheme === 'light' && <LightScheme />}
+      </button>
+      <Dropdown targetRef={targetRef}></Dropdown>
+    </div>
   );
 };
