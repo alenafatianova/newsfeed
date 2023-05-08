@@ -1,3 +1,7 @@
+.header {
+  background-color: var(--background-primary);
+}
+
 .header-container {
   display: flex;
   align-items: center;
