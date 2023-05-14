@@ -2,9 +2,9 @@ import React from 'react';
 import './ArticleCard.css';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
-import { beautifyDate, categoryNames } from '../../types';
+import { beautifyDate, categoryNames } from '../types';
 import { Source } from '@components/Source/Source';
-import { categoryTitles } from '../../utils';
+import { categoryTitles } from '../utils';
 
 type ArticleCardType = {
   id: string;

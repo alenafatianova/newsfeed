@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { categoryTitles } from '../../utils';
+import { categoryTitles } from '../utils';
 import './Navigation.css';
 
 import { Logo } from '@components/Logo/Logo';

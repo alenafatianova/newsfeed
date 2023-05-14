@@ -2,7 +2,7 @@ import React from 'react';
 import './SidebarArticleCard.css';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
-import { beautifyDate } from '../../types';
+import { beautifyDate } from '../types';
 
 type ArticleCardType = {
   id: string;

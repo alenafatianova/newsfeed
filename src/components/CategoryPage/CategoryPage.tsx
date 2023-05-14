@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { NewsResponse, categoryNames } from '../../types';
-import { categoryIds, categoryTitles } from '../../utils';
+import { NewsResponse, categoryNames } from '../types';
+import { categoryIds, categoryTitles } from '../utils';
 import { PartnersArticles } from '../PartnersArticles/PartnersArticles';
 
 import './CategoryPage.css';

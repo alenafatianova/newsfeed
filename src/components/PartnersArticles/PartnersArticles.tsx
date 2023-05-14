@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { getSortedPartnerArticle } from '../../api';
-import { IPartnersPosts } from '../../types';
+import { getSortedPartnerArticle } from '../api';
+import { IPartnersPosts } from '../types';
 import './PartnersArticles.css';
 
 export const PartnersArticles: React.FC = () => {

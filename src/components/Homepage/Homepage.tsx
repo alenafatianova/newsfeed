@@ -3,8 +3,8 @@ import './Homepage.css';
 import { Hero } from '@components/Hero/Hero';
 
 import { Link } from 'react-router-dom';
-import { Categories, NewsResponse, Sources } from 'types';
-import { categoryIds } from '../../utils';
+import { Categories, NewsResponse, Sources } from '@components/types';
+import { categoryIds } from '../utils';
 import { ArticleCard } from '@components/ArticleCard/ArticleCard';
 import { SidebarArticleCard } from '@components/SidebarArticleCard/SidebarArticleCard';
 import { Title } from '@components/Title/Title';

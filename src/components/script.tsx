@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { initializeAPI } from './api';
 import './common.css';
-import { App } from './components/App/App';
-import { AuthContextProvider } from './Features/Auth/AuthContextProvider';
+import { App } from './App/App';
+import { AuthContextProvider } from '../Features/Auth/AuthContextProvider';
 
 const firebaseApp = initializeAPI();
 

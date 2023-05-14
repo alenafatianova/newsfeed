@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './ColorSchemeSwitcher.css';
-import { applyColorSceme, getSystemColorScheme, getSavedScheme, removeSavedScheme } from '../../colorSchemeUtils';
+import { applyColorSceme, getSystemColorScheme, getSavedScheme, removeSavedScheme } from '../colorSchemeUtils';
 import { AutoScheme } from '@components/Icons/AutoScheme';
 import { DarkScheme } from '@components/Icons/DarkScheme';
 import { LightScheme } from '@components/Icons/LightScheme';

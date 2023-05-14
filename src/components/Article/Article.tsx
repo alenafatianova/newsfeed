@@ -1,20 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import './Article.css';
-import {
-  ArticleItem,
-  Items,
-  RelatedArticleItem,
-  Sources as SourcesType,
-  beautifyDate,
-  categoryNames,
-} from '../../types';
+import { ArticleItem, Items, RelatedArticleItem, Sources as SourcesType, beautifyDate, categoryNames } from '../types';
 import { useParams } from 'react-router-dom';
 import { SidebarArticleCard } from '@components/SidebarArticleCard/SidebarArticleCard';
 import { Hero } from '@components/Hero/Hero';
 import { ArticleCard } from '@components/ArticleCard/ArticleCard';
 import { Source } from '@components/Source/Source';
 import { Title } from '@components/Title/Title';
-import { categoryTitles } from '../../utils';
+import { categoryTitles } from '../utils';
 
 export const Article: React.FC = () => {
   const { id }: { id?: number } = useParams();

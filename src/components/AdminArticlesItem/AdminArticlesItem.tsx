@@ -24,7 +24,7 @@ import {
   getPartnerArticle,
   updatePartnerArticle,
   uploadFile,
-} from '../../api';
+} from '../api';
 import CloseIcon from '@mui/icons-material/Close';
 
 // страница редактирования партнерских статей
