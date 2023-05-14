@@ -3,10 +3,10 @@ import { Article } from '../Article/Article';
 import React, { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 
-import { AdminPanel } from '../Admin/AdminPanel';
+import { AdminPanel } from '../../Features/Admin/AdminPanel';
 import { Page } from '../Page/Page';
-import { AdminArticlesItem } from '../AdminArticlesItem/AdminArticlesItem';
-import { AdminArticles } from '../AdminArticles/AdminArticles';
+import { AdminArticlesItem } from '../../Features/Admin/AdminArticlesItem/AdminArticlesItem';
+import { AdminArticles } from '../../Features/Admin/AdminArticles/AdminArticles';
 import { RequireAuth } from '../RequireAuth/RequireAuth';
 import { LoginContainer } from '../../Features/Auth/Login/LoginContainer';
 import { CategoryPage } from '@components/CategoryPage/CategoryPage';
