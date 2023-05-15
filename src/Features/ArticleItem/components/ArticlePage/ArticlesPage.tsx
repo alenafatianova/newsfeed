@@ -1,35 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import './Article.css';
-import { ArticleItem, Items, RelatedArticleItem, Sources as SourcesType, beautifyDate, categoryNames } from '../types';
+import React, { useEffect } from 'react';
+import './ArticlesPage.css';
 import { useParams } from 'react-router-dom';
-import { SidebarArticleCard } from '@components/SidebarArticleCard/SidebarArticleCard';
+import { SidebarArticleCard } from '../../../../components/SidebarArticleCard/SidebarArticleCard';
 import { Hero } from '@components/Hero/Hero';
-import { ArticleCard } from '@components/ArticleCard/ArticleCard';
-import { Source } from '@components/Source/Source';
+import { ArticleCard } from '../../../ArticleCard/ArticleCard';
+import { Source } from '../../../Source/components/Source';
 import { Title } from '@components/Title/Title';
-import { categoryTitles } from '../utils';
+import { beautifyDate } from '../../../../components/utils';
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchArticleItem } from '../../actions';
+import { setArticleItem } from '../../slice';
+import { fetchRelatedArticles } from 'features/relatedNews/actions';
+import { categoryNames } from 'features/categories/types';
+import { categoryTitles } from 'features/categories/constants';
+import { getSources } from 'features/Source/selectors';
+import { getRelatedArticles } from 'features/relatedNews/selectors';
+import { getCachedArticleItem } from 'features/ArticleItem/selectors';
 
 export const Article: React.FC = () => {
   const { id }: { id?: number } = useParams();
-  const [articleItem, setArticleItem] = useState<ArticleItem | null>(null);
-  const [relatedArticles, setRelatedArticles] = useState<Items[] | null>(null);
-  const [sources, setSources] = useState<SourcesType[] | null>([]);
+  const dispatch = useDispatch()
+  const articleItem = useSelector(getCachedArticleItem(Number(id)));
+  const relatedArticles = useSelector(getRelatedArticles(Number(id)));
+  const sources = useSelector(getSources);
 
   useEffect(() => {
-    fetch(`https://frontend.karpovcourses.net/api/v2/news/full/${id}`)
-      .then((response) => response.json())
-      .then(setArticleItem);
+    dispatch(fetchArticleItem(Number(articleId)));
+    dispatch(fetchRelatedArticles(Number(id)));
 
-    Promise.all([
-      fetch(`https://frontend.karpovcourses.net/api/v2/news/related/${id}?count=9`).then((response) => response.json()),
-      fetch(`https://frontend.karpovcourses.net/api/v2/sources`).then((response) => response.json()),
-    ]).then((response) => {
-      const articles: RelatedArticleItem = response[0];
-      setRelatedArticles(articles.items);
-
-      const sources = response[1];
-      setSources(sources);
-    });
+    return () => {
+      dispatch(setArticleItem(null));
+    };
   }, [id]);
 
   if (articleItem === null || relatedArticles === null) {

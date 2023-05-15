@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { initializeAPI } from './api';
 import './common.css';
 import { App } from './App/App';
-import { AuthContextProvider } from '../Features/Auth/AuthContextProvider';
+import { AuthContextProvider } from '../features/auth/AuthContextProvider';
 
 const firebaseApp = initializeAPI();
 

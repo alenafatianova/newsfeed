@@ -4,9 +4,9 @@ import { Hero } from '@components/Hero/Hero';
 
 import { Link } from 'react-router-dom';
 import { Categories, NewsResponse, Sources } from '@components/types';
-import { categoryIds } from '../utils';
-import { ArticleCard } from '@components/ArticleCard/ArticleCard';
-import { SidebarArticleCard } from '@components/SidebarArticleCard/SidebarArticleCard';
+import { categoryIds } from '../../components/utils';
+import { ArticleCard } from '../ArticleCard/ArticleCard';
+import { SidebarArticleCard } from '../../components/SidebarArticleCard/SidebarArticleCard';
 import { Title } from '@components/Title/Title';
 import { mainUrl, trendsUrl } from '@components/apiUrls';
 

@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { NewsResponse, categoryNames } from '../types';
-import { categoryIds, categoryTitles } from '../utils';
-import { PartnersArticles } from '../PartnersArticles/PartnersArticles';
+import { NewsResponse } from '../../../components/types';
+import { categoryIds, categoryNames, categoryTitles } from '../../../components/utils';
+import { PartnersArticles } from '../../partnersArticles/PartnersArticles';
 
 import './CategoryPage.css';
-import { SidebarArticleCard } from '@components/SidebarArticleCard/SidebarArticleCard';
-import { Hero } from '@components/Hero/Hero';
-import { ArticleCard } from '@components/ArticleCard/ArticleCard';
+import { SidebarArticleCard } from '../../../components/SidebarArticleCard/SidebarArticleCard';
+
+import { ArticleCard } from '../../ArticleCard/ArticleCard';
+import { Hero } from '../../../components/Hero/Hero';
 
 export const CategoryPage: React.FC = () => {
   const { category } = useParams() as { category: categoryNames };

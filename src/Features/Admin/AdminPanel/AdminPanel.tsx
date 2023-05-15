@@ -17,7 +17,7 @@ import ArticleIcon from '@mui/icons-material/Article';
 import { Link, useNavigate } from 'react-router-dom';
 import { IconButton } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { useAuthContext } from '../Auth/AuthContextProvider';
+import { useAuthContext } from '../../auth/AuthContextProvider';
 
 const drawerWidth = 300;
 

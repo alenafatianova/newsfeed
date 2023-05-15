@@ -1,15 +1,15 @@
-import { Homepage } from '../Homepage/Homepage';
-import { Article } from '../Article/Article';
+import { Homepage } from '../../features/Homepage/Homepage';
+import { Article } from '../../features/ArticleItem/components/ArticlePage/ArticlesPage';
 import React, { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 
-import { AdminPanel } from '../../Features/Admin/AdminPanel';
+import { AdminPanel } from '../../features/Admin/AdminPanel/AdminPanel';
 import { Page } from '../Page/Page';
-import { AdminArticlesItem } from '../../Features/Admin/AdminArticlesItem/AdminArticlesItem';
-import { AdminArticles } from '../../Features/Admin/AdminArticles/AdminArticles';
-import { RequireAuth } from '../RequireAuth/RequireAuth';
-import { LoginContainer } from '../../Features/Auth/Login/LoginContainer';
-import { CategoryPage } from '@components/CategoryPage/CategoryPage';
+import { AdminArticlesItem } from '../../features/Admin/AdminArticlesItem/AdminArticlesItem';
+import { AdminArticles } from '../../features/Admin/AdminArticles/AdminArticles';
+import { RequireAuth } from '../../features/auth/components/RequireAuth/RequireAuth';
+import { LoginContainer } from '../../features/auth/login/LoginContainer';
+import { CategoryPage } from '../../features/categoryArticles/CategoryPage/CategoryPage';
 
 export const App: React.FC = () => {
   const { pathname } = useLocation();

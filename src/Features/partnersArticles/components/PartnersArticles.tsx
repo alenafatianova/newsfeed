@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { getSortedPartnerArticle } from '../api';
-import { IPartnersPosts } from '../types';
 import './PartnersArticles.css';
+import { getSortedPartnerArticle } from '@components/api';
+import { PartnersPostsType } from '../types';
 
 export const PartnersArticles: React.FC = () => {
-  const [partnersArticle, setPartnersArticle] = useState<IPartnersPosts | null>(null);
+  const [partnersArticle, setPartnersArticle] = useState<PartnersPostsType | null>(null);
 
   useEffect(() => {
     (async () => {

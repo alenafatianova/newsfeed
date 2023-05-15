@@ -13,8 +13,11 @@ import {
   orderBy,
   limit,
 } from 'firebase/firestore';
-import { IPartnersPosts } from './types';
+import { IPartnersPosts, NewsResponse } from './types';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { SourcesType } from 'features/Source/types';
+import { ArticleItemType } from 'features/ArticleItem/components/types';
+import { Categories } from 'features/categoryArticles/types';
 
 export const initializeAPI = (): FirebaseApp => {
   const firebaseApp = initializeApp({
@@ -141,4 +144,57 @@ export const getSortedPartnerArticle = async (): Promise<IPartnersPosts | null> 
     return Promise.reject(err);
   }
   return article;
+};
+
+export const getMainPartnerArticle = async (): Promise<IPartnerArticle | null> => {
+  const db = getFirestore();
+  let article = null;
+
+  try {
+    const q = query(collection(db, partnersPostsCollection), orderBy('created', 'desc'), limit(1));
+    const querySnapshot = await getDocs(q);
+
+    querySnapshot.forEach((doc) => {
+      const data = doc.data() as Omit<IPartnerArticle, 'id'>;
+
+      article = {
+        id: doc.id,
+        ...data,
+      };
+    });
+  } catch (error) {
+    return Promise.reject(error);
+  }
+
+  return article;
+};
+
+export const apiFetchNews = (): Promise<NewsResponse> => {
+  return fetch('https://frontend.karpovcourses.net/api/v2/ru/news').then((response) => response.json());
+};
+
+export const apiFetchTrends = (): Promise<NewsResponse> => {
+  return fetch('https://frontend.karpovcourses.net/api/v2/ru/trends').then((response) => response.json());
+};
+
+export const apiFetchCategory = (id: number): Promise<NewsResponse> => {
+  return fetch(`https://frontend.karpovcourses.net/api/v2/ru/news/${id}`).then((response) => response.json());
+};
+
+export const apiFetchCategories = (): Promise<Categories[]> => {
+  return fetch('https://frontend.karpovcourses.net/api/v2/categories').then((response) => response.json());
+};
+
+export const apiFetchSources = (): Promise<SourcesType[]> => {
+  return fetch('https://frontend.karpovcourses.net/api/v2/sources').then((response) => response.json());
+};
+
+export const apiFetchRelatedArticles = (id: number): Promise<RelatedArticles> => {
+  return fetch(`https://frontend.karpovcourses.net/api/v2/news/related/${id}?count=9`).then((response) =>
+    response.json()
+  );
+};
+
+export const apiFetchArticleItem = (id: number): Promise<ArticleItemType> => {
+  return fetch(`https://frontend.karpovcourses.net/api/v2/news/full/${id}`).then((response) => response.json());
 };
