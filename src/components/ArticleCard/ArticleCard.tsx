@@ -3,9 +3,9 @@ import './ArticleCard.css';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { beautifyDate } from '../utils';
-import { Source } from 'features/source/components/Source';
 import { categoryNames } from 'features/categories/types';
-import { categoryTitles } from 'features/categories/constants';
+import { categoryTitles } from '../../features/categories/constants';
+import { Source } from '../../features/source/components/Source';
 
 type ArticleCardType = {
   id: number;

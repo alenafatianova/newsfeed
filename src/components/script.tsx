@@ -5,14 +5,18 @@ import { initializeAPI } from './api';
 import './common.css';
 import { App } from './App/App';
 import { AuthContextProvider } from '../features/auth/AuthContextProvider';
+import { Provider } from 'react-redux';
+import { store } from './store';
 
 const firebaseApp = initializeAPI();
 
 ReactDOM.render(
-  <AuthContextProvider firebaseApp={firebaseApp}>
-    <Router>
-      <App />
-    </Router>
-  </AuthContextProvider>,
+  <Provider store={store}>
+    <AuthContextProvider firebaseApp={firebaseApp}>
+      <Router>
+        <App />
+      </Router>
+    </AuthContextProvider>
+  </Provider>,
   document.getElementById('root')
 );

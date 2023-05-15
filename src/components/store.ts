@@ -1,9 +1,9 @@
 import { PayloadAction, configureStore, ThunkDispatch, ThunkAction } from '@reduxjs/toolkit';
 import { sourcesReducer } from '../features/source/slice';
-import { relatedArticlesReducer } from 'features/relatedNews/slice';
-import { categoryArticlesReducer } from 'features/categoryArticles/slice';
-import { categoriesReducer } from 'features/categories/slice';
-import { articlesReducer } from 'features/articlesList/slice';
+import { relatedArticlesReducer } from '../features/relatedNews/slice';
+import { categoryArticlesReducer } from '../features/categoryArticles/slice';
+import { categoriesReducer } from '../features/categories/slice';
+import { articlesReducer } from '../features/articlesList/slice';
 import { articlesItemReducer } from '../features/articleItem/slice';
 
 export const store = configureStore({

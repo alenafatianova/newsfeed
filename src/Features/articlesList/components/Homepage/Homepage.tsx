@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom';
 import { ArticleCard } from '../../../../components/ArticleCard/ArticleCard';
 import { SidebarArticleCard } from '../../../../components/SidebarArticleCard/SidebarArticleCard';
 import { Title } from '@components/Title/Title';
-import { categoryIds } from 'features/categories/constants';
+import { categoryIds } from '../../../categories/constants';
 import { useDispatch, useSelector } from 'react-redux';
-import { getNews, getTrends } from 'features/articlesList/selectors';
-import { getCategoryNews } from 'features/categoryArticles/selectors';
-import { getCategories } from 'features/categories/selectors';
-import { getSources } from 'features/source/selectors';
-import { fetchNews, fetchTrends } from 'features/articlesList/actions';
-import { fetchCategoryArticles } from 'features/categoryArticles/actions';
+import { getNews, getTrends } from '../../../articlesList/selectors';
+import { getCategoryNews } from '../../../categoryArticles/selectors';
+import { getCategories } from '../../../categories/selectors';
+import { getSources } from '../../../source/selectors';
+import { fetchNews, fetchTrends } from '../../../articlesList/actions';
+import { fetchCategoryArticles } from '../../../categoryArticles/actions';
 import { AppDispatchType } from '@components/store';
 
 export const Homepage: React.FC = () => {

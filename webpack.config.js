@@ -11,7 +11,7 @@ module.exports = {
   mode: process.env.NODE_ENV || 'production',
   entry: {
     main: './src/components/script.tsx',
-    initColorScheme: './src/components/initColorScheme.ts',
+    initColorScheme: './src/features/colorScheme/initColorScheme.ts',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

@@ -9,13 +9,13 @@ import { Title } from '@components/Title/Title';
 import { beautifyDate } from '../../../../components/utils';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchRelatedArticles } from 'features/relatedNews/actions';
-import { categoryNames } from 'features/categories/types';
-import { categoryTitles } from 'features/categories/constants';
-import { getSources } from 'features/source/selectors';
-import { getRelatedArticles } from 'features/relatedNews/selectors';
-import { getCachedArticleItem } from 'features/articleItem/selectors';
-import { fetchArticleItem } from 'features/articleItem/actions';
+import { fetchRelatedArticles } from '../../../relatedNews/actions';
+import { categoryNames } from '../../../categories/types';
+import { categoryTitles } from '../../../categories/constants';
+import { getSources } from '../../../source/selectors';
+import { getRelatedArticles } from '../../../relatedNews/selectors';
+import { getCachedArticleItem } from '../../../articleItem/selectors';
+import { fetchArticleItem } from '../../../articleItem/actions';
 //import { setArticleItem } from 'features/articleItem/slice';
 import { AppDispatchType } from '@components/store';
 

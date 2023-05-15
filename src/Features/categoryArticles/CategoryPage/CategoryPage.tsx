@@ -6,13 +6,13 @@ import { ArticleCard } from '../../../components/ArticleCard/ArticleCard';
 import { Hero } from '../../../components/Hero/Hero';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatchType } from '@components/store';
-import { categoryNames } from 'features/categories/types';
+import { categoryNames } from '../../categories/types';
 import { getCategoryNews } from '../selectors';
-import { categoryIds, categoryTitles } from 'features/categories/constants';
-import { getCategories } from 'features/categories/selectors';
-import { getSources } from 'features/source/selectors';
+import { categoryIds, categoryTitles } from '../../categories/constants';
+import { getCategories } from '../../categories/selectors';
+import { getSources } from '../../source/selectors';
 import { fetchCategoryArticles } from '../actions';
-import { PartnersArticles } from 'features/partnersArticles/components/PartnersArticles';
+import { PartnersArticles } from '../../partnersArticles/components/PartnersArticles';
 
 export const CategoryPage: React.FC = () => {
   const dispatch = useDispatch<AppDispatchType>();

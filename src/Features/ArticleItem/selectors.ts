@@ -1,7 +1,7 @@
 import { RootState } from '@components/store';
-import { getCategories } from 'features/categories/selectors';
-import { CategoriesType } from 'features/categories/types';
-import { getSources } from 'features/source/selectors';
+import { getCategories } from '../categories/selectors';
+import { CategoriesType } from '../categories/types';
+import { getSources } from '../source/selectors';
 import { ArticleItemType } from './types';
 import { SourcesType } from '../source/types';
 
