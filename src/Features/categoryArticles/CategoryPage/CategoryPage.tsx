@@ -1,29 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { NewsResponse } from '../../../components/types';
-import { categoryIds, categoryNames, categoryTitles } from '../../../components/utils';
-import { PartnersArticles } from '../../partnersArticles/PartnersArticles';
-
 import './CategoryPage.css';
 import { SidebarArticleCard } from '../../../components/SidebarArticleCard/SidebarArticleCard';
-
-import { ArticleCard } from '../../ArticleCard/ArticleCard';
+import { ArticleCard } from '../../../components/ArticleCard/ArticleCard';
 import { Hero } from '../../../components/Hero/Hero';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatchType } from '@components/store';
+import { categoryNames } from 'features/categories/types';
+import { getCategoryNews } from '../selectors';
+import { categoryIds, categoryTitles } from 'features/categories/constants';
+import { getCategories } from 'features/categories/selectors';
+import { getSources } from 'features/source/selectors';
+import { fetchCategoryArticles } from '../actions';
+import { PartnersArticles } from 'features/partnersArticles/components/PartnersArticles';
 
 export const CategoryPage: React.FC = () => {
+  const dispatch = useDispatch<AppDispatchType>();
   const { category } = useParams() as { category: categoryNames };
-  const [articles, setArticles] = useState<NewsResponse>({
-    items: [],
-    categories: [],
-    sources: [],
-  });
+  const articles = useSelector(getCategoryNews(categoryIds[category]));
+  const categories = useSelector(getCategories);
+  const sources = useSelector(getSources);
 
   useEffect(() => {
-    fetch('https://frontend.karpovcourses.net/api/v2/ru/news/' + categoryIds[category] || '')
-      .then((response) => response.json())
-      .then((response: NewsResponse) => {
-        setArticles(response);
-      });
+    dispatch(fetchCategoryArticles(categoryIds[category]));
   }, [category]);
 
   return (
@@ -31,9 +30,9 @@ export const CategoryPage: React.FC = () => {
       <Hero title={categoryTitles[category as categoryNames]} image="test" className="category-page__hero" />
       <div className="container grid">
         <section className="category-page__content">
-          {articles.items.slice(3).map((item) => {
-            const category = articles?.categories?.find(({ id }) => item?.category_id === id);
-            const source = articles.sources.find(({ id }) => item.source_id === id);
+          {articles.slice(3).map((item) => {
+            const category = categories?.find(({ id }) => item?.category_id === id);
+            const source = sources.find(({ id }) => item.source_id === id);
             return (
               <ArticleCard
                 className="category-page__item"
@@ -49,8 +48,8 @@ export const CategoryPage: React.FC = () => {
           })}
         </section>
         <section className="category-page__sidebar">
-          {articles.items.slice(0, 3).map((item) => {
-            const source = articles.sources.find(({ id }) => item.source_id === id);
+          {articles.slice(0, 3).map((item) => {
+            const source = sources.find(({ id }) => item.source_id === id);
             return (
               <SidebarArticleCard
                 className="category-page__sidebar-item"

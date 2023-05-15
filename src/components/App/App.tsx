@@ -1,5 +1,5 @@
-import { Homepage } from '../../features/Homepage/Homepage';
-import { Article } from '../../features/ArticleItem/components/ArticlePage/ArticlesPage';
+import { Homepage } from '../../features/articlesList/components/Homepage/Homepage';
+import { Article } from '../../features/articleItem/components/ArticlePage/ArticlesPage';
 import React, { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 

@@ -1,7 +1,7 @@
-import { RootState } from "@components/store";
-import { ArticleType } from "features/ArticleItem/types";
-
+import { RootState } from '@components/store';
+import { ArticleType } from 'features/articleItem/types';
 
 export const getRelatedArticles =
   (articleId: number) =>
-  (state: RootState): ArticleType[] => state.relatedArticles[articleId] || [];
+  (state: RootState): ArticleType[] =>
+    state.relatedArticles[articleId] || [];

@@ -1,4 +1,4 @@
-import { categoryNames } from "./types";
+import { categoryNames } from './types';
 
 export const categoryIds: Record<categoryNames, number> = {
   sport: 2,

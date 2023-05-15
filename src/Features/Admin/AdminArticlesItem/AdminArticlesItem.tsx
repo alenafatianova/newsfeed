@@ -16,7 +16,6 @@ import {
 import React, { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useParams } from 'react-router-dom';
-import { getErrors, getImage } from './helpers';
 import { InputRefs, InputValues, InputError, InputNameType } from './types';
 import {
   createPartnerArticle,
@@ -26,6 +25,7 @@ import {
   uploadFile,
 } from '../../../components/api';
 import CloseIcon from '@mui/icons-material/Close';
+import { getErrors, getImage } from './helpers';
 
 // страница редактирования партнерских статей
 export const AdminArticlesItem: React.FC = () => {

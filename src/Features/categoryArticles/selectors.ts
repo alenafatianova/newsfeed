@@ -1,7 +1,8 @@
-import { RootState } from "@components/store";
-import { ArticleType } from "features/ArticleItem/types";
+import { RootState } from '@components/store';
+import { ArticleType } from 'features/articleItem/types';
 
-export const getCategoryNews = (categoryId: number) => (state: RootState): ArticleType[] => {
-  return state.categoryArticles[categoryId] || [];
-}
-
+export const getCategoryNews =
+  (categoryId: number) =>
+  (state: RootState): ArticleType[] => {
+    return state.categoryArticles[categoryId] || [];
+  };

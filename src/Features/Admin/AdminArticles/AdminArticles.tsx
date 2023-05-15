@@ -2,11 +2,11 @@ import { Grid, Typography, Box, Button, Card, CardMedia, CardContent } from '@mu
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getPartnersArticles } from '../../../components/api';
-import { IPartnersPosts } from '../../../components/types';
+import { PartnersPostsType } from 'features/partnersArticles/types';
 
 // страница списка партнерских новостей
 export const AdminArticles: React.FC = () => {
-  const [articles, setArticles] = useState<IPartnersPosts[]>([]);
+  const [articles, setArticles] = useState<PartnersPostsType[]>([]);
 
   useEffect(() => {
     (async () => {

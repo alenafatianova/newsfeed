@@ -13,11 +13,13 @@ import {
   orderBy,
   limit,
 } from 'firebase/firestore';
-import { IPartnersPosts, NewsResponse } from './types';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { SourcesType } from 'features/Source/types';
-import { ArticleItemType } from 'features/ArticleItem/components/types';
-import { Categories } from 'features/categoryArticles/types';
+import { SourcesType } from 'features/source/types';
+import { PartnersPostsType } from 'features/partnersArticles/types';
+import { NewsResponse } from 'features/articlesList/types';
+import { CategoriesType } from 'features/categories/types';
+import { RelatedArticlesType } from 'features/relatedNews/types';
+import { ArticleItemType } from 'features/articleItem/types';
 
 export const initializeAPI = (): FirebaseApp => {
   const firebaseApp = initializeApp({
@@ -39,16 +41,16 @@ export const initializeAPI = (): FirebaseApp => {
 
 const partnersPostCollection = 'partners-posts';
 
-export const getPartnersArticles = async (): Promise<IPartnersPosts[]> => {
+export const getPartnersArticles = async (): Promise<PartnersPostsType[]> => {
   const db = getFirestore();
-  const articles: IPartnersPosts[] = [];
+  const articles: PartnersPostsType[] = [];
 
   try {
     const querySnapshot = await getDocs(collection(db, partnersPostCollection));
     querySnapshot.forEach((doc) => {
-      const data = doc.data() as Omit<IPartnersPosts, 'id'>;
+      const data = doc.data() as Omit<PartnersPostsType, 'id'>;
       articles.push({
-        id: doc.id,
+        id: Number(doc.id),
         ...data,
       });
     });
@@ -59,7 +61,7 @@ export const getPartnersArticles = async (): Promise<IPartnersPosts[]> => {
   return articles;
 };
 
-export const createPartnerArticle = async (data: Omit<IPartnersPosts, 'id' | 'created'>): Promise<void> => {
+export const createPartnerArticle = async (data: Omit<PartnersPostsType, 'id' | 'created'>): Promise<any> => {
   const db = getFirestore();
 
   try {
@@ -69,16 +71,16 @@ export const createPartnerArticle = async (data: Omit<IPartnersPosts, 'id' | 'cr
   }
 };
 
-export const getPartnerArticle = async (id: string): Promise<IPartnersPosts> => {
+export const getPartnerArticle = async (id: string): Promise<PartnersPostsType> => {
   const db = getFirestore();
   const docRef = doc(db, 'partners-posts', id);
 
   try {
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
-      const data = docSnap.data() as Omit<IPartnersPosts, 'id'>;
+      const data = docSnap.data() as Omit<PartnersPostsType, 'id'>;
       return {
-        id: docSnap.id,
+        id: Number(docSnap.id),
         ...data,
       };
     } else {
@@ -89,7 +91,10 @@ export const getPartnerArticle = async (id: string): Promise<IPartnersPosts> => 
   }
 };
 
-export const updatePartnerArticle = async (id: string, data: Omit<IPartnersPosts, 'id' | 'created'>): Promise<any> => {
+export const updatePartnerArticle = async (
+  id: string,
+  data: Omit<PartnersPostsType, 'id' | 'created'>
+): Promise<any> => {
   const db = getFirestore();
   const updatedArticle = doc(db, partnersPostCollection, id);
 
@@ -125,18 +130,18 @@ export const uploadFile = async (file: File): Promise<string> => {
 };
 
 // sorted article
-export const getSortedPartnerArticle = async (): Promise<IPartnersPosts | null> => {
+export const getSortedPartnerArticle = async (): Promise<PartnersPostsType | null> => {
   const db = getFirestore();
-  let article: IPartnersPosts | null = null;
+  let article: PartnersPostsType | null = null;
 
   try {
     const q = query(collection(db, partnersPostCollection), orderBy('created', 'desc'), limit(1));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      const data = doc.data() as Omit<IPartnersPosts, 'id'>;
+      const data = doc.data() as Omit<PartnersPostsType, 'id'>;
 
       article = {
-        id: doc.id,
+        id: Number(doc.id),
         ...data,
       };
     });
@@ -146,16 +151,16 @@ export const getSortedPartnerArticle = async (): Promise<IPartnersPosts | null> 
   return article;
 };
 
-export const getMainPartnerArticle = async (): Promise<IPartnerArticle | null> => {
+export const getMainPartnerArticle = async (): Promise<PartnersPostsType | null> => {
   const db = getFirestore();
   let article = null;
 
   try {
-    const q = query(collection(db, partnersPostsCollection), orderBy('created', 'desc'), limit(1));
+    const q = query(collection(db, partnersPostCollection), orderBy('created', 'desc'), limit(1));
     const querySnapshot = await getDocs(q);
 
     querySnapshot.forEach((doc) => {
-      const data = doc.data() as Omit<IPartnerArticle, 'id'>;
+      const data = doc.data() as Omit<PartnersPostsType, 'id'>;
 
       article = {
         id: doc.id,
@@ -181,7 +186,7 @@ export const apiFetchCategory = (id: number): Promise<NewsResponse> => {
   return fetch(`https://frontend.karpovcourses.net/api/v2/ru/news/${id}`).then((response) => response.json());
 };
 
-export const apiFetchCategories = (): Promise<Categories[]> => {
+export const apiFetchCategories = (): Promise<CategoriesType[]> => {
   return fetch('https://frontend.karpovcourses.net/api/v2/categories').then((response) => response.json());
 };
 
@@ -189,7 +194,7 @@ export const apiFetchSources = (): Promise<SourcesType[]> => {
   return fetch('https://frontend.karpovcourses.net/api/v2/sources').then((response) => response.json());
 };
 
-export const apiFetchRelatedArticles = (id: number): Promise<RelatedArticles> => {
+export const apiFetchRelatedArticles = (id: number): Promise<RelatedArticlesType> => {
   return fetch(`https://frontend.karpovcourses.net/api/v2/news/related/${id}?count=9`).then((response) =>
     response.json()
   );

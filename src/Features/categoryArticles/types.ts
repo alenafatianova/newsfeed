@@ -1,5 +1,4 @@
-import { categoryNames } from "features/categories/types";
-
+import { categoryNames } from 'features/categories/types';
 
 export type CategoriesType = {
   id: number;

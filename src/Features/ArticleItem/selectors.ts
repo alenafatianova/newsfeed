@@ -1,9 +1,9 @@
-import { RootState } from "@components/store";
-import { ArticleItemType } from "./types";
-import { getCategories } from "features/categories/selectors";
-import { SourcesType } from "features/Source/types";
-import { CategoriesType } from "features/categories/types";
-import { getSources } from "features/Source/selectors";
+import { RootState } from '@components/store';
+import { getCategories } from 'features/categories/selectors';
+import { CategoriesType } from 'features/categories/types';
+import { getSources } from 'features/source/selectors';
+import { ArticleItemType } from './types';
+import { SourcesType } from '../source/types';
 
 export const getArticleItem = (state: RootState): ArticleItemType | null => state.articleItem.item;
 

@@ -1,5 +1,5 @@
 export interface PartnersPostsType {
-  id: string;
+  id: number;
   'company-name': string;
   articleTitle: string;
   description: string;

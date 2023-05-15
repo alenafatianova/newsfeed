@@ -3,34 +3,36 @@ import './ArticlesPage.css';
 import { useParams } from 'react-router-dom';
 import { SidebarArticleCard } from '../../../../components/SidebarArticleCard/SidebarArticleCard';
 import { Hero } from '@components/Hero/Hero';
-import { ArticleCard } from '../../../ArticleCard/ArticleCard';
-import { Source } from '../../../Source/components/Source';
+import { ArticleCard } from '../../../../components/ArticleCard/ArticleCard';
+import { Source } from '../../../source/components/Source';
 import { Title } from '@components/Title/Title';
 import { beautifyDate } from '../../../../components/utils';
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchArticleItem } from '../../actions';
-import { setArticleItem } from '../../slice';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { fetchRelatedArticles } from 'features/relatedNews/actions';
 import { categoryNames } from 'features/categories/types';
 import { categoryTitles } from 'features/categories/constants';
-import { getSources } from 'features/Source/selectors';
+import { getSources } from 'features/source/selectors';
 import { getRelatedArticles } from 'features/relatedNews/selectors';
-import { getCachedArticleItem } from 'features/ArticleItem/selectors';
+import { getCachedArticleItem } from 'features/articleItem/selectors';
+import { fetchArticleItem } from 'features/articleItem/actions';
+//import { setArticleItem } from 'features/articleItem/slice';
+import { AppDispatchType } from '@components/store';
 
 export const Article: React.FC = () => {
   const { id }: { id?: number } = useParams();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatchType>();
   const articleItem = useSelector(getCachedArticleItem(Number(id)));
   const relatedArticles = useSelector(getRelatedArticles(Number(id)));
   const sources = useSelector(getSources);
 
   useEffect(() => {
-    dispatch(fetchArticleItem(Number(articleId)));
+    dispatch(fetchArticleItem(Number(id)));
     dispatch(fetchRelatedArticles(Number(id)));
 
-    return () => {
-      dispatch(setArticleItem(null));
-    };
+    // return () => {
+    //   dispatch(setArticleItem(null))
+    // };
   }, [id]);
 
   if (articleItem === null || relatedArticles === null) {

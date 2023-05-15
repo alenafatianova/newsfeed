@@ -1,5 +1,5 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { SourcesType } from "./types";
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { SourcesType } from './types';
 
 const initialState: SourcesType[] = [];
 
@@ -15,4 +15,4 @@ export const sourcesSlice = createSlice({
 
 export const { setSources } = sourcesSlice.actions;
 
-export const sourcesReducer =  sourcesSlice.reducer;
+export const sourcesReducer = sourcesSlice.reducer;

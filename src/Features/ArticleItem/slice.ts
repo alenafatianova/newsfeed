@@ -1,5 +1,5 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { ArticleItemType } from "./types";
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { ArticleItemType } from './types';
 
 interface initialArticleItemType {
   item: ArticleItemType | null;
@@ -20,7 +20,4 @@ export const articleItemSlice = createSlice({
 });
 
 export const { setArticleItem } = articleItemSlice.actions;
-
-export const articlesItemReducer =  articleItemSlice.reducer;
-
-
+export const articlesItemReducer = articleItemSlice.reducer;
