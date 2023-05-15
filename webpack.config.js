@@ -10,8 +10,8 @@ const mode = process.env.NODE_ENV || 'production';
 module.exports = {
   mode: process.env.NODE_ENV || 'production',
   entry: {
-    main: './src/script.tsx',
-    initColorScheme: './src/initColorScheme.ts',
+    main: './src/components/script.tsx',
+    initColorScheme: './src/features/colorScheme/initColorScheme.ts',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
