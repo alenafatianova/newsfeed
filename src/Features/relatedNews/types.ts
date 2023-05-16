@@ -1,4 +1,4 @@
-import { ArticleType } from 'features/articleItem/types';
+import { ArticleType } from '../articleItem/types';
 
 export interface RelatedArticlesType {
   items: ArticleType[];

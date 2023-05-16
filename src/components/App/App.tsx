@@ -1,8 +1,7 @@
-import { Homepage } from '../../features/articlesList/components/Homepage/Homepage';
-import { Article } from '../../features/articleItem/components/ArticlePage/ArticlesPage';
 import React, { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
-
+import { Homepage } from '../../features/articlesList/components/Homepage/Homepage';
+import { Article } from '../../features/articleItem/components/ArticlePage/ArticlesPage';
 import { AdminPanel } from '../../features/Admin/AdminPanel/AdminPanel';
 import { Page } from '../Page/Page';
 import { AdminArticlesItem } from '../../features/Admin/AdminArticlesItem/AdminArticlesItem';

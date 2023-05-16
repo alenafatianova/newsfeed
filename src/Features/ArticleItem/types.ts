@@ -1,5 +1,5 @@
-import { SourcesType } from 'features/source/types';
-import { CategoriesType } from 'features/categories/types';
+import { SourcesType } from '../source/types';
+import { CategoriesType } from '../categories/types';
 
 export type ArticleItemType = {
   id: number;

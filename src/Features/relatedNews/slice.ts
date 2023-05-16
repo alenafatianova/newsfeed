@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { ArticleType } from 'features/articleItem/types';
+import { ArticleType } from '../articleItem/types';
 
 type InitialState = Record<number, ArticleType[]>;
 

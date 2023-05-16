@@ -2,7 +2,7 @@ import { Grid, Typography, Box, Button, Card, CardMedia, CardContent } from '@mu
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getPartnersArticles } from '../../../components/api';
-import { PartnersPostsType } from 'features/partnersArticles/types';
+import { PartnersPostsType } from '../../partnersArticles/types';
 
 // страница списка партнерских новостей
 export const AdminArticles: React.FC = () => {

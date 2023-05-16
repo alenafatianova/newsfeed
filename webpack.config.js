@@ -30,7 +30,7 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
-        test: /\.svg$/,
+        test: /\.(svg|jpg)$/,
         type: 'asset/resource',
       },
       {

@@ -3,7 +3,7 @@ import './ArticleCard.css';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { beautifyDate } from '../utils';
-import { categoryNames } from 'features/categories/types';
+import { categoryNames } from '../../features/categories/types';
 import { categoryTitles } from '../../features/categories/constants';
 import { Source } from '../../features/source/components/Source';
 

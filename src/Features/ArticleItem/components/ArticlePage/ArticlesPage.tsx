@@ -8,7 +8,6 @@ import { Source } from '../../../source/components/Source';
 import { Title } from '@components/Title/Title';
 import { beautifyDate } from '../../../../components/utils';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { fetchRelatedArticles } from '../../../relatedNews/actions';
 import { categoryNames } from '../../../categories/types';
 import { categoryTitles } from '../../../categories/constants';
@@ -16,7 +15,6 @@ import { getSources } from '../../../source/selectors';
 import { getRelatedArticles } from '../../../relatedNews/selectors';
 import { getCachedArticleItem } from '../../../articleItem/selectors';
 import { fetchArticleItem } from '../../../articleItem/actions';
-//import { setArticleItem } from 'features/articleItem/slice';
 import { AppDispatchType } from '@components/store';
 
 export const Article: React.FC = () => {
