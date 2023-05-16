@@ -20,7 +20,7 @@ export const CategoryPage: React.FC = () => {
   const articles = useSelector(getCategoryNews(categoryIds[category]));
   const categories = useSelector(getCategories);
   const sources = useSelector(getSources);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
@@ -29,6 +29,9 @@ export const CategoryPage: React.FC = () => {
     });
   }, [category]);
 
+  if(loading) {
+    <span>loading...</span>
+  }
   return (
     <section className="category-page">
       <Hero
