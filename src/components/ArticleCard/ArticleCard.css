@@ -13,8 +13,6 @@
 .article-card__image {
   width: 152px;
   height: 112px;
-  object-fit: cover;
-  display: block;
   margin-right: 12px;
   flex-shrink: 0;
   overflow: hidden;
