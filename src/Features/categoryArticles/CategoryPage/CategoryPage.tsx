@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './CategoryPage.css';
 import { SidebarArticleCard } from '../../../components/SidebarArticleCard/SidebarArticleCard';
@@ -20,14 +20,22 @@ export const CategoryPage: React.FC = () => {
   const articles = useSelector(getCategoryNews(categoryIds[category]));
   const categories = useSelector(getCategories);
   const sources = useSelector(getSources);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    dispatch(fetchCategoryArticles(categoryIds[category]));
+    setLoading(true);
+    dispatch(fetchCategoryArticles(categoryIds[category])).then(() => {
+      setLoading(false);
+    });
   }, [category]);
 
   return (
     <section className="category-page">
-      <Hero title={categoryTitles[category as categoryNames]} image={require(`../../../images/categories/${category}.jpg`)} className="category-page__hero" />
+      <Hero
+        title={categoryTitles[category as categoryNames]}
+        image={require(`../../../images/categories/${category}.jpg`)}
+        className="category-page__hero"
+      />
       <div className="container grid">
         <section className="category-page__content">
           {articles.slice(3).map((item) => {

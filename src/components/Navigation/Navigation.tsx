@@ -14,7 +14,7 @@ type NavigationItemType = {
   title?: string;
 };
 
-export const NavigationItem: React.FC<NavigationItemType> = ({ name='', title }) => {
+export const NavigationItem: React.FC<NavigationItemType> = ({ name = '', title }) => {
   return (
     <>
       <li className="navigation--item" key={name}>

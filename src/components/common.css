@@ -7,6 +7,7 @@
 
 :root {
   --constant-overlay-black-alpha64: rgba(0, 0, 0, 0.64);
+  --constant-overlay-black-alpha12: rgba(0, 0, 0, 0.12);
   --constant-black: #262a2f;
   --constant-accent: #0083fc;
   --constant-grey: #a3a3a3;
@@ -17,6 +18,7 @@
   --background-primary: var(--constant-white);
   --foreground-primary: var(--constant-black);
   --color-scheme-border: var(--constant-grey1);
+  --skeleton-background: var(var(--constant-grey));
   --container-width: 940px;
   --grid-column-width: 60px;
   --container-padding: 20px;
@@ -29,6 +31,7 @@
   --background-zero: #131517;
   --background-primary: var(--constant-black);
   --foreground-primary: var(--constant-white);
+  --skeleton-background: var(var(--constant-overlay-black-alpha12));
   --color-scheme-border: transparent;
 
   color-scheme: dark;
