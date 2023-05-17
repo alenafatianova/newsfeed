@@ -1,5 +1,4 @@
 import React from 'react';
-import './Hero.css';
 import classNames from 'classnames';
 import { Title } from '@components/Title/Title';
 import { ImageComponent } from '@components/Image/ImageComponent';
@@ -18,7 +17,7 @@ export const HeroSkeleton: React.FC<HeroSkeletonType> = ({ hasImage = true, titl
       <div className="hero__in">
         {hasImage && <ImageComponent className="hero__image" />}
         <div className="hero__container container">
-          <div className="hero__content">
+          <div className="hero__content" style={{ width: title ? undefined : '100%' }}>
             <Title className="hero__title">{title || <SkeletonText dark />}</Title>
             {hasText && (
               <p className="hero__text">

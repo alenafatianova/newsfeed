@@ -13,6 +13,7 @@ import { getCategories } from '../../categories/selectors';
 import { getSources } from '../../source/selectors';
 import { fetchCategoryArticles } from '../actions';
 import { PartnersArticles } from '../../partnersArticles/components/PartnersArticles';
+import { HeroSkeleton } from '@components/Skeleton/HeroSkeleton';
 
 export const CategoryPage: React.FC = () => {
   const dispatch = useDispatch<AppDispatchType>();
@@ -29,9 +30,15 @@ export const CategoryPage: React.FC = () => {
     });
   }, [category]);
 
-  if (loading) {
-    <span>loading...</span>;
+  // eslint-disable-next-line no-constant-condition
+  if (true) {
+    return (
+      <section className="category-page">
+        <HeroSkeleton hasText={true} />
+      </section>
+    );
   }
+
   return (
     <section className="category-page">
       <Hero

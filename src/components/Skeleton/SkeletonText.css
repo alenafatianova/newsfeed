@@ -7,9 +7,13 @@
 }
 
 .skeleton-text__row {
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
   height: 1em;
+  background-color: currentColor;
 }
 
-.skeleton-text__row:last-child {
+.skeleton-text__row:last-child:not(:first-child) {
   width: 60%;
 }
