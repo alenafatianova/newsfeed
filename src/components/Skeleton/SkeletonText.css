@@ -1,0 +1,15 @@
+.skeleton-text {
+  color: var(--skeleton-color);
+}
+
+.skeleton-text--dark {
+  color: var(--constant-overlay-black-alpha12);
+}
+
+.skeleton-text__row {
+  height: 1em;
+}
+
+.skeleton-text__row:last-child {
+  width: 60%;
+}

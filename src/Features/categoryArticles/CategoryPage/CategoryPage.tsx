@@ -29,8 +29,8 @@ export const CategoryPage: React.FC = () => {
     });
   }, [category]);
 
-  if(loading) {
-    <span>loading...</span>
+  if (loading) {
+    <span>loading...</span>;
   }
   return (
     <section className="category-page">
