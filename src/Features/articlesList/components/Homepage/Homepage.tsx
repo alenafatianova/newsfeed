@@ -14,7 +14,7 @@ import { getSources } from '../../../source/selectors'
 import { fetchNews, fetchTrends } from '../../../articlesList/actions'
 import { fetchCategoryArticles } from '../../../categoryArticles/actions'
 import { AppDispatchType } from '@components/store'
-import { HeroSkeleton } from '@components/Skeleton/HeroSkeleton'
+import { HeroSkeleton } from '@components/Hero/HeroSkeleton'
 
 export const Homepage: React.FC = () => {
   const dispatch = useDispatch<AppDispatchType>()

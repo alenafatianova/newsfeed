@@ -13,7 +13,10 @@ import { getCategories } from '../../categories/selectors'
 import { getSources } from '../../source/selectors'
 import { fetchCategoryArticles } from '../actions'
 import { PartnersArticles } from '../../partnersArticles/components/PartnersArticles'
-import { HeroSkeleton } from '@components/Skeleton/HeroSkeleton'
+import { HeroSkeleton } from '@components/Hero/HeroSkeleton'
+import { ArticleCardSkeleton } from '@components/ArticleCard/ArticleCardSkeleton'
+import { SidebarArticleCardSkeleton } from '@components/SidebarArticleCard/SidebarArticleCardSkeleton'
+
 
 export const CategoryPage: React.FC = () => {
   const dispatch = useDispatch<AppDispatchType>()
@@ -30,20 +33,36 @@ export const CategoryPage: React.FC = () => {
     })
   }, [category])
 
-  if (loading) {
+  // eslint-disable-next-line no-constant-condition
+  if (true) {
     return (
       <section className="category-page">
-        <HeroSkeleton title={categoryTitles[category]} />
+        <HeroSkeleton title={categoryTitles[category]} className="category-page__hero" />
+        <div className="container grid">
+        <section className="category-page__content">
+          <ArticleCardSkeleton className="category-page__item" />
+          <ArticleCardSkeleton className="category-page__item" />
+          <ArticleCardSkeleton className="category-page__item" />
+          <ArticleCardSkeleton className="category-page__item" />
+          <ArticleCardSkeleton className="category-page__item" />
+          <ArticleCardSkeleton className="category-page__item" />
+        </section>
+        <section className="category-page__sidebar">
+          <SidebarArticleCardSkeleton className="category-page__sidebar-item" />
+          <SidebarArticleCardSkeleton className="category-page__sidebar-item" />
+          <SidebarArticleCardSkeleton className="category-page__sidebar-item" />
+        </section>
+      </div>
       </section>
     )
   }
 
   return (
     <section className="category-page">
-      <Hero
-        title={categoryTitles[category as categoryNames]}
-        image={require(`../../../images/categories/${category}.jpg`)}
-        className="category-page__hero"
+      <Hero 
+        title={categoryTitles[category as categoryNames]}  
+        className="category-page__hero" 
+        image={require(`../../../images/categories/${category}.jpg`)} 
       />
       <div className="container grid">
         <section className="category-page__content">

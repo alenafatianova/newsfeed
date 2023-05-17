@@ -1,5 +1,6 @@
 .skeleton-text {
-  color: var(--skeleton-color);
+  color: var(--skeleton-background);
+  width: 100%;
 }
 
 .skeleton-text--dark {
@@ -14,6 +15,6 @@
   background-color: currentColor;
 }
 
-.skeleton-text__row:last-child:not(:first-child) {
+.skeleton-text__row:last-child {
   width: 60%;
 }

@@ -31,7 +31,7 @@
   --background-zero: #131517;
   --background-primary: var(--constant-black);
   --foreground-primary: var(--constant-white);
-  --skeleton-background: var(var(--constant-overlay-black-alpha12));
+  --skeleton-background: var(--constant-overlay-black-alpha12);
   --color-scheme-border: transparent;
 
   color-scheme: dark;
@@ -45,6 +45,10 @@ body {
   font-weight: 400;
   color: var(--foreground-primary);
   min-width: calc(var(--container-width) + 2 * var(--container-padding));
+}
+
+a {
+  cursor: pointer;
 }
 
 .--prevent-scroll {

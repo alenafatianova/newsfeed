@@ -6,7 +6,7 @@ import { Hero } from '@components/Hero/Hero'
 import { ArticleCard } from '../../../../components/ArticleCard/ArticleCard'
 import { Source } from '../../../source/components/Source'
 import { Title } from '@components/Title/Title'
-import { beautifyDate } from '../../../../components/utils'
+import { beautifyDate, repeat } from '../../../../components/utils'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchRelatedArticles } from '../../../relatedNews/actions'
 import { categoryNames } from '../../../categories/types'
@@ -16,8 +16,10 @@ import { getRelatedArticles } from '../../../relatedNews/selectors'
 import { getCachedArticleItem } from '../../../articleItem/selectors'
 import { fetchArticleItem } from '../../../articleItem/actions'
 import { AppDispatchType } from '@components/store'
-import { HeroSkeleton } from '@components/Skeleton/HeroSkeleton'
+import { HeroSkeleton } from '@components/Hero/HeroSkeleton'
 import { setArticleItem } from 'features/articleItem/slice'
+import { SkeletonText } from '@components/Skeleton/SkeletonText'
+import { SidebarArticleCardSkeleton } from '@components/SidebarArticleCard/SidebarArticleCardSkeleton'
 
 export const Article: React.FC = () => {
   const { id }: { id?: number } = useParams()
@@ -45,6 +47,22 @@ export const Article: React.FC = () => {
     return (
       <section className="article-page">
         <HeroSkeleton hasText={true} className="article-page__hero" />
+        <div className="container article-page__main">
+        <div className="article-page__info">
+          <SkeletonText />
+        </div>
+        <div className="grid">
+          <div className="article-page__content">
+            <p><SkeletonText rowsCount={6} /></p>
+          </div>
+
+          <div className="sidebar__article-page">
+          {repeat((i) => {
+            return <SidebarArticleCardSkeleton key={i} className="sidebar__article-item" />
+          }, 3)}
+          </div>
+        </div>
+      </div>
       </section>
     )
   }
