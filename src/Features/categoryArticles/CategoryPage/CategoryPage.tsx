@@ -16,7 +16,7 @@ import { PartnersArticles } from '../../partnersArticles/components/PartnersArti
 import { HeroSkeleton } from '@components/Hero/HeroSkeleton'
 import { ArticleCardSkeleton } from '@components/ArticleCard/ArticleCardSkeleton'
 import { SidebarArticleCardSkeleton } from '@components/SidebarArticleCard/SidebarArticleCardSkeleton'
-
+import { repeat } from '@components/utils'
 
 export const CategoryPage: React.FC = () => {
   const dispatch = useDispatch<AppDispatchType>()
@@ -33,36 +33,32 @@ export const CategoryPage: React.FC = () => {
     })
   }, [category])
 
-  // eslint-disable-next-line no-constant-condition
-  if (true) {
+  if (loading) {
     return (
       <section className="category-page">
         <HeroSkeleton title={categoryTitles[category]} className="category-page__hero" />
         <div className="container grid">
-        <section className="category-page__content">
-          <ArticleCardSkeleton className="category-page__item" />
-          <ArticleCardSkeleton className="category-page__item" />
-          <ArticleCardSkeleton className="category-page__item" />
-          <ArticleCardSkeleton className="category-page__item" />
-          <ArticleCardSkeleton className="category-page__item" />
-          <ArticleCardSkeleton className="category-page__item" />
-        </section>
-        <section className="category-page__sidebar">
-          <SidebarArticleCardSkeleton className="category-page__sidebar-item" />
-          <SidebarArticleCardSkeleton className="category-page__sidebar-item" />
-          <SidebarArticleCardSkeleton className="category-page__sidebar-item" />
-        </section>
-      </div>
+          <section className="category-page__content">
+            {repeat((i) => {
+              return <ArticleCardSkeleton key={i} className="category-page__item" />
+            }, 6)}
+          </section>
+          <section className="category-page__sidebar">
+            {repeat((i) => {
+              return <SidebarArticleCardSkeleton key={i} className="category-page__sidebar-item" />
+            }, 3)}
+          </section>
+        </div>
       </section>
     )
   }
 
   return (
     <section className="category-page">
-      <Hero 
-        title={categoryTitles[category as categoryNames]}  
-        className="category-page__hero" 
-        image={require(`../../../images/categories/${category}.jpg`)} 
+      <Hero
+        title={categoryTitles[category as categoryNames]}
+        className="category-page__hero"
+        image={require(`../../../images/categories/${category}.jpg`)}
       />
       <div className="container grid">
         <section className="category-page__content">

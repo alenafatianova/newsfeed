@@ -17,21 +17,24 @@ export const ArticleCardSkeleton: React.FC<ArticleCardSkeletonType> = ({
   className = '',
 }) => {
   return (
-    <div className={classNames(
-      'article-card', 
-      'article-card--skeleton',
-      { 'article-card__has-description': hasDescription },
-      className
-    )}>
-      {hasImage && <ImageComponent className="article-card__image" />}
+    <div
+      className={classNames(
+        'article-card',
+        'article-card--skeleton',
+        { 'article-card__has-description': hasDescription },
+        className
+      )}
+    >
+      {hasImage && <ImageComponent className="article-card__image" skeleton />}
       <div className="article-card__content">
         <h2 className="article-card__title">
           <SkeletonText rowsCount={2} />
         </h2>
-        {hasDescription && 
-        <span className="article-card__description">
-           <SkeletonText rowsCount={2} />
-        </span>}
+        {hasDescription && (
+          <span className="article-card__description">
+            <SkeletonText rowsCount={2} />
+          </span>
+        )}
         <div className="article-card__info">
           <SkeletonText />
         </div>

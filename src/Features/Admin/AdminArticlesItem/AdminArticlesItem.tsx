@@ -153,7 +153,6 @@ export const AdminArticlesItem: React.FC = () => {
 
   useEffect(() => {
     if (!id) return
-
     ;(async () => {
       const data = await getPartnerArticle(id)
       setInputValues({

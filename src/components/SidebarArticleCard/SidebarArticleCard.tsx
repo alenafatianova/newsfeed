@@ -15,7 +15,6 @@ type ArticleCardType = {
 }
 
 export const SidebarArticleCard: React.FC<ArticleCardType> = ({ id, title, source, image, date, className }) => {
- 
   return (
     <>
       <Link to={`/article/${id}`} className={classNames('sidebar-article-card', className)}>

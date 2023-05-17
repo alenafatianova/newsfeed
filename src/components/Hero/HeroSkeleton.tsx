@@ -16,7 +16,7 @@ export const HeroSkeleton: React.FC<HeroSkeletonType> = ({ hasImage = true, titl
   return (
     <section className={classNames('hero', { 'hero__no-image': !hasImage }, className)}>
       <div className="hero__in">
-        {hasImage && <ImageComponent className="hero__image" />}
+        {hasImage && <ImageComponent className="hero__image" skeleton />}
         <div className="hero__container container">
           <div className="hero__content" style={{ width: title ? undefined : '100%' }}>
             <Title className="hero__title">{title || <SkeletonText dark />}</Title>

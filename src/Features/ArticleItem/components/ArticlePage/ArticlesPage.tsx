@@ -31,8 +31,9 @@ export const Article: React.FC = () => {
 
   useEffect(() => {
     setLoading(true)
-    Promise.all([dispatch(fetchArticleItem(Number(id))), dispatch(fetchRelatedArticles(Number(id)))])
-    .then(() => setLoading(false))
+    Promise.all([dispatch(fetchArticleItem(Number(id))), dispatch(fetchRelatedArticles(Number(id)))]).then(() =>
+      setLoading(false)
+    )
 
     // return () => {
     //   dispatch(setArticleItem(null))
@@ -48,21 +49,23 @@ export const Article: React.FC = () => {
       <section className="article-page">
         <HeroSkeleton hasText={true} className="article-page__hero" />
         <div className="container article-page__main">
-        <div className="article-page__info">
-          <SkeletonText />
-        </div>
-        <div className="grid">
-          <div className="article-page__content">
-            <p><SkeletonText rowsCount={6} /></p>
+          <div className="article-page__info">
+            <SkeletonText />
           </div>
+          <div className="grid">
+            <div className="article-page__content">
+              <p>
+                <SkeletonText rowsCount={6} />
+              </p>
+            </div>
 
-          <div className="sidebar__article-page">
-          {repeat((i) => {
-            return <SidebarArticleCardSkeleton key={i} className="sidebar__article-item" />
-          }, 3)}
+            <div className="sidebar__article-page">
+              {repeat((i) => {
+                return <SidebarArticleCardSkeleton key={i} className="sidebar__article-item" />
+              }, 3)}
+            </div>
           </div>
         </div>
-      </div>
       </section>
     )
   }

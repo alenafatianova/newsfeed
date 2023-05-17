@@ -4,7 +4,7 @@
 }
 
 .skeleton-text--dark {
-  color: var(--constant-overlay-black-alpha12);
+  color: var(--constant-white-alpha12);
 }
 
 .skeleton-text__row {

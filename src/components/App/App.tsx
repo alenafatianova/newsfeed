@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { Homepage } from '../../features/articlesList/components/Homepage/Homepage'
 import { Article } from '../../features/articleItem/components/ArticlePage/ArticlesPage'
@@ -12,9 +12,13 @@ import { CategoryPage } from '../../features/categoryArticles/CategoryPage/Categ
 
 export const App: React.FC = () => {
   const { pathname } = useLocation()
+  const prevPathname = useRef(pathname)
 
   useEffect(() => {
-    window.scrollTo(0, 0)
+    if (pathname !== prevPathname.current) {
+      prevPathname.current = pathname
+      window.scrollTo(0, 0)
+    }
   }, [pathname])
 
   return (
