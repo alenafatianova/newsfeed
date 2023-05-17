@@ -30,8 +30,7 @@ export const CategoryPage: React.FC = () => {
     });
   }, [category]);
 
-  // eslint-disable-next-line no-constant-condition
-  if (true) {
+  if (loading) {
     return (
       <section className="category-page">
         <HeroSkeleton hasText={true} />
