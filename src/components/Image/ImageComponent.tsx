@@ -1,14 +1,14 @@
-import classNames from 'classnames';
-import './ImageComponent.css';
-import React, { ImgHTMLAttributes, useState } from 'react';
+import classNames from 'classnames'
+import './ImageComponent.css'
+import React, { ImgHTMLAttributes, useState } from 'react'
 
 interface ImageType extends ImgHTMLAttributes<HTMLImageElement> {
-  className?: string;
-  src?: string;
+  className?: string
+  src?: string
 }
 
 export const ImageComponent: React.FC<ImageType> = ({ className, src, onLoad, ...rest }: ImageType) => {
-  const [imgLoaded, setImgLoaded] = useState(false);
+  const [imgLoaded, setImgLoaded] = useState(false)
   return (
     <div className={classNames('image', { 'image--loaded': imgLoaded }, className)}>
       <img
@@ -16,10 +16,10 @@ export const ImageComponent: React.FC<ImageType> = ({ className, src, onLoad, ..
         src={src}
         {...rest}
         onLoad={(e) => {
-          setImgLoaded(true);
-          onLoad && onLoad(e);
+          setImgLoaded(true)
+          onLoad && onLoad(e)
         }}
       />
     </div>
-  );
-};
+  )
+}

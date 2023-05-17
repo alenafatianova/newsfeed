@@ -1,20 +1,21 @@
-import React from 'react';
-import './SidebarArticleCard.css';
-import { Link } from 'react-router-dom';
-import classNames from 'classnames';
-import { beautifyDate } from '@components/utils';
-import { ImageComponent } from '@components/Image/ImageComponent';
+import React, { useState } from 'react'
+import './SidebarArticleCard.css'
+import { Link } from 'react-router-dom'
+import classNames from 'classnames'
+import { beautifyDate } from '@components/utils'
+import { ImageComponent } from '@components/Image/ImageComponent'
 
 type ArticleCardType = {
-  id: number;
-  title: string;
-  source: string;
-  image: string;
-  date: string;
-  className?: string;
-};
+  id: number
+  title: string
+  source: string
+  image: string
+  date: string
+  className?: string
+}
 
 export const SidebarArticleCard: React.FC<ArticleCardType> = ({ id, title, source, image, date, className }) => {
+ 
   return (
     <>
       <Link to={`/article/${id}`} className={classNames('sidebar-article-card', className)}>
@@ -26,5 +27,5 @@ export const SidebarArticleCard: React.FC<ArticleCardType> = ({ id, title, sourc
         <div className="sidebar-article-card__source">{source}</div>
       </Link>
     </>
-  );
-};
+  )
+}

@@ -1,5 +1,5 @@
-import { ArticleType } from '../articleItem/types';
+import { ArticleType } from '../articleItem/types'
 
 export interface RelatedArticlesType {
-  items: ArticleType[];
+  items: ArticleType[]
 }

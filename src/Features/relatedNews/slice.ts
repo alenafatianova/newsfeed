@@ -1,20 +1,20 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { ArticleType } from '../articleItem/types';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { ArticleType } from '../articleItem/types'
 
-type InitialState = Record<number, ArticleType[]>;
+type InitialState = Record<number, ArticleType[]>
 
-const initialState: InitialState = {};
+const initialState: InitialState = {}
 
 export const relatedArticlesSlice = createSlice({
   name: 'relatedArticles',
   initialState,
   reducers: {
     setRelatedArticles: (state, action: PayloadAction<{ id: number; articles: ArticleType[] }>) => {
-      state[action.payload.id] = action.payload.articles;
+      state[action.payload.id] = action.payload.articles
     },
   },
-});
+})
 
-export const { setRelatedArticles } = relatedArticlesSlice.actions;
+export const { setRelatedArticles } = relatedArticlesSlice.actions
 
-export const relatedArticlesReducer = relatedArticlesSlice.reducer;
+export const relatedArticlesReducer = relatedArticlesSlice.reducer

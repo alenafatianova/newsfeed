@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 export const DarkScheme: React.FC = () => {
   return (
@@ -8,5 +8,5 @@ export const DarkScheme: React.FC = () => {
         fill="currentColor"
       />
     </svg>
-  );
-};
+  )
+}

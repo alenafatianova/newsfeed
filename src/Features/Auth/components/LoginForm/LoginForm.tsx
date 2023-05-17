@@ -1,20 +1,20 @@
-import { Box, Button, Stack, TextField } from '@mui/material';
-import React from 'react';
+import { Box, Button, Stack, TextField } from '@mui/material'
+import React from 'react'
 
 export type LoginField = {
-  name: string;
-  value: string;
-  onFieldChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  error?: boolean;
-  helperText?: string;
-};
+  name: string
+  value: string
+  onFieldChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  error?: boolean
+  helperText?: string
+}
 
 type LoginType = {
-  email: LoginField;
-  password: LoginField;
-  onFormSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  className?: string;
-};
+  email: LoginField
+  password: LoginField
+  onFormSubmit: (e: React.FormEvent<HTMLFormElement>) => void
+  className?: string
+}
 
 export const LoginForm: React.FC<LoginType> = ({ email, password, onFormSubmit, className }) => {
   return (
@@ -48,5 +48,5 @@ export const LoginForm: React.FC<LoginType> = ({ email, password, onFormSubmit, 
         </Stack>
       </form>
     </Box>
-  );
-};
+  )
+}

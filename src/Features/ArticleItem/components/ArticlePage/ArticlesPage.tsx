@@ -1,40 +1,52 @@
-import React, { useEffect } from 'react';
-import './ArticlesPage.css';
-import { useParams } from 'react-router-dom';
-import { SidebarArticleCard } from '../../../../components/SidebarArticleCard/SidebarArticleCard';
-import { Hero } from '@components/Hero/Hero';
-import { ArticleCard } from '../../../../components/ArticleCard/ArticleCard';
-import { Source } from '../../../source/components/Source';
-import { Title } from '@components/Title/Title';
-import { beautifyDate } from '../../../../components/utils';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchRelatedArticles } from '../../../relatedNews/actions';
-import { categoryNames } from '../../../categories/types';
-import { categoryTitles } from '../../../categories/constants';
-import { getSources } from '../../../source/selectors';
-import { getRelatedArticles } from '../../../relatedNews/selectors';
-import { getCachedArticleItem } from '../../../articleItem/selectors';
-import { fetchArticleItem } from '../../../articleItem/actions';
-import { AppDispatchType } from '@components/store';
+import React, { useEffect, useState } from 'react'
+import './ArticlesPage.css'
+import { useParams } from 'react-router-dom'
+import { SidebarArticleCard } from '../../../../components/SidebarArticleCard/SidebarArticleCard'
+import { Hero } from '@components/Hero/Hero'
+import { ArticleCard } from '../../../../components/ArticleCard/ArticleCard'
+import { Source } from '../../../source/components/Source'
+import { Title } from '@components/Title/Title'
+import { beautifyDate } from '../../../../components/utils'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchRelatedArticles } from '../../../relatedNews/actions'
+import { categoryNames } from '../../../categories/types'
+import { categoryTitles } from '../../../categories/constants'
+import { getSources } from '../../../source/selectors'
+import { getRelatedArticles } from '../../../relatedNews/selectors'
+import { getCachedArticleItem } from '../../../articleItem/selectors'
+import { fetchArticleItem } from '../../../articleItem/actions'
+import { AppDispatchType } from '@components/store'
+import { HeroSkeleton } from '@components/Skeleton/HeroSkeleton'
+import { setArticleItem } from 'features/articleItem/slice'
 
 export const Article: React.FC = () => {
-  const { id }: { id?: number } = useParams();
-  const dispatch = useDispatch<AppDispatchType>();
-  const articleItem = useSelector(getCachedArticleItem(Number(id)));
-  const relatedArticles = useSelector(getRelatedArticles(Number(id)));
-  const sources = useSelector(getSources);
+  const { id }: { id?: number } = useParams()
+  const dispatch = useDispatch<AppDispatchType>()
+  const articleItem = useSelector(getCachedArticleItem(Number(id)))
+  const relatedArticles = useSelector(getRelatedArticles(Number(id)))
+  const sources = useSelector(getSources)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    dispatch(fetchArticleItem(Number(id)));
-    dispatch(fetchRelatedArticles(Number(id)));
+    setLoading(true)
+    Promise.all([dispatch(fetchArticleItem(Number(id))), dispatch(fetchRelatedArticles(Number(id)))])
+    .then(() => setLoading(false))
 
     // return () => {
     //   dispatch(setArticleItem(null))
-    // };
-  }, [id]);
+    // }
+  }, [id])
 
   if (articleItem === null || relatedArticles === null) {
-    return null;
+    return null
+  }
+
+  if (loading) {
+    return (
+      <section className="article-page">
+        <HeroSkeleton hasText={true} className="article-page__hero" />
+      </section>
+    )
   }
 
   return (
@@ -58,7 +70,7 @@ export const Article: React.FC = () => {
 
           <div className="sidebar__article-page">
             {relatedArticles.slice(3, 9).map((item) => {
-              const source = sources?.find(({ id }) => item.source_id === id);
+              const source = sources?.find(({ id }) => item.source_id === id)
               return (
                 <SidebarArticleCard
                   className="sidebar__article-item"
@@ -69,7 +81,7 @@ export const Article: React.FC = () => {
                   source={source?.name || ''}
                   image={item.image}
                 />
-              );
+              )
             })}
           </div>
         </div>
@@ -83,7 +95,7 @@ export const Article: React.FC = () => {
 
           <div className="grid article-page__related-articles-list">
             {relatedArticles?.slice(0, 3).map((article) => {
-              const source = sources?.find(({ id }) => article?.source_id === id);
+              const source = sources?.find(({ id }) => article?.source_id === id)
               return (
                 <ArticleCard
                   className="article-page__related-articles-item"
@@ -94,11 +106,11 @@ export const Article: React.FC = () => {
                   title={article.title}
                   id={article.id}
                 />
-              );
+              )
             })}
           </div>
         </div>
       </section>
     </section>
-  );
-};
+  )
+}

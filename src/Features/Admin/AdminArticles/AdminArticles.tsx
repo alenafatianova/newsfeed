@@ -1,19 +1,19 @@
-import { Grid, Typography, Box, Button, Card, CardMedia, CardContent } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { getPartnersArticles } from '../../../components/api';
-import { PartnersPostsType } from '../../partnersArticles/types';
+import { Grid, Typography, Box, Button, Card, CardMedia, CardContent } from '@mui/material'
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { getPartnersArticles } from '../../../components/api'
+import { PartnersPostsType } from '../../partnersArticles/types'
 
 // страница списка партнерских новостей
 export const AdminArticles: React.FC = () => {
-  const [articles, setArticles] = useState<PartnersPostsType[]>([]);
+  const [articles, setArticles] = useState<PartnersPostsType[]>([])
 
   useEffect(() => {
-    (async () => {
-      const articlesList = await getPartnersArticles();
-      setArticles(articlesList);
-    })();
-  }, []);
+    ;(async () => {
+      const articlesList = await getPartnersArticles()
+      setArticles(articlesList)
+    })()
+  }, [])
 
   return (
     <>
@@ -57,5 +57,5 @@ export const AdminArticles: React.FC = () => {
         ))}
       </Grid>
     </>
-  );
-};
+  )
+}

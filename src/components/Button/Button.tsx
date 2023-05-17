@@ -1,9 +1,9 @@
-import React, { ButtonHTMLAttributes } from 'react';
-import loader from '../../images/loader.svg';
-import './Button.css';
+import React, { ButtonHTMLAttributes } from 'react'
+import loader from '../../images/loader.svg'
+import './Button.css'
 
 interface ButtonType extends ButtonHTMLAttributes<HTMLButtonElement> {
-  loading?: boolean;
+  loading?: boolean
 }
 
 export const Button: React.FC<ButtonType> = ({ children, loading = true, onClick, ...rest }) => {
@@ -16,5 +16,5 @@ export const Button: React.FC<ButtonType> = ({ children, loading = true, onClick
         </span>
       )}
     </button>
-  );
-};
+  )
+}

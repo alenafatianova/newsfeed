@@ -1,4 +1,4 @@
-import { categoryNames } from './types';
+import { categoryNames } from './types'
 
 export const categoryIds: Record<categoryNames, number> = {
   sport: 2,
@@ -7,7 +7,7 @@ export const categoryIds: Record<categoryNames, number> = {
   fashion: 3,
   other: 5,
   politics: 4,
-};
+}
 
 export const categoryTitles: Record<categoryNames, string> = {
   fashion: 'Мода',
@@ -16,4 +16,4 @@ export const categoryTitles: Record<categoryNames, string> = {
   ['karpov.courses']: 'Karpov',
   other: 'Прочее',
   politics: 'Политика',
-};
+}

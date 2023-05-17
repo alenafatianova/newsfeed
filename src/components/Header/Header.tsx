@@ -1,7 +1,7 @@
-import React from 'react';
-import { Navigation } from '../Navigation/Navigation';
-import './Header.css';
-import { ColorSchemeSwitcher } from '../../features/colorScheme/components/ColorSchemeSwitcher/ColorSchemeSwitcher';
+import React from 'react'
+import { Navigation } from '../Navigation/Navigation'
+import './Header.css'
+import { ColorSchemeSwitcher } from '../../features/colorScheme/components/ColorSchemeSwitcher/ColorSchemeSwitcher'
 
 export const Header: React.FC = () => {
   return (
@@ -15,5 +15,5 @@ export const Header: React.FC = () => {
         </div>
       </header>
     </div>
-  );
-};
+  )
+}

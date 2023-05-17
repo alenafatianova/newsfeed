@@ -1,15 +1,15 @@
-import React from 'react';
-import classNames from 'classnames';
-import { Title } from '@components/Title/Title';
-import { ImageComponent } from '@components/Image/ImageComponent';
-import { SkeletonText } from './SkeletonText';
+import React from 'react'
+import classNames from 'classnames'
+import { Title } from '@components/Title/Title'
+import { ImageComponent } from '@components/Image/ImageComponent'
+import { SkeletonText } from './SkeletonText'
 
 type HeroSkeletonType = {
-  hasImage?: boolean;
-  title?: string;
-  hasText?: boolean;
-  className?: string;
-};
+  hasImage?: boolean
+  title?: string
+  hasText?: boolean
+  className?: string
+}
 
 export const HeroSkeleton: React.FC<HeroSkeletonType> = ({ hasImage = true, title, hasText = true, className }) => {
   return (
@@ -28,5 +28,5 @@ export const HeroSkeleton: React.FC<HeroSkeletonType> = ({ hasImage = true, titl
         </div>
       </div>
     </section>
-  );
-};
+  )
+}

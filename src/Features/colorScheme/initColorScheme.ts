@@ -1,3 +1,3 @@
-import { applyColorSceme, getSystemColorScheme, getSavedScheme } from './colorSchemeUtils';
+import { applyColorSceme, getSystemColorScheme, getSavedScheme } from './colorSchemeUtils'
 
-applyColorSceme(getSavedScheme() || getSystemColorScheme());
+applyColorSceme(getSavedScheme() || getSystemColorScheme())

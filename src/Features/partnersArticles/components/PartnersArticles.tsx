@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import './PartnersArticles.css';
-import { getSortedPartnerArticle } from '@components/api';
-import { PartnersPostsType } from '../types';
+import React, { useEffect, useState } from 'react'
+import './PartnersArticles.css'
+import { getSortedPartnerArticle } from '@components/api'
+import { PartnersPostsType } from '../types'
 
 export const PartnersArticles: React.FC = () => {
-  const [partnersArticle, setPartnersArticle] = useState<PartnersPostsType | null>(null);
+  const [partnersArticle, setPartnersArticle] = useState<PartnersPostsType | null>(null)
 
   useEffect(() => {
-    (async () => {
-      const data = await getSortedPartnerArticle();
-      setPartnersArticle(data);
-    })();
-  }, []);
+    ;(async () => {
+      const data = await getSortedPartnerArticle()
+      setPartnersArticle(data)
+    })()
+  }, [])
 
-  if (!partnersArticle) return null;
+  if (!partnersArticle) return null
 
   return (
     <>
@@ -33,5 +33,5 @@ export const PartnersArticles: React.FC = () => {
         </div>
       </section>
     </>
-  );
-};
+  )
+}

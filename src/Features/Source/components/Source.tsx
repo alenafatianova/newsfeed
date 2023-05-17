@@ -1,10 +1,10 @@
-import React from 'react';
-import classNames from 'classnames';
+import React from 'react'
+import classNames from 'classnames'
 
 type SourceType = {
-  className?: string;
-  href?: string;
-};
+  className?: string
+  href?: string
+}
 
 export const Source: React.FC<SourceType> = ({ children = 'Источник', className, href }) => {
   return href ? (
@@ -13,5 +13,5 @@ export const Source: React.FC<SourceType> = ({ children = 'Источник', cl
     </a>
   ) : (
     <span className={classNames('source', className)}>{children}</span>
-  );
-};
+  )
+}

@@ -1,23 +1,23 @@
-import React from 'react';
-import './ArticleCard.css';
-import { Link } from 'react-router-dom';
-import classNames from 'classnames';
-import { beautifyDate } from '../utils';
-import { categoryNames } from '../../features/categories/types';
-import { categoryTitles } from '../../features/categories/constants';
-import { Source } from '../../features/source/components/Source';
-import { ImageComponent } from '@components/Image/ImageComponent';
+import React from 'react'
+import './ArticleCard.css'
+import { Link } from 'react-router-dom'
+import classNames from 'classnames'
+import { beautifyDate } from '../utils'
+import { categoryNames } from '../../features/categories/types'
+import { categoryTitles } from '../../features/categories/constants'
+import { Source } from '../../features/source/components/Source'
+import { ImageComponent } from '@components/Image/ImageComponent'
 
 type ArticleCardType = {
-  id: number;
-  title: string;
-  image?: string;
-  category?: categoryNames;
-  description?: string;
-  source?: string;
-  date?: string;
-  className?: string;
-};
+  id: number
+  title: string
+  image?: string
+  category?: categoryNames
+  description?: string
+  source?: string
+  date?: string
+  className?: string
+}
 
 export const ArticleCard: React.FC<ArticleCardType> = ({
   id,
@@ -29,8 +29,8 @@ export const ArticleCard: React.FC<ArticleCardType> = ({
   date = '',
   className = '',
 }) => {
-  const hasDescription = description && description?.length > 0;
-  const hasImage = image && image.length > 0;
+  const hasDescription = description && description?.length > 0
+  const hasImage = image && image.length > 0
   return (
     <Link
       to={`/article/${id}`}
@@ -49,5 +49,5 @@ export const ArticleCard: React.FC<ArticleCardType> = ({
         </div>
       </div>
     </Link>
-  );
-};
+  )
+}

@@ -1,6 +1,6 @@
-import React from 'react';
-import { Navigation } from '../Navigation/Navigation';
-import './Footer.css';
+import React from 'react'
+import { Navigation } from '../Navigation/Navigation'
+import './Footer.css'
 
 export const Footer: React.FC = () => {
   return (
@@ -15,5 +15,5 @@ export const Footer: React.FC = () => {
         </div>
       </div>
     </footer>
-  );
-};
+  )
+}

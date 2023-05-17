@@ -23,7 +23,7 @@
         "functions": "never"
       }
     ],
-    "semi": "off",
+    "semi": ["warn", "never"],
     "indent": ["error", 2]
   }
 }

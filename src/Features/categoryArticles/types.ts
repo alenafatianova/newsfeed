@@ -1,6 +1,6 @@
-import { categoryNames } from '../categories/types';
+import { categoryNames } from '../categories/types'
 
 export type CategoriesType = {
-  id: number;
-  name: categoryNames;
-};
+  id: number
+  name: categoryNames
+}
