@@ -1,5 +1,5 @@
 export type SourcesType = {
-  id: number;
-  name: string;
-  site?: string;
-};
+  id: number
+  name: string
+  site?: string
+}

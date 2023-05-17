@@ -1,20 +1,20 @@
-import React, { FC } from 'react';
-import './Navigation.css';
-import { Logo } from '@components/Logo/Logo';
-import classNames from 'classnames';
-import { NavLink } from 'react-router-dom';
-import { categoryTitles } from '../../features/categories/constants';
+import React, { FC } from 'react'
+import './Navigation.css'
+import { Logo } from '@components/Logo/Logo'
+import classNames from 'classnames'
+import { NavLink } from 'react-router-dom'
+import { categoryTitles } from '../../features/categories/constants'
 
 type NavigationType = {
-  className: string;
-};
+  className: string
+}
 
 type NavigationItemType = {
-  name?: string;
-  title?: string;
-};
+  name?: string
+  title?: string
+}
 
-export const NavigationItem: React.FC<NavigationItemType> = ({ name, title }) => {
+export const NavigationItem: React.FC<NavigationItemType> = ({ name = '', title }) => {
   return (
     <>
       <li className="navigation--item" key={name}>
@@ -27,8 +27,8 @@ export const NavigationItem: React.FC<NavigationItemType> = ({ name, title }) =>
         </NavLink>
       </li>
     </>
-  );
-};
+  )
+}
 
 export const Navigation: FC<NavigationType> = ({ className = '' }) => {
   return (
@@ -37,9 +37,9 @@ export const Navigation: FC<NavigationType> = ({ className = '' }) => {
       <ul className="navigation--list">
         <NavigationItem title="Новости" />
         {Object.entries(categoryTitles).map(([name, title]) => {
-          return <NavigationItem key={name} name={name} title={title} />;
+          return <NavigationItem key={name} name={name} title={title} />
         })}
       </ul>
     </nav>
-  );
-};
+  )
+}

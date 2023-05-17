@@ -1,34 +1,34 @@
-import React, { FormEvent, useState } from 'react';
-import './EmailModal.css';
-import cross from '../../images/cross.svg';
-import { ModalWrapper } from '@components/ModalWrapper/ModalWrapper';
-import { Button } from '@components/Button/Button';
-import { subscribeUrl } from '@components/apiUrls';
+import React, { FormEvent, useState } from 'react'
+import './EmailModal.css'
+import cross from '../../images/cross.svg'
+import { ModalWrapper } from '@components/ModalWrapper/ModalWrapper'
+import { Button } from '@components/Button/Button'
+import { subscribeUrl } from '@components/apiUrls'
 
 interface EmailModalType {
-  onModalClose: VoidFunction;
+  onModalClose: VoidFunction
 }
 
 export const EmailModal: React.FC<EmailModalType> = ({ onModalClose }) => {
-  const [sendingRequest, setSendingRequest] = useState(false);
+  const [sendingRequest, setSendingRequest] = useState(false)
 
   const _onClose = () => {
-    if (!sendingRequest) onModalClose();
-  };
+    if (!sendingRequest) onModalClose()
+  }
 
   const onFormSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setSendingRequest(true);
+    e.preventDefault()
+    setSendingRequest(true)
     fetch(subscribeUrl)
       .then(() => {
-        setSendingRequest(false);
-        _onClose();
+        setSendingRequest(false)
+        _onClose()
       })
       .catch((err) => {
-        setSendingRequest(false);
-        throw new Error(err);
-      });
-  };
+        setSendingRequest(false)
+        throw new Error(err)
+      })
+  }
 
   return (
     <>
@@ -54,5 +54,5 @@ export const EmailModal: React.FC<EmailModalType> = ({ onModalClose }) => {
         </div>
       </ModalWrapper>
     </>
-  );
-};
+  )
+}

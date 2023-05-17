@@ -1,12 +1,12 @@
-import React, { FC, HTMLAttributes, useEffect } from 'react';
-import './ModalWrapper.css';
-import { createPortal } from 'react-dom';
-import classNames from 'classnames';
+import React, { FC, HTMLAttributes, useEffect } from 'react'
+import './ModalWrapper.css'
+import { createPortal } from 'react-dom'
+import classNames from 'classnames'
 
 interface ModalWrapperType extends HTMLAttributes<HTMLElement> {
-  alignX?: 'start' | 'center' | 'end';
-  alignY?: 'start' | 'center' | 'end';
-  onModalClose: () => void;
+  alignX?: 'start' | 'center' | 'end'
+  alignY?: 'start' | 'center' | 'end'
+  onModalClose: () => void
 }
 
 export const ModalWrapper: FC<ModalWrapperType> = ({
@@ -18,25 +18,25 @@ export const ModalWrapper: FC<ModalWrapperType> = ({
   ...rest
 }: ModalWrapperType) => {
   useEffect(() => {
-    document.documentElement.classList.add('--prevent-scroll');
+    document.documentElement.classList.add('--prevent-scroll')
 
     return () => {
-      document.documentElement.classList.remove('--prevent-scroll');
-    };
-  }, []);
+      document.documentElement.classList.remove('--prevent-scroll')
+    }
+  }, [])
 
   useEffect(() => {
     const onKeyDownEventListener = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        onModalClose();
+        onModalClose()
       }
-    };
-    document.addEventListener('keydown', onKeyDownEventListener);
+    }
+    document.addEventListener('keydown', onKeyDownEventListener)
 
     return () => {
-      document.removeEventListener('keydown', onKeyDownEventListener);
-    };
-  }, [onModalClose]);
+      document.removeEventListener('keydown', onKeyDownEventListener)
+    }
+  }, [onModalClose])
 
   return createPortal(
     <div
@@ -58,5 +58,5 @@ export const ModalWrapper: FC<ModalWrapperType> = ({
       </div>
     </div>,
     document.getElementById('overlay') as HTMLElement
-  );
-};
+  )
+}

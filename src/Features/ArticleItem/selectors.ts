@@ -1,19 +1,19 @@
-import { RootState } from '@components/store';
-import { getCategories } from '../categories/selectors';
-import { CategoriesType } from '../categories/types';
-import { getSources } from '../source/selectors';
-import { ArticleItemType } from './types';
-import { SourcesType } from '../source/types';
+import { RootState } from '@components/store'
+import { getCategories } from '../categories/selectors'
+import { CategoriesType } from '../categories/types'
+import { getSources } from '../source/selectors'
+import { ArticleItemType } from './types'
+import { SourcesType } from '../source/types'
 
-export const getArticleItem = (state: RootState): ArticleItemType | null => state.articleItem.item;
+export const getArticleItem = (state: RootState): ArticleItemType | null => state.articleItem.item
 
 export const getCachedArticleItem =
   (id: number) =>
   (state: RootState): ArticleItemType | null => {
-    const articleItem = getArticleItem(state);
+    const articleItem = getArticleItem(state)
 
     if (articleItem) {
-      return articleItem;
+      return articleItem
     }
 
     const articleInList = [
@@ -23,10 +23,10 @@ export const getCachedArticleItem =
       Object.values(state.relatedArticles).flat(),
     ]
       .flat()
-      .find((item) => item.id === id);
+      .find((item) => item.id === id)
 
     if (!articleInList) {
-      return null;
+      return null
     }
 
     return {
@@ -35,5 +35,5 @@ export const getCachedArticleItem =
       source: getSources(state).find(({ id }) => id === articleInList.source_id) as SourcesType,
       link: '',
       text: '',
-    };
-  };
+    }
+  }

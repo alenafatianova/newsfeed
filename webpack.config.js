@@ -1,11 +1,11 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ESLintPlugin = require('eslint-webpack-plugin');
-const StylelintPlugin = require('stylelint-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlInlinePlugin = require('html-inline-script-webpack-plugin');
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ESLintPlugin = require('eslint-webpack-plugin')
+const StylelintPlugin = require('stylelint-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const HtmlInlinePlugin = require('html-inline-script-webpack-plugin')
 
-const mode = process.env.NODE_ENV || 'production';
+const mode = process.env.NODE_ENV || 'production'
 
 module.exports = {
   mode: process.env.NODE_ENV || 'production',
@@ -30,7 +30,7 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
-        test: /\.svg$/,
+        test: /\.(svg|jpg)$/,
         type: 'asset/resource',
       },
       {
@@ -68,4 +68,4 @@ module.exports = {
       disableDotRule: true,
     },
   },
-};
+}

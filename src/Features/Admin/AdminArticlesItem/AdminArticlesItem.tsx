@@ -12,53 +12,53 @@ import {
   Snackbar,
   TextField,
   Typography,
-} from '@mui/material';
-import React, { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { useParams } from 'react-router-dom';
-import { InputRefs, InputValues, InputError, InputNameType } from './types';
+} from '@mui/material'
+import React, { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react'
+import MoreVertIcon from '@mui/icons-material/MoreVert'
+import { useParams } from 'react-router-dom'
+import { InputRefs, InputValues, InputError, InputNameType } from './types'
 import {
   createPartnerArticle,
   deletePartnerArticle,
   getPartnerArticle,
   updatePartnerArticle,
   uploadFile,
-} from '../../../components/api';
-import CloseIcon from '@mui/icons-material/Close';
-import { getErrors, getImage } from './helpers';
+} from '../../../components/api'
+import CloseIcon from '@mui/icons-material/Close'
+import { getErrors, getImage } from './helpers'
 
 // страница редактирования партнерских статей
 export const AdminArticlesItem: React.FC = () => {
-  const { id } = useParams();
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [snackBarMessage, setSnackBarMessage] = useState<string | null>(null);
-  const open = Boolean(anchorEl);
+  const { id } = useParams()
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+  const [snackBarMessage, setSnackBarMessage] = useState<string | null>(null)
+  const open = Boolean(anchorEl)
 
   const handleClose = () => {
-    setAnchorEl(null);
-  };
+    setAnchorEl(null)
+  }
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
+    setAnchorEl(event.currentTarget)
+  }
 
   const onCloseSnackBar = (event: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
-      return;
+      return
     }
-    setSnackBarMessage(null);
-  };
+    setSnackBarMessage(null)
+  }
 
   const deleteArticle = (id: string) => {
-    if (!id) return;
+    if (!id) return
     deletePartnerArticle(id)
       .then(() => {
-        setSnackBarMessage(`✅ Статья удалена!`);
+        setSnackBarMessage(`✅ Статья удалена!`)
       })
       .catch((err) => {
-        setSnackBarMessage(`❌ ${err.message}`);
-      });
-  };
+        setSnackBarMessage(`❌ ${err.message}`)
+      })
+  }
 
   const action = (
     <>
@@ -66,7 +66,7 @@ export const AdminArticlesItem: React.FC = () => {
         <CloseIcon fontSize="small" />
       </IconButton>
     </>
-  );
+  )
 
   const inputRefs: InputRefs = {
     'company-name': useRef<HTMLInputElement>(),
@@ -74,7 +74,7 @@ export const AdminArticlesItem: React.FC = () => {
     description: useRef<HTMLTextAreaElement>(),
     text: useRef<HTMLTextAreaElement>(),
     image: useRef<HTMLInputElement>(),
-  };
+  }
 
   const [inputValues, setInputValues] = useState<InputValues>({
     'company-name': '',
@@ -82,126 +82,125 @@ export const AdminArticlesItem: React.FC = () => {
     description: '',
     text: '',
     image: '',
-  });
+  })
   const [inputErrors, setInputErrors] = useState<InputError>({
     'company-name': '',
     articleTitle: '',
     description: '',
     text: '',
     image: '',
-  });
+  })
 
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const input = event.currentTarget;
-    const name = input.name;
-    const value = input.value;
+    const input = event.currentTarget
+    const name = input.name
+    const value = input.value
 
     setInputValues({
       ...inputValues,
       [name]: value,
-    });
-  };
+    })
+  }
 
   const onSubmitForm = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    event.preventDefault()
 
     // 1. сбор данных с формы
-    const data = new FormData();
+    const data = new FormData()
 
     Object.entries(inputValues).forEach(([name, value]) => {
-      data.append(name, value);
-    });
+      data.append(name, value)
+    })
 
     // 2. проверка данных на соответсвие условиям
-    const errors = await getErrors(Array.from(data.entries()) as [InputNameType, FormDataEntryValue][]);
-    const errorEntries = Object.entries(errors);
+    const errors = await getErrors(Array.from(data.entries()) as [InputNameType, FormDataEntryValue][])
+    const errorEntries = Object.entries(errors)
 
     // 3. Подсветить ошибки
-    setInputErrors(errors);
+    setInputErrors(errors)
 
     // 3.1 Фокус на первом ошибочном инпуте
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const errorInput = errorEntries.find(([_, value]) => value.length > 0);
+    const errorInput = errorEntries.find(([_, value]) => value.length > 0)
     if (errorInput) {
-      const inputErrorName = errorInput[0] as InputNameType;
-      const inputRef = inputRefs[inputErrorName];
+      const inputErrorName = errorInput[0] as InputNameType
+      const inputRef = inputRefs[inputErrorName]
       if (inputRef.current) {
-        inputRef.current.focus();
+        inputRef.current.focus()
       }
-      return;
+      return
     }
 
     // 4. Если все ок, то отправить данные на бэк
     if (id) {
       updatePartnerArticle(id, inputValues)
         .then(() => {
-          setSnackBarMessage(`✅ Статья обновлена!`);
+          setSnackBarMessage(`✅ Статья обновлена!`)
         })
         .catch((err) => {
-          setSnackBarMessage(`❌ ${err.message}`);
-        });
+          setSnackBarMessage(`❌ ${err.message}`)
+        })
     } else {
       createPartnerArticle(inputValues)
         .then(() => {
-          setSnackBarMessage(`✅ Статья создана!`);
+          setSnackBarMessage(`✅ Статья создана!`)
         })
         .catch((err) => {
-          setSnackBarMessage(`❌ ${err.message}`);
-        });
+          setSnackBarMessage(`❌ ${err.message}`)
+        })
     }
-  };
+  }
 
   useEffect(() => {
-    if (!id) return;
-
-    (async () => {
-      const data = await getPartnerArticle(id);
+    if (!id) return
+    ;(async () => {
+      const data = await getPartnerArticle(id)
       setInputValues({
         'company-name': data['company-name'],
         articleTitle: data.articleTitle,
         description: data.description,
         text: data.text,
         image: data.image,
-      });
-    })();
-  }, [id]);
+      })
+    })()
+  }, [id])
 
   const showFile = async (event: ChangeEvent<HTMLInputElement>) => {
-    const files = event.currentTarget.files;
+    const files = event.currentTarget.files
 
     if (files === null || !files.length) {
-      return;
+      return
     }
 
-    const file = files[0];
+    const file = files[0]
 
     if (file.size === 0 || !file.type.startsWith('image/')) {
-      return;
+      return
     }
 
     // получение изображения
-    const image = await getImage(file);
+    const image = await getImage(file)
 
     // проверка изображения на соответствие условиям
     if (image.width < 200 || image.height < 200) {
       setInputErrors({
         ...inputErrors,
         image: 'Изображение должно быть минимум 200x200',
-      });
-      return;
+      })
+      return
     }
 
     // подгрузка изображения
     try {
-      const url = await uploadFile(file);
+      const url = await uploadFile(file)
       setInputValues({
         ...inputValues,
         image: url,
-      });
+      })
     } catch (err: any) {
-      setSnackBarMessage(`${err.message}`);
+      setSnackBarMessage(`${err.message}`)
     }
-  };
+  }
 
   return (
     <Box component={'form'} noValidate onSubmit={onSubmitForm}>
@@ -338,5 +337,5 @@ export const AdminArticlesItem: React.FC = () => {
         />
       </Grid>
     </Box>
-  );
-};
+  )
+}

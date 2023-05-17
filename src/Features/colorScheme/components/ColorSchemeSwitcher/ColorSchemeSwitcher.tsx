@@ -1,47 +1,47 @@
-import React, { useEffect, useRef, useState } from 'react';
-import './ColorSchemeSwitcher.css';
-import { applyColorSceme, getSystemColorScheme, getSavedScheme, removeSavedScheme } from '../../colorSchemeUtils';
-import { AutoScheme } from '@components/Icons/AutoScheme';
-import { DarkScheme } from '@components/Icons/DarkScheme';
-import { LightScheme } from '@components/Icons/LightScheme';
-import { Dropdown } from '@components/Dropdown/Dropdown';
-import mark from '../../../../images/mark.svg';
+import React, { useEffect, useRef, useState } from 'react'
+import './ColorSchemeSwitcher.css'
+import { applyColorSceme, getSystemColorScheme, getSavedScheme, removeSavedScheme } from '../../colorSchemeUtils'
+import { AutoScheme } from '@components/Icons/AutoScheme'
+import { DarkScheme } from '@components/Icons/DarkScheme'
+import { LightScheme } from '@components/Icons/LightScheme'
+import { Dropdown } from '@components/Dropdown/Dropdown'
+import mark from '../../../../images/mark.svg'
 
-type colorSchemeValues = 'dark' | 'light' | 'auto';
+type colorSchemeValues = 'dark' | 'light' | 'auto'
 
-const matchMedia = window.matchMedia('(prefers-color-scheme:dark)');
+const matchMedia = window.matchMedia('(prefers-color-scheme:dark)')
 
 export const ColorSchemeSwitcher: React.FC = () => {
-  const [userScheme, setUserScheme] = useState<colorSchemeValues>(getSavedScheme() || 'auto');
-  const [dropdownShown, setDropdownShown] = useState(false);
-  const targetRef = useRef<HTMLButtonElement>(null);
+  const [userScheme, setUserScheme] = useState<colorSchemeValues>(getSavedScheme() || 'auto')
+  const [dropdownShown, setDropdownShown] = useState(false)
+  const targetRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     if (userScheme === 'auto') {
-      removeSavedScheme();
-      applyColorSceme(getSystemColorScheme());
+      removeSavedScheme()
+      applyColorSceme(getSystemColorScheme())
     } else {
-      applyColorSceme(userScheme, true);
+      applyColorSceme(userScheme, true)
     }
-  }, [userScheme]);
+  }, [userScheme])
 
   useEffect(() => {
     const systemColorScheme = () => {
       if (userScheme === 'auto') {
-        applyColorSceme(getSystemColorScheme());
+        applyColorSceme(getSystemColorScheme())
       }
-    };
+    }
 
-    matchMedia.addEventListener('change', systemColorScheme);
+    matchMedia.addEventListener('change', systemColorScheme)
 
     return () => {
-      matchMedia.removeEventListener('change', systemColorScheme);
-    };
-  }, [userScheme]);
+      matchMedia.removeEventListener('change', systemColorScheme)
+    }
+  }, [userScheme])
 
   const onDropdownChange = () => {
-    setDropdownShown(!dropdownShown);
-  };
+    setDropdownShown(!dropdownShown)
+  }
 
   return (
     <div className="color-scheme-switcher">
@@ -70,5 +70,5 @@ export const ColorSchemeSwitcher: React.FC = () => {
         </button>
       </Dropdown>
     </div>
-  );
-};
+  )
+}

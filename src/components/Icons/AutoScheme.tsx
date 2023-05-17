@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 export const AutoScheme: React.FC = () => {
   return (
@@ -10,5 +10,5 @@ export const AutoScheme: React.FC = () => {
         fill="currentColor"
       />
     </svg>
-  );
-};
+  )
+}
