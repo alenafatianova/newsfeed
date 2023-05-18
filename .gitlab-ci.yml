@@ -25,9 +25,9 @@ build:
   artifacts:
     paths:
       - dist
-  only:
-    - merge_requests
-    - master
+  # only:
+  #   - merge_requests
+  #   - master
 
 deploy:
   image: alpine:latest
