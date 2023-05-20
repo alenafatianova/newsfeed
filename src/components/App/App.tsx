@@ -10,6 +10,7 @@ import { RequireAuth } from '../../features/auth/components/RequireAuth/RequireA
 import { LoginContainer } from '../../features/auth/Login/LoginContainer'
 import { CategoryPage } from '../../features/categoryArticles/CategoryPage/CategoryPage'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
+import './App.css'
 
 export const App: React.FC = () => {
   const location = useLocation()
@@ -25,77 +26,76 @@ export const App: React.FC = () => {
 
   return (
     <TransitionGroup>
-      <CSSTransition key={pathname} timeout={1000} className={'page-animation'} >
+      <CSSTransition key={pathname} timeout={1000} classNames={'page-animation'}>
         <div>
-        <React.Fragment>
-      <Routes location={location}>
-        <Route
-          path="/:category"
-          element={
-            <Page>
-              <CategoryPage />
-            </Page>
-          }
-        />
-        <Route
-          path="/"
-          element={
-            <Page>
-              <Homepage />
-            </Page>
-          }
-        />
-        <Route
-          path="/article/:id"
-          element={
-            <Page>
-              <Article />
-            </Page>
-          }
-        />
-        <Route
-          path="/admin"
-          element={
-            <RequireAuth>
-              <AdminPanel>
-                <AdminArticles />
-              </AdminPanel>
-            </RequireAuth>
-          }
-        />
-        <Route
-          path="/admin/create"
-          element={
-            <RequireAuth>
-              <AdminPanel>
-                <AdminArticlesItem />
-              </AdminPanel>
-            </RequireAuth>
-          }
-        />
-        <Route
-          path="/admin/edit/:id"
-          element={
-            <RequireAuth>
-              <AdminPanel>
-                <AdminArticlesItem />
-              </AdminPanel>
-            </RequireAuth>
-          }
-        />
-        <Route
-          path={'/login'}
-          element={
-            <Page>
-              <LoginContainer />
-            </Page>
-          }
-        />
-      </Routes>
-    </React.Fragment>
+          <React.Fragment>
+            <Routes location={location}>
+              <Route
+                path="/:category"
+                element={
+                  <Page>
+                    <CategoryPage />
+                  </Page>
+                }
+              />
+              <Route
+                path="/"
+                element={
+                  <Page>
+                    <Homepage />
+                  </Page>
+                }
+              />
+              <Route
+                path="/article/:id"
+                element={
+                  <Page>
+                    <Article />
+                  </Page>
+                }
+              />
+              <Route
+                path="/admin"
+                element={
+                  <RequireAuth>
+                    <AdminPanel>
+                      <AdminArticles />
+                    </AdminPanel>
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/admin/create"
+                element={
+                  <RequireAuth>
+                    <AdminPanel>
+                      <AdminArticlesItem />
+                    </AdminPanel>
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/admin/edit/:id"
+                element={
+                  <RequireAuth>
+                    <AdminPanel>
+                      <AdminArticlesItem />
+                    </AdminPanel>
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path={'/login'}
+                element={
+                  <Page>
+                    <LoginContainer />
+                  </Page>
+                }
+              />
+            </Routes>
+          </React.Fragment>
         </div>
       </CSSTransition>
     </TransitionGroup>
- 
   )
 }

@@ -5,7 +5,10 @@ import { getSources } from '../source/selectors'
 import { ArticleItemType } from './types'
 import { SourcesType } from '../source/types'
 
-export const getArticleItem = (id: number) => (state: RootState): ArticleItemType | null => state.articleItem.items[id]
+export const getArticleItem =
+  (id: number) =>
+  (state: RootState): ArticleItemType | null =>
+    state.articleItem.items[id]
 
 export const getCachedArticleItem =
   (id: number) =>

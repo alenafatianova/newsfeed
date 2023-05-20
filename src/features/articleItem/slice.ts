@@ -6,7 +6,7 @@ interface initialArticleItemType {
 }
 
 const initialArticleItemState: initialArticleItemType = {
-  items: {}
+  items: {},
 }
 
 export const articleItemSlice = createSlice({
@@ -16,7 +16,7 @@ export const articleItemSlice = createSlice({
     setArticleItem: (state, action: PayloadAction<ArticleItemType>) => {
       state.items = {
         ...state.items,
-        [action.payload?.id]: action.payload
+        [action.payload?.id]: action.payload,
       }
     },
   },
