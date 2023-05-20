@@ -13,13 +13,13 @@ import { categoryNames } from '../../../categories/types'
 import { categoryTitles } from '../../../categories/constants'
 import { getSources } from '../../../source/selectors'
 import { getRelatedArticles } from '../../../relatedNews/selectors'
-import { getCachedArticleItem } from '../../../articleItem/selectors'
-import { fetchArticleItem } from '../../../articleItem/actions'
+import { getCachedArticleItem } from '../../selectors'
+import { fetchArticleItem } from '../../actions'
 import { AppDispatchType } from '@components/store'
 import { HeroSkeleton } from '@components/Hero/HeroSkeleton'
-import { setArticleItem } from 'features/articleItem/slice'
 import { SkeletonText } from '@components/Skeleton/SkeletonText'
 import { SidebarArticleCardSkeleton } from '@components/SidebarArticleCard/SidebarArticleCardSkeleton'
+import { setArticleItem } from 'features/articleItem/slice'
 
 export const Article: React.FC = () => {
   const { id }: { id?: number } = useParams()
@@ -76,11 +76,11 @@ export const Article: React.FC = () => {
 
       <div className="container article-page__main">
         <div className="article-page__info">
-          <span className="article-page__category">{articleItem.category.name}</span>
-          <span className="article-page__date">{beautifyDate(articleItem.date)}</span>
+          <span className="article-page__category">{articleItem?.category && articleItem?.category?.name}</span>
+          <span className="article-page__date">{beautifyDate(articleItem?.date)}</span>
           {articleItem && articleItem.link.length > 0 && (
             <Source className={'article-page__source'} href={articleItem.link}>
-              {categoryTitles[articleItem.source?.name as categoryNames]}
+              {categoryTitles[articleItem?.source?.name as categoryNames]}
             </Source>
           )}
         </div>
