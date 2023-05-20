@@ -21,10 +21,12 @@ export const ModalWrapper: FC<ModalWrapperType> = ({
   ...rest
 }: ModalWrapperType) => {
   useEffect(() => {
-    shown && document.documentElement.classList.add('--prevent-scroll')
+    if (shown) {
+      shown && document.documentElement.classList.add('--prevent-scroll')
+    }
 
     return () => {
-      shown && document.documentElement.classList.remove('--prevent-scroll')
+      document.documentElement.classList.remove('--prevent-scroll')
     }
   }, [shown])
 
@@ -42,33 +44,32 @@ export const ModalWrapper: FC<ModalWrapperType> = ({
   }, [onModalClose])
 
   return createPortal(
-    <CSSTransition  
-      in={shown} 
-      mountOnEnter={true} 
-      unmountOnExit={true} 
+    <CSSTransition
+      in={shown}
+      mountOnEnter={true}
+      unmountOnExit={true}
       timeout={300}
       classNames={'modal-wrapper-animation'}
     >
-<div
-      className={classNames(
-        'modal-wrapper',
-        `modal-wrapper--alignY-${alignY}`,
-        `modal-wrapper--alignX-${alignX}`,
-        className
-      )}
-      {...rest}
-      onClick={onModalClose}
-    >
       <div
-        className="modal-wrapper__children"
-        onKeyDown={(e) => e.stopPropagation()}
-        onClick={(e) => e.stopPropagation()}
+        className={classNames(
+          'modal-wrapper',
+          `modal-wrapper--alignY-${alignY}`,
+          `modal-wrapper--alignX-${alignX}`,
+          className
+        )}
+        {...rest}
+        onClick={onModalClose}
       >
-        {children}
+        <div
+          className="modal-wrapper__children"
+          onKeyDown={(e) => e.stopPropagation()}
+          onClick={(e) => e.stopPropagation()}
+        >
+          {children}
+        </div>
       </div>
-    </div>
-    </CSSTransition>
-    ,
+    </CSSTransition>,
     document.getElementById('overlay') as HTMLElement
   )
 }

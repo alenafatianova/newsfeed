@@ -33,7 +33,7 @@ export const EmailModal: React.FC<EmailModalType> = ({ onModalClose, shown }) =>
 
   return (
     <>
-      <ModalWrapper onModalClose={_onClose} shown={shown} >
+      <ModalWrapper onModalClose={_onClose} shown={shown}>
         <div className="email-modal">
           <h2 className="email-modal__title">
             Хотите получать последние новости от{' '}

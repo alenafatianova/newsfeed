@@ -49,7 +49,14 @@ export const Homepage: React.FC = () => {
           </Title>
           <div className="grid">
             {repeat((i) => {
-              return <ArticleCardSkeleton key={i} hasDescription={false} hasImage={false} className="home-page__trends-item" />
+              return (
+                <ArticleCardSkeleton
+                  key={i}
+                  hasDescription={false}
+                  hasImage={false}
+                  className="home-page__trends-item"
+                />
+              )
             }, 6)}
           </div>
         </section>
