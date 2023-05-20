@@ -9,14 +9,13 @@ export const Page: React.FC = ({ children }) => {
   const [emailModalShow, setEmailModalShow] = useState(!localStorage.getItem(LS_EMAIL_SHOWN_KEY))
   return (
     <>
-      {emailModalShow && (
-        <EmailModal
-          onModalClose={() => {
-            localStorage.setItem(LS_EMAIL_SHOWN_KEY, 'true')
-            setEmailModalShow(false)
-          }}
-        />
-      )}
+      <EmailModal
+        shown={emailModalShow}
+        onModalClose={() => {
+          localStorage.setItem(LS_EMAIL_SHOWN_KEY, 'true')
+          setEmailModalShow(false)
+        }}
+      />
       <Header />
       {children}
       <Footer />

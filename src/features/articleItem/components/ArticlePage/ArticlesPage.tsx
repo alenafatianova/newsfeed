@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import './ArticlesPage.css'
 import { useParams } from 'react-router-dom'
 import { SidebarArticleCard } from '../../../../components/SidebarArticleCard/SidebarArticleCard'
@@ -13,11 +13,10 @@ import { categoryNames } from '../../../categories/types'
 import { categoryTitles } from '../../../categories/constants'
 import { getSources } from '../../../source/selectors'
 import { getRelatedArticles } from '../../../relatedNews/selectors'
-import { getCachedArticleItem } from '../../../articleItem/selectors'
-import { fetchArticleItem } from '../../../articleItem/actions'
+import { getCachedArticleItem } from '../../selectors'
+import { fetchArticleItem } from '../../actions'
 import { AppDispatchType } from '@components/store'
 import { HeroSkeleton } from '@components/Hero/HeroSkeleton'
-import { setArticleItem } from 'features/articleItem/slice'
 import { SkeletonText } from '@components/Skeleton/SkeletonText'
 import { SidebarArticleCardSkeleton } from '@components/SidebarArticleCard/SidebarArticleCardSkeleton'
 
@@ -29,15 +28,13 @@ export const Article: React.FC = () => {
   const sources = useSelector(getSources)
   const [loading, setLoading] = useState(false)
 
-  useEffect(() => {
-    setLoading(true)
-    Promise.all([dispatch(fetchArticleItem(Number(id))), dispatch(fetchRelatedArticles(Number(id)))]).then(() =>
-      setLoading(false)
-    )
-
-    // return () => {
-    //   dispatch(setArticleItem(null))
-    // }
+  useLayoutEffect(() => {
+    if (!articleItem?.text) {
+      setLoading(true)
+      Promise.all([dispatch(fetchArticleItem(Number(id))), dispatch(fetchRelatedArticles(Number(id)))]).then(() =>
+        setLoading(false)
+      )
+    }
   }, [id])
 
   if (articleItem === null || relatedArticles === null) {
@@ -47,7 +44,11 @@ export const Article: React.FC = () => {
   if (loading) {
     return (
       <section className="article-page">
-        <HeroSkeleton hasText={true} className="article-page__hero" />
+        {articleItem.title && articleItem.image ? (
+          <Hero title={articleItem.title} image={articleItem.image} className="article-page__hero" />
+        ) : (
+          <HeroSkeleton hasText={true} className="article-page__hero" />
+        )}
         <div className="container article-page__main">
           <div className="article-page__info">
             <SkeletonText />
@@ -73,14 +74,13 @@ export const Article: React.FC = () => {
   return (
     <section className="article-page">
       <Hero title={articleItem.title} image={articleItem.image} className="article-page__hero" />
-
       <div className="container article-page__main">
         <div className="article-page__info">
-          <span className="article-page__category">{articleItem.category.name}</span>
-          <span className="article-page__date">{beautifyDate(articleItem.date)}</span>
+          <span className="article-page__category">{articleItem?.category && articleItem?.category?.name}</span>
+          <span className="article-page__date">{beautifyDate(articleItem?.date)}</span>
           {articleItem && articleItem.link.length > 0 && (
             <Source className={'article-page__source'} href={articleItem.link}>
-              {categoryTitles[articleItem.source?.name as categoryNames]}
+              {categoryTitles[articleItem?.source?.name as categoryNames]}
             </Source>
           )}
         </div>
