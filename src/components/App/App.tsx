@@ -9,9 +9,11 @@ import { AdminArticles } from '../../features/admin/AdminArticles/AdminArticles'
 import { RequireAuth } from '../../features/auth/components/RequireAuth/RequireAuth'
 import { LoginContainer } from '../../features/auth/Login/LoginContainer'
 import { CategoryPage } from '../../features/categoryArticles/CategoryPage/CategoryPage'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 export const App: React.FC = () => {
-  const { pathname } = useLocation()
+  const location = useLocation()
+  const { pathname } = location
   const prevPathname = useRef(pathname)
 
   useEffect(() => {
@@ -22,8 +24,11 @@ export const App: React.FC = () => {
   }, [pathname])
 
   return (
-    <React.Fragment>
-      <Routes>
+    <TransitionGroup>
+      <CSSTransition key={pathname} timeout={1000} className={'page-animation'} >
+        <div>
+        <React.Fragment>
+      <Routes location={location}>
         <Route
           path="/:category"
           element={
@@ -88,5 +93,9 @@ export const App: React.FC = () => {
         />
       </Routes>
     </React.Fragment>
+        </div>
+      </CSSTransition>
+    </TransitionGroup>
+ 
   )
 }
