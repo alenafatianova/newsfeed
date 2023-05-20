@@ -26,10 +26,10 @@ export const Article: React.FC = () => {
   const articleItem = useSelector(getCachedArticleItem(Number(id)))
   const relatedArticles = useSelector(getRelatedArticles(Number(id)))
   const sources = useSelector(getSources)
-  const [loading, setLoading] = useState(!articleItem?.text)
+  const [loading, setLoading] = useState(false)
 
   useLayoutEffect(() => {
-    if (articleItem?.text) {
+    if (!articleItem?.text) {
       setLoading(true)
       Promise.all([dispatch(fetchArticleItem(Number(id))), dispatch(fetchRelatedArticles(Number(id)))]).then(() =>
         setLoading(false)
