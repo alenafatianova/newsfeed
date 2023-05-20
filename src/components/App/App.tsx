@@ -8,7 +8,7 @@ import { AdminArticlesItem } from '../../features/admin/AdminArticlesItem/AdminA
 import { AdminArticles } from '../../features/admin/AdminArticles/AdminArticles'
 import { RequireAuth } from '../../features/auth/components/RequireAuth/RequireAuth'
 import { CategoryPage } from '../../features/categoryArticles/CategoryPage/CategoryPage'
-import { LoginContainer } from 'features/auth/Login/LoginContainer'
+import { LoginContainer } from '../../features/auth/Login/LoginContainer'
 
 export const App: React.FC = () => {
   const { pathname } = useLocation()
