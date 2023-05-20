@@ -7,11 +7,11 @@ import { SidebarArticleCard } from '../../../../components/SidebarArticleCard/Si
 import { Title } from '@components/Title/Title'
 import { categoryIds } from '../../../categories/constants'
 import { useDispatch, useSelector } from 'react-redux'
-import { getNews, getTrends } from '../../../articlesList/selectors'
+import { getNews, getTrends } from '../../selectors'
 import { getCategoryNews } from '../../../categoryArticles/selectors'
 import { getCategories } from '../../../categories/selectors'
 import { getSources } from '../../../source/selectors'
-import { fetchNews, fetchTrends } from '../../../articlesList/actions'
+import { fetchNews, fetchTrends } from '../../actions'
 import { fetchCategoryArticles } from '../../../categoryArticles/actions'
 import { AppDispatchType } from '@components/store'
 import { HeroSkeleton } from '@components/Hero/HeroSkeleton'
@@ -48,8 +48,15 @@ export const Homepage: React.FC = () => {
             В тренде
           </Title>
           <div className="grid">
-            {repeat(() => {
-              return <ArticleCardSkeleton hasDescription={false} hasImage={false} className="home-page__trends-item" />
+            {repeat((i) => {
+              return (
+                <ArticleCardSkeleton
+                  key={i}
+                  hasDescription={false}
+                  hasImage={false}
+                  className="home-page__trends-item"
+                />
+              )
             }, 6)}
           </div>
         </section>
