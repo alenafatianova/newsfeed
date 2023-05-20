@@ -19,7 +19,6 @@ import { AppDispatchType } from '@components/store'
 import { HeroSkeleton } from '@components/Hero/HeroSkeleton'
 import { SkeletonText } from '@components/Skeleton/SkeletonText'
 import { SidebarArticleCardSkeleton } from '@components/SidebarArticleCard/SidebarArticleCardSkeleton'
-import { setArticleItem } from 'features/articleItem/slice'
 
 export const Article: React.FC = () => {
   const { id }: { id?: number } = useParams()
@@ -34,10 +33,6 @@ export const Article: React.FC = () => {
     Promise.all([dispatch(fetchArticleItem(Number(id))), dispatch(fetchRelatedArticles(Number(id)))]).then(() =>
       setLoading(false)
     )
-
-    // return () => {
-    //   dispatch(setArticleItem(null))
-    // }
   }, [id])
 
   if (articleItem === null || relatedArticles === null) {
