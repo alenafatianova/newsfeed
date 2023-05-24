@@ -100,8 +100,9 @@ export const Homepage: React.FC = () => {
           В тренде
         </Title>
         <div className="grid">
-          {trendArticles.map(({ id, title, category_id, date }) => {
+          {trendArticles.map(({ id, title, category_id, source_id, date }) => {
             const category = categories[category_id]
+            const source = sources.find(({ id }) => source_id === id)
             return (
               <ArticleCard
                 className="home-page__trends-item"
@@ -110,6 +111,7 @@ export const Homepage: React.FC = () => {
                 date={date}
                 title={title}
                 category={category?.name}
+                source={source?.name}
               />
             )
           })}
@@ -162,6 +164,7 @@ export const Homepage: React.FC = () => {
       <section className="container grid home-page__section">
         <section className="home-page__content">
           {articles.slice(4).map((item) => {
+            const source = sources.find(({ id }) => item.source_id === id)
             return (
               <ArticleCard
                 className={'home-page__article-card'}
@@ -169,7 +172,7 @@ export const Homepage: React.FC = () => {
                 id={item.id}
                 title={item.title}
                 description={item.description}
-                source={sources[item.source_id]?.name}
+                source={source?.name}
                 image={item.image}
                 date={item.date}
               />
@@ -178,13 +181,14 @@ export const Homepage: React.FC = () => {
         </section>
         <section className="home-page__sidebar">
           {articles.slice(1, 4).map((item) => {
+            const source = sources.find(({ id }) => item.source_id === id)
             return (
               <SidebarArticleCard
                 className="home-page__sidebar-item"
                 key={item.id}
                 id={item.id}
                 title={item.title}
-                source={sources[item.source_id]?.name}
+                source={source?.name || ''}
                 date={item.date}
                 image={item.image}
               />
