@@ -22,8 +22,8 @@
   --skeleton-background: var(var(--constant-grey));
   --container-width: 940px;
   --grid-column-width: 60px;
-  --container-padding: 20px;
-  --grid-gap: 20px;
+  --container-padding: 16px;
+  --grid-gap: 24px;
   --skeleton-gradient: linear-gradient(to right, transparent 0%, var(--constant-black-alpha64) 100%);
 
   color-scheme: light;
@@ -47,7 +47,6 @@ body {
   line-height: 20px;
   font-weight: 400;
   color: var(--foreground-primary);
-  min-width: calc(var(--container-width) + 2 * var(--container-padding));
 }
 
 a {
@@ -62,7 +61,6 @@ a {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(12, var(--grid-column-width));
   gap: var(--grid-gap);
 }
 
@@ -80,5 +78,20 @@ a {
 
   to {
     background-size: -100% 0;
+  }
+}
+
+@media all and (min-width: 1024px) {
+  :root {
+    --container-padding: 20px;
+    --grid-gap: 20px;
+  }
+
+  body {
+    min-width: calc(var(--container-width) + 2 * var(--container-padding));
+  }
+
+  .grid {
+    grid-template-columns: repeat(12, var(--grid-column-width));
   }
 }
