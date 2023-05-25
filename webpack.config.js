@@ -42,7 +42,10 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.ts', '.tsx'],
-    alias: { '@components': path.resolve('./src/components') },
+    alias: {
+      '@components': path.resolve('./src/components'),
+      '@features': path.resolve('./src/features'),
+    },
   },
   optimization: {
     runtimeChunk: mode === 'production' ? false : 'single',
