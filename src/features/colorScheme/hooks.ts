@@ -5,7 +5,7 @@ import {
   removeSavedScheme,
   applyColorScheme,
   getSystemColorScheme,
-} from 'features/colorScheme/colorSchemeUtils'
+} from '../colorScheme/colorSchemeUtils'
 
 const matchMedia = window.matchMedia('(prefers-color-scheme:dark)')
 

@@ -20,7 +20,7 @@ export const ColorSchemeSwitcherMenu: FC<Props> = ({ selectedScheme, onChangeSch
         {selectedScheme === 'auto' && (
           <img
             className="color-scheme-switcher-menu__check"
-            src={require('../../../../images/check.svg')}
+            src={require('../../../../../images/mark.svg')}
             alt="Выбранная тема"
           />
         )}
@@ -31,7 +31,7 @@ export const ColorSchemeSwitcherMenu: FC<Props> = ({ selectedScheme, onChangeSch
         {selectedScheme === 'light' && (
           <img
             className="color-scheme-switcher-menu__check"
-            src={require('../../../../images/check.svg')}
+            src={require('../../../../../images/mark.svg')}
             alt="Выбранная тема"
           />
         )}
@@ -42,7 +42,7 @@ export const ColorSchemeSwitcherMenu: FC<Props> = ({ selectedScheme, onChangeSch
         {selectedScheme === 'dark' && (
           <img
             className="color-scheme-switcher-menu__check"
-            src={require('../../../../images/check.svg')}
+            src={require('../../../../../images/mark.svg')}
             alt="Выбранная тема"
           />
         )}
