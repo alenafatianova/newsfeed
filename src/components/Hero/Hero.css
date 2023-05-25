@@ -10,7 +10,7 @@
 }
 
 .hero__image:not(.skeleton-gradient) {
-  background: var(--constant-grey2) no-repeat center/cover;
+  background: var(--constant-grey) no-repeat center/cover;
 }
 
 .hero__no-image .hero__in {
