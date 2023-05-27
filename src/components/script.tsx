@@ -10,6 +10,12 @@ import { store } from './store'
 
 const firebaseApp = initializeAPI()
 
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/serviceWorker.js')
+  .then(() => console.log('service worker is ready' ))
+  .catch(() => console.log('some error has occured'))
+}
+
 ReactDOM.render(
   <Provider store={store}>
     <AuthContextProvider firebaseApp={firebaseApp}>
