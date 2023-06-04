@@ -12,6 +12,7 @@ module.exports = {
   entry: {
     main: './src/components/script.tsx',
     initColorScheme: './src/features/colorScheme/initColorScheme.ts',
+    serviceWorker: './src/features/serviceWorker/service.worker.ts',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -21,7 +22,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.js$/i,
         use: 'babel-loader',
         exclude: /node_modules/,
       },
@@ -30,13 +31,26 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
-        test: /\.(svg|jpg)$/,
+        test: /\.(svg|jpg|png)$/,
         type: 'asset/resource',
       },
       {
-        test: /\.(ts|tsx)$/,
+        test: /service\.worker\.ts$/,
         use: 'ts-loader',
-        exclude: /node_modules/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'serviceWorker.js',
+        },
+      },
+      {
+        test: /\.(ts|tsx)$/i,
+        use: 'ts-loader',
+        exclude: [/node_modules/, /worker\.ts/],
+      },
+      {
+        test: /\.webmanifest$/i,
+        use: 'webpack-webmanifest-loader',
+        type: 'asset/resource',
       },
     ],
   },
@@ -55,7 +69,9 @@ module.exports = {
       filename: 'bundle.[contenthash].css',
     }),
     new HtmlWebpackPlugin({
+      favicon: './src/images/favicon.ico',
       template: './src/index.html',
+      excludeChunks: ['serviceWorker'],
     }),
     new HtmlInlinePlugin([/initColorScheme\..+\.js$/]),
     new StylelintPlugin({
@@ -66,6 +82,9 @@ module.exports = {
     }),
   ],
   devServer: {
+    client: {
+      overlay: false,
+    },
     open: true,
     historyApiFallback: {
       disableDotRule: true,
