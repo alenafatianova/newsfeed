@@ -4,6 +4,7 @@
   "description": "K/C are the news of the new wave",
   "start_url": "/",
   "display": "standalone",
+  "background_color": "#0083fc",
   "icons": [
     {
       "src": "./images/icon_192.png",
