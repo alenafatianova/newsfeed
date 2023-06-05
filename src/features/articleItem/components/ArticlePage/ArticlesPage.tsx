@@ -33,9 +33,12 @@ export const Article: React.FC = () => {
   useLayoutEffect(() => {
     if (!articleItem?.text) {
       setLoading(true)
-      Promise.all([dispatch(fetchArticleItem(Number(id))), dispatch(fetchRelatedArticles(Number(id)))]).then(() =>
+      Promise.all([
+        dispatch(fetchArticleItem(Number(id))).unwrap(),
+        dispatch(fetchRelatedArticles(Number(id))).unwrap(),
+      ]).then(() => {
         setLoading(false)
-      )
+      })
     }
   }, [id])
 

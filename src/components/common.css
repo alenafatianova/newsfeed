@@ -15,6 +15,7 @@
   --constant-grey: #a3a3a3;
   --constant-grey1: #ebebeb;
   --constant-white: #fff;
+  --constant-red: #f53;
   --color-overlay-black: #000;
   --background-zero: var(--constant-white);
   --background-primary: var(--constant-white);
@@ -27,8 +28,6 @@
   --container-padding: 16px;
   --grid-gap: 24px;
   --skeleton-gradient: linear-gradient(to right, transparent 0%, var(--constant-black-alpha64) 100%);
-
-  color-scheme: light;
 }
 
 [scheme="dark"] {
@@ -39,8 +38,6 @@
   --skeleton-gradient: linear-gradient(to right, transparent 0%, var(--constant-white-alpha12) 100%);
   --color-scheme-border: transparent;
   --mobile-menu-button: var(--background-zero);
-
-  color-scheme: dark;
 }
 
 body {
