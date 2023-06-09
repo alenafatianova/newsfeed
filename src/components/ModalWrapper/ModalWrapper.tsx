@@ -1,8 +1,9 @@
-import React, { FC, HTMLAttributes, useEffect } from 'react'
+import React, { FC, HTMLAttributes, useEffect, useRef } from 'react'
 import './ModalWrapper.css'
 import { createPortal } from 'react-dom'
 import classNames from 'classnames'
 import { CSSTransition } from 'react-transition-group'
+import { createFocusTrap } from 'focus-trap'
 
 interface ModalWrapperType extends HTMLAttributes<HTMLElement> {
   alignX?: 'start' | 'center' | 'end'
@@ -20,12 +21,18 @@ export const ModalWrapper: FC<ModalWrapperType> = ({
   shown,
   ...rest
 }: ModalWrapperType) => {
+  const ref = useRef<HTMLDivElement | null>(null)
+  
+
   useEffect(() => {
+    const focusTrap = createFocusTrap(ref.current as HTMLDivElement, {allowOutsideClick: true})
     if (shown) {
+      focusTrap.activate()
       shown && document.documentElement.classList.add('--prevent-scroll')
     }
 
     return () => {
+      focusTrap.deactivate()
       document.documentElement.classList.remove('--prevent-scroll')
     }
   }, [shown])
@@ -62,6 +69,7 @@ export const ModalWrapper: FC<ModalWrapperType> = ({
         onClick={onModalClose}
       >
         <div
+          ref={ref}
           className="modal-wrapper__children"
           onKeyDown={(e) => e.stopPropagation()}
           onClick={(e) => e.stopPropagation()}
