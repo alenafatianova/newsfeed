@@ -22,10 +22,9 @@ export const ModalWrapper: FC<ModalWrapperType> = ({
   ...rest
 }: ModalWrapperType) => {
   const ref = useRef<HTMLDivElement | null>(null)
-  
 
   useEffect(() => {
-    const focusTrap = createFocusTrap(ref.current as HTMLDivElement, {allowOutsideClick: true})
+    const focusTrap = createFocusTrap(ref.current as HTMLDivElement, { allowOutsideClick: true })
     if (shown) {
       focusTrap.activate()
       shown && document.documentElement.classList.add('--prevent-scroll')

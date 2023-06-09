@@ -4,7 +4,7 @@ import throttle from 'lodash.throttle'
 import { createPortal } from 'react-dom'
 import classNames from 'classnames'
 import { CSSTransition } from 'react-transition-group'
-import {createFocusTrap} from 'focus-trap'
+import { createFocusTrap } from 'focus-trap'
 
 interface DropdownType extends HTMLAttributes<HTMLElement> {
   targetRef: RefObject<HTMLElement>
@@ -33,13 +33,13 @@ export const Dropdown: React.FC<DropdownType> = ({
   const ref = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    const focusTrap = createFocusTrap(ref.current as HTMLDivElement, {allowOutsideClick: true})
-    
-    if(shown) {
+    const focusTrap = createFocusTrap(ref.current as HTMLDivElement, { allowOutsideClick: true })
+
+    if (shown) {
       focusTrap.activate()
       setCoords(calcCoodrinates(targetRef.current as HTMLElement))
     }
-    
+
     return () => {
       focusTrap.deactivate()
     }

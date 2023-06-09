@@ -36,7 +36,7 @@ export const EmailModal: React.FC<EmailModalType> = ({ onModalClose, shown }) =>
       <ModalWrapper onModalClose={_onClose} shown={shown}>
         <div className="email-modal">
           <button className="email-modal__cross" onClick={_onClose}>
-            <img src={cross} className='email-modal__cross-img' alt="Закрытие модального окна" />
+            <img src={cross} className="email-modal__cross-img" alt="Закрытие модального окна" />
           </button>
           <h2 className="email-modal__title">
             Хотите получать последние новости от{' '}
