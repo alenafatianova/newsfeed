@@ -48,7 +48,11 @@ export const MobileHeader: FC = () => {
     <header className="header" ref={ref}>
       <div className="container header__mobile-container">
         <Logo />
-        <button className="header__mobile-button" onClick={() => toggleMenu(!isOpenMenu)}>
+        <button
+          aria-label={isOpenMenu ? 'Скрыть меню' : 'Открыть меню'}
+          className="header__mobile-button"
+          onClick={() => toggleMenu(!isOpenMenu)}
+        >
           {isOpenMenu ? <Cross /> : <Burger />}
         </button>
       </div>
