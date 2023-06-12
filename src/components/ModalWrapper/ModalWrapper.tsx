@@ -12,6 +12,9 @@ interface ModalWrapperType extends HTMLAttributes<HTMLElement> {
   shown: boolean
 }
 
+export const MODAl_LABEL_ID = 'modal-label-id'
+export const MODAl_DESCRIPTION_ID = 'modal-description-id'
+
 export const ModalWrapper: FC<ModalWrapperType> = ({
   children,
   alignX = 'center',
@@ -66,6 +69,9 @@ export const ModalWrapper: FC<ModalWrapperType> = ({
         )}
         {...rest}
         onClick={onModalClose}
+        role="dialog"
+        aria-labelledby={MODAl_LABEL_ID}
+        aria-describedby={MODAl_DESCRIPTION_ID}
       >
         <div
           ref={ref}
