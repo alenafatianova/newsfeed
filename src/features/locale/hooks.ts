@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { Dispatch, useEffect, useState } from 'react'
 import { applyLocale, getSavedLocale } from '@features/locale/utils'
-import { LocaleSwitcherValues } from '@features/locale/types'
+import { Locale } from '@features/locale/types'
 
 export const useLocale = (): {
-  locale: LocaleSwitcherValues
-  setLocale: React.Dispatch<LocaleSwitcherValues>
+  locale: Locale
+  setLocale: Dispatch<Locale>
 } => {
-  const [locale, setLocale] = React.useState<LocaleSwitcherValues>(getSavedLocale() || 'ru')
+  const [locale, setLocale] = useState<Locale>(getSavedLocale())
 
   useEffect(() => {
     applyLocale(locale)

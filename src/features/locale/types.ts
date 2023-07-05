@@ -1,1 +1,7 @@
-export type LocaleSwitcherValues = 'en' | 'ru' | 'de' | 'it' | 'fr'
+export enum Locale {
+  en = 'en',
+  ru = 'ru',
+  de = 'de',
+  it = 'it',
+  fr = 'fr',
+}

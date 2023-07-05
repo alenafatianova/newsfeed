@@ -1,20 +1,20 @@
 import React from 'react'
 import './LocaleSwitcherMenu.css'
-import { LocaleSwitcherValues } from '@features/locale/types'
+import { Locale } from '@features/locale/types'
 import classNames from 'classnames'
 
 interface LocaleSwitcherMenuType {
-  selectedLocale: LocaleSwitcherValues
-  onChangeLocale: (value: LocaleSwitcherValues) => any
+  selectedLocale: Locale
+  onChangeLocale: (value: Locale) => any
   className?: string
 }
 
 export const LocaleSwitcherMenu: React.FC<LocaleSwitcherMenuType> = ({ selectedLocale, onChangeLocale, className }) => {
   return (
     <div className={classNames('locale-switcher-menu', className)}>
-      <button className="locale-switcher-menu__option" onClick={() => onChangeLocale('en')}>
+      <button className="locale-switcher-menu__option" onClick={() => onChangeLocale(Locale.en)}>
         <span className="locale-switcher-menu__text">English</span>
-        {selectedLocale === 'en' && (
+        {selectedLocale === Locale.en && (
           <img
             className="locale-switcher-menu__check"
             src={require('../../../../images/mark.svg')}
@@ -23,9 +23,9 @@ export const LocaleSwitcherMenu: React.FC<LocaleSwitcherMenuType> = ({ selectedL
         )}
       </button>
 
-      <button className="locale-switcher-menu__option" onClick={() => onChangeLocale('ru')}>
+      <button className="locale-switcher-menu__option" onClick={() => onChangeLocale(Locale.ru)}>
         <span className="locale-switcher-menu__text">Русский</span>
-        {selectedLocale === 'ru' && (
+        {selectedLocale === Locale.ru && (
           <img
             className="locale-switcher-menu__check"
             src={require('../../../../images/mark.svg')}
@@ -34,9 +34,9 @@ export const LocaleSwitcherMenu: React.FC<LocaleSwitcherMenuType> = ({ selectedL
         )}
       </button>
 
-      <button className="locale-switcher-menu__option" onClick={() => onChangeLocale('de')}>
+      <button className="locale-switcher-menu__option" onClick={() => onChangeLocale(Locale.de)}>
         <span className="locale-switcher-menu__text">German</span>
-        {selectedLocale === 'de' && (
+        {selectedLocale === Locale.de && (
           <img
             className="locale-switcher-menu__check"
             src={require('../../../../images/mark.svg')}
@@ -45,9 +45,9 @@ export const LocaleSwitcherMenu: React.FC<LocaleSwitcherMenuType> = ({ selectedL
         )}
       </button>
 
-      <button className="locale-switcher-menu__option" onClick={() => onChangeLocale('fr')}>
+      <button className="locale-switcher-menu__option" onClick={() => onChangeLocale(Locale.fr)}>
         <span className="locale-switcher-menu__text">French</span>
-        {selectedLocale === 'fr' && (
+        {selectedLocale === Locale.fr && (
           <img
             className="locale-switcher-menu__check"
             src={require('../../../../images/mark.svg')}
@@ -56,9 +56,9 @@ export const LocaleSwitcherMenu: React.FC<LocaleSwitcherMenuType> = ({ selectedL
         )}
       </button>
 
-      <button className="locale-switcher-menu__option" onClick={() => onChangeLocale('it')}>
+      <button className="locale-switcher-menu__option" onClick={() => onChangeLocale(Locale.it)}>
         <span className="locale-switcher-menu__text">Italian</span>
-        {selectedLocale === 'it' && (
+        {selectedLocale === Locale.it && (
           <img
             className="locale-switcher-menu__check"
             src={require('../../../../images/mark.svg')}
