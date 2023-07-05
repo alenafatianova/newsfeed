@@ -17,7 +17,7 @@ export const LocaleSwitcherMenu: React.FC<LocaleSwitcherMenuType> = ({ selectedL
         {selectedLocale === 'en' && (
           <img
             className="locale-switcher-menu__check"
-            src={require('../../../../images/check.svg')}
+            src={require('../../../../images/mark.svg')}
             alt="Выбранная тема"
           />
         )}
@@ -28,7 +28,7 @@ export const LocaleSwitcherMenu: React.FC<LocaleSwitcherMenuType> = ({ selectedL
         {selectedLocale === 'ru' && (
           <img
             className="locale-switcher-menu__check"
-            src={require('../../../../images/check.svg')}
+            src={require('../../../../images/mark.svg')}
             alt="Выбранная тема"
           />
         )}
@@ -39,7 +39,7 @@ export const LocaleSwitcherMenu: React.FC<LocaleSwitcherMenuType> = ({ selectedL
         {selectedLocale === 'de' && (
           <img
             className="locale-switcher-menu__check"
-            src={require('../../../../images/check.svg')}
+            src={require('../../../../images/mark.svg')}
             alt="Выбранная тема"
           />
         )}
@@ -50,7 +50,7 @@ export const LocaleSwitcherMenu: React.FC<LocaleSwitcherMenuType> = ({ selectedL
         {selectedLocale === 'fr' && (
           <img
             className="locale-switcher-menu__check"
-            src={require('../../../../images/check.svg')}
+            src={require('../../../../images/mark.svg')}
             alt="Выбранная тема"
           />
         )}
@@ -61,7 +61,7 @@ export const LocaleSwitcherMenu: React.FC<LocaleSwitcherMenuType> = ({ selectedL
         {selectedLocale === 'it' && (
           <img
             className="locale-switcher-menu__check"
-            src={require('../../../../images/check.svg')}
+            src={require('../../../../images/mark.svg')}
             alt="Выбранная тема"
           />
         )}

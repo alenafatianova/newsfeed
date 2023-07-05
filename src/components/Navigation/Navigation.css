@@ -42,7 +42,6 @@
   padding: var(--container-padding);
 }
 
-
 @media all and (min-width: 1024px) {
   .navigation--item {
     margin-right: 24px;
