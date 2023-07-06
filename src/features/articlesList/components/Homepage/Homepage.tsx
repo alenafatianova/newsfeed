@@ -20,6 +20,7 @@ import { SidebarArticleCardSkeleton } from '@components/SidebarArticleCard/Sideb
 import { repeat } from '@components/utils'
 import { useAdaptive } from '@components/customHooks'
 import { PartnersArticles } from '@features/partnersArticles/components/PartnersArticles'
+import { getLang } from '@features/locale/utils'
 
 export const Homepage: React.FC = () => {
   const dispatch = useDispatch<AppDispatchType>()
@@ -49,7 +50,7 @@ export const Homepage: React.FC = () => {
         <HeroSkeleton hasText={true} className="home-page__hero" />
         <section className="container home-page__section">
           <Title Component={'h2'} className="home-page__title">
-            В тренде
+            {getLang('homepage_trends_title', { count: 6 })}
           </Title>
           <div className="grid" aria-label="Загрузка">
             {repeat((i) => {
@@ -108,7 +109,7 @@ export const Homepage: React.FC = () => {
 
       <section className="container home-page__section">
         <Title Component={'h2'} className="home-page__title">
-          В тренде
+          {getLang('homepage_trends_title', { count: 6 })}
         </Title>
         <div className="grid">
           {trendArticles.map(({ id, title, category_id, source_id, date }) => {

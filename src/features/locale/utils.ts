@@ -1,7 +1,19 @@
 import { Locale } from '@features/locale/types'
 
-const keys = {
+export const keys: Record<Locale, Record<string, string>> = {
   [Locale.en]: {
+    homepage_trends_title: 'Trending now',
+  },
+  [Locale.ru]: {
+    homepage_trends_title: 'В тренде',
+  },
+  [Locale.de]: {
+    homepage_trends_title: 'Trends',
+  },
+  [Locale.it]: {
+    homepage_trends_title: 'Trends',
+  },
+  [Locale.fr]: {
     homepage_trends_title: 'Trends',
   },
 }
@@ -31,4 +43,18 @@ export const initI18n = (callback: () => any): void => {
   applyLocale(currentLocale || Locale.en)
 
   callback()
+}
+
+export const getLang = (key: string | any, params?: { count: number }): string => {
+  const langKeys = key[getSavedLocale()]
+
+  if (!langKeys) {
+    return key
+  }
+
+  if (typeof params?.count === 'number') {
+    return langKeys[key].replace('{count}', params.count.toString()) || key
+  }
+
+  return langKeys[key] || key
 }
