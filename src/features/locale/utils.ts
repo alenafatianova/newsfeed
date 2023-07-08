@@ -1,4 +1,8 @@
 import { Locale } from '@features/locale/types'
+import i18n from 'i18next'
+import { initReactI18next } from 'react-i18next'
+import en from './translations/en.json'
+import ru from './translations/ru.json'
 
 export const keys: Record<Locale, Record<string, string>> = {
   [Locale.en]: {
@@ -7,42 +11,58 @@ export const keys: Record<Locale, Record<string, string>> = {
   [Locale.ru]: {
     homepage_trends_title: 'В тренде',
   },
-  [Locale.de]: {
-    homepage_trends_title: 'Trends',
-  },
-  [Locale.it]: {
-    homepage_trends_title: 'Trends',
-  },
-  [Locale.fr]: {
-    homepage_trends_title: 'Trends',
-  },
 }
 
 const LS_LOCALE_KEY = 'newsfeed:locale'
 
 export const applyLocale = (locale: Locale): void => {
   localStorage.setItem(LS_LOCALE_KEY, locale)
+  i18n.changeLanguage(locale)
 }
 
 export const getSavedLocale = (): Locale => {
-  const lsLocale = localStorage.getItem(LS_LOCALE_KEY)
+  //const lsLocale = localStorage.getItem(LS_LOCALE_KEY)
+  const localSttorageLang = localStorage.getItem(LS_LOCALE_KEY) as Locale | null
 
-  if (lsLocale) {
-    return lsLocale as Locale
+  if (localSttorageLang) {
+    return localSttorageLang
   }
 
-  const language = window.navigator.language
-  const locale = language.split('-')[0] as Locale
+  const navigatorLanguage = window.navigator.language.split('-')[0] as Locale
 
-  return Object.values(Locale).includes(locale) ? locale : Locale.en
+  if (Object.values(Locale).includes(navigatorLanguage)) {
+    return navigatorLanguage
+  }
+
+  return Locale.en
 }
 
 export const initI18n = (callback: () => any): void => {
   const currentLocale = getSavedLocale()
 
-  applyLocale(currentLocale || Locale.en)
-
-  callback()
+  i18n.use(initReactI18next).init(
+    {
+      resources: {
+        en: {
+          translation: en,
+        },
+        ru: {
+          translation: ru,
+        },
+      },
+      lng: currentLocale,
+      fallbackLng: Locale.en,
+      interpolation: {
+        escapeValue: false,
+        prefix: '{',
+        suffix: '}',
+      },
+    },
+    () => {
+      applyLocale(currentLocale)
+      callback()
+    }
+  )
 }
 
 export const getLang = (key: string | any, params?: { count: number }): string => {

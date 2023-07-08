@@ -18,6 +18,7 @@ import { ArticleCardSkeleton } from '@components/ArticleCard/ArticleCardSkeleton
 import { SidebarArticleCardSkeleton } from '@components/SidebarArticleCard/SidebarArticleCardSkeleton'
 import { repeat } from '@components/utils'
 import { useAdaptive } from '@components/customHooks'
+import { useTranslation } from 'react-i18next'
 
 export const CategoryPage: React.FC = () => {
   const dispatch = useDispatch<AppDispatchType>()
@@ -27,13 +28,14 @@ export const CategoryPage: React.FC = () => {
   const sources = useSelector(getSources)
   const [loading, setLoading] = useState(true)
   const { isDesktop, isMobile } = useAdaptive()
+  const { i18n } = useTranslation()
 
   useEffect(() => {
     setLoading(true)
-    dispatch(fetchCategoryArticles(categoryIds[category]))
+    dispatch(fetchCategoryArticles({ lang: i18n.language, categoryId: categoryIds[category] }))
       .unwrap()
       .then(() => setLoading(false))
-  }, [category])
+  }, [category, i18n.language])
 
   if (loading) {
     return (
