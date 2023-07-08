@@ -20,7 +20,6 @@ import { SidebarArticleCardSkeleton } from '@components/SidebarArticleCard/Sideb
 import { repeat } from '@components/utils'
 import { useAdaptive } from '@components/customHooks'
 import { PartnersArticles } from '@features/partnersArticles/components/PartnersArticles'
-import { getLang } from '@features/locale/utils'
 import { useTranslation } from 'react-i18next'
 import { Locale } from '@features/locale/types'
 

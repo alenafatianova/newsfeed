@@ -4,15 +4,6 @@ import { initReactI18next } from 'react-i18next'
 import en from './translations/en.json'
 import ru from './translations/ru.json'
 
-export const keys: Record<Locale, Record<string, string>> = {
-  [Locale.en]: {
-    homepage_trends_title: 'Trending now',
-  },
-  [Locale.ru]: {
-    homepage_trends_title: 'В тренде',
-  },
-}
-
 const LS_LOCALE_KEY = 'newsfeed:locale'
 
 export const applyLocale = (locale: Locale): void => {
@@ -21,7 +12,6 @@ export const applyLocale = (locale: Locale): void => {
 }
 
 export const getSavedLocale = (): Locale => {
-  //const lsLocale = localStorage.getItem(LS_LOCALE_KEY)
   const localSttorageLang = localStorage.getItem(LS_LOCALE_KEY) as Locale | null
 
   if (localSttorageLang) {
@@ -63,18 +53,4 @@ export const initI18n = (callback: () => any): void => {
       callback()
     }
   )
-}
-
-export const getLang = (key: string | any, params?: { count: number }): string => {
-  const langKeys = key[getSavedLocale()]
-
-  if (!langKeys) {
-    return key
-  }
-
-  if (typeof params?.count === 'number') {
-    return langKeys[key].replace('{count}', params.count.toString()) || key
-  }
-
-  return langKeys[key] || key
 }
