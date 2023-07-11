@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatchType } from '@components/store'
 import { categoryNames } from '../../categories/types'
 import { getCategoryNews } from '../selectors'
-import { categoryIds, categoryTitles } from '../../categories/constants'
+import { categoryIds } from '../../categories/constants'
 import { getCategories } from '../../categories/selectors'
 import { getSources } from '../../source/selectors'
 import { fetchCategoryArticles } from '../actions'
@@ -28,7 +28,7 @@ export const CategoryPage: React.FC = () => {
   const sources = useSelector(getSources)
   const [loading, setLoading] = useState(true)
   const { isDesktop, isMobile } = useAdaptive()
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   useEffect(() => {
     setLoading(true)
@@ -39,8 +39,8 @@ export const CategoryPage: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="category-page" aria-label="Загрузка">
-        <HeroSkeleton title={categoryTitles[category]} className="category-page__hero" />
+      <div className="category-page" aria-label={t(`loading`)}>
+        <HeroSkeleton title={t(`category_${category}`)} className="category-page__hero" />
         <section className="container grid">
           <div className="category-page__content" aria-label="Загрузка">
             {repeat((i) => {
@@ -64,7 +64,7 @@ export const CategoryPage: React.FC = () => {
   return (
     <section className="category-page">
       <Hero
-        title={categoryTitles[category as categoryNames]}
+        title={t(`category_${category}`)}
         className="category-page__hero"
         image={require(`../../../images/categories/${category}.jpg`)}
       />

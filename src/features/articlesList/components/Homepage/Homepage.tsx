@@ -67,31 +67,36 @@ export const Homepage: React.FC = () => {
             }, 6)}
           </div>
         </section>
-        <section className="container home-page__section">
-          <Title Component={'h2'} className="home-page__title">
-            Karpov
-          </Title>
-          <div className="grid">
-            <section className="home-page__content">
-              {repeat((i) => {
-                return (
-                  <ArticleCardSkeleton
-                    key={i}
-                    className="home-page__article-card"
-                    hasDescription={false}
-                    aria-label="Загрузка"
-                  />
-                )
-              }, 4)}
-            </section>
 
-            <section className="home-page__sidebar">
-              {repeat((i) => {
-                return <SidebarArticleCardSkeleton key={i} className="home-page__sidebar-item" aria-label="Загрузка" />
-              }, 2)}
-            </section>
-          </div>
-        </section>
+        {i18n.language === Locale.ru && (
+          <section className="container home-page__section">
+            <Title Component={'h2'} className="home-page__title">
+              Karpov
+            </Title>
+            <div className="grid">
+              <section className="home-page__content">
+                {repeat((i) => {
+                  return (
+                    <ArticleCardSkeleton
+                      key={i}
+                      className="home-page__article-card"
+                      hasDescription={false}
+                      aria-label="Загрузка"
+                    />
+                  )
+                }, 4)}
+              </section>
+
+              <section className="home-page__sidebar">
+                {repeat((i) => {
+                  return (
+                    <SidebarArticleCardSkeleton key={i} className="home-page__sidebar-item" aria-label="Загрузка" />
+                  )
+                }, 2)}
+              </section>
+            </div>
+          </section>
+        )}
       </div>
     )
   }
