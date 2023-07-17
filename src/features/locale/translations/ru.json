@@ -31,5 +31,6 @@
   "locale_selected": "Выбранный язык",
   "logo_main": "Главная страница",
   "partner_article_caption": "Партнерский материал от {name}",
-  "source_placeholder": "Источник"
+  "source_placeholder": "Источник",
+  "test": "test"
 }

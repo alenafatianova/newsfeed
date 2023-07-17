@@ -5,7 +5,9 @@
     "prettier": "prettier --write ./",
     "prettier-check": "prettier --check ./",
     "start": "NODE_ENV=development webpack serve",
-    "build": "webpack"
+    "build": "webpack",
+    "localazy-upload": "localazy upload",
+    "localazy-download": "localazy download"
   },
   "dependencies": {
     "@babel/cli": "7.15.7",
@@ -14,6 +16,7 @@
     "@babel/preset-react": "^7.14.5",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@localazy/cli": "^1.7.3",
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.13",
     "@reduxjs/toolkit": "^1.9.5",
