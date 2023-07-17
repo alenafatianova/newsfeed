@@ -6,8 +6,8 @@
     "prettier-check": "prettier --check ./",
     "start": "NODE_ENV=development webpack serve",
     "build": "webpack",
-    "localazy-upload": "localazy upload",
-    "localazy-download": "localazy download"
+    "localazy:upload": "localazy upload",
+    "localazy:download": "localazy download"
   },
   "dependencies": {
     "@babel/cli": "7.15.7",

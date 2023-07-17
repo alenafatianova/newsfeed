@@ -20,7 +20,7 @@ build:
   stage: build
   before_script:
     - npm ci
-    - npm run locale:download
+    - npm run localazy:download
   script:
     - npm run build
   artifacts:
