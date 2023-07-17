@@ -4,7 +4,7 @@ stages:
   - deploy
 
 code_quality:
-  image: node:14.17.4
+  image: node:16.14.2
   stage: test
   before_script:
     - npm ci
@@ -16,10 +16,11 @@ code_quality:
     - merge_requests
 
 build:
-  image: node:14.17.4
+  image: node:16.14.2
   stage: build
   before_script:
     - npm ci
+    - npm run locale:download
   script:
     - npm run build
   artifacts:
