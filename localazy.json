@@ -5,7 +5,7 @@
   "upload": {
     "type": "json",
     "files": {
-      "pattern": "src/features/locale/translations/*.json",
+      "pattern": "src/features/locale/translations/${lang}.json",
       "lang": "${autodetectLang}"
     }
   },
