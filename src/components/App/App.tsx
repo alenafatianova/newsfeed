@@ -54,6 +54,7 @@ export const App: React.FC = () => {
                   </Page>
                 }
               />
+
               <Route
                 path="/admin"
                 element={
@@ -85,7 +86,7 @@ export const App: React.FC = () => {
                 }
               />
               <Route
-                path={'/login'}
+                path={'/admin/login'}
                 element={
                   <Page>
                     <LoginContainer />
