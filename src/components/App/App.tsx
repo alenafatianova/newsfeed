@@ -2,15 +2,11 @@ import React, { useEffect, useRef } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { Homepage } from '../../features/articlesList/components/Homepage/Homepage'
 import { Article } from '../../features/articleItem/components/ArticlePage/ArticlesPage'
-import { AdminPanel } from '../../features/admin/AdminPanel/AdminPanel'
 import { Page } from '../Page/Page'
-import { AdminArticlesItem } from '../../features/admin/AdminArticlesItem/AdminArticlesItem'
-import { AdminArticles } from '../../features/admin/AdminArticles/AdminArticles'
-import { RequireAuth } from '../../features/auth/components/RequireAuth/RequireAuth'
-import { LoginContainer } from '../../features/auth/Login/LoginContainer'
 import { CategoryPage } from '../../features/categoryArticles/CategoryPage/CategoryPage'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import './App.css'
+import { Admin } from './Admin'
 
 export const App: React.FC = () => {
   const location = useLocation()
@@ -54,45 +50,7 @@ export const App: React.FC = () => {
                   </Page>
                 }
               />
-
-              <Route
-                path="/admin"
-                element={
-                  <RequireAuth>
-                    <AdminPanel>
-                      <AdminArticles />
-                    </AdminPanel>
-                  </RequireAuth>
-                }
-              />
-              <Route
-                path="/admin/create"
-                element={
-                  <RequireAuth>
-                    <AdminPanel>
-                      <AdminArticlesItem />
-                    </AdminPanel>
-                  </RequireAuth>
-                }
-              />
-              <Route
-                path="/admin/edit/:id"
-                element={
-                  <RequireAuth>
-                    <AdminPanel>
-                      <AdminArticlesItem />
-                    </AdminPanel>
-                  </RequireAuth>
-                }
-              />
-              <Route
-                path={'/admin/login'}
-                element={
-                  <Page>
-                    <LoginContainer />
-                  </Page>
-                }
-              />
+              <Route path="/admin/*" element={<Admin />} />
             </Routes>
           </React.Fragment>
         </div>

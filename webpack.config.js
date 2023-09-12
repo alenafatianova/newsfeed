@@ -64,7 +64,7 @@ module.exports = {
   optimization: {
     runtimeChunk: mode === 'production' ? false : 'single',
     splitChunks: {
-      chunks: 'all'
+      chunks: 'all',
     },
   },
   plugins: [

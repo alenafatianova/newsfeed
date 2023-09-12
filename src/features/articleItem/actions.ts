@@ -1,4 +1,4 @@
-import { apiFetchArticleItem } from '@components/api'
+import { apiFetchArticleItem } from '@components/publicApi'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { setArticleItem } from './slice'
 
