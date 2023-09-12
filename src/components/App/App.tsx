@@ -6,7 +6,7 @@ import { Page } from '../Page/Page'
 import { CategoryPage } from '../../features/categoryArticles/CategoryPage/CategoryPage'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import './App.css'
-import { Admin } from './Admin'
+const Admin = React.lazy(() => import('./Admin')) 
 
 export const App: React.FC = () => {
   const location = useLocation()
@@ -50,7 +50,13 @@ export const App: React.FC = () => {
                   </Page>
                 }
               />
-              <Route path="/admin/*" element={<Admin />} />
+              <Route path="/admin/*" 
+              element={
+                <React.Suspense fallback={<div>Loading...</div>} >
+                  <Admin />
+                </React.Suspense>
+              } 
+              />
             </Routes>
           </React.Fragment>
         </div>

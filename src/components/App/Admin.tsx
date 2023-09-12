@@ -9,11 +9,11 @@ import { RequireAuth } from '@features/auth/components/RequireAuth/RequireAuth'
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 
-export const Admin: React.FC = () => {
+const Admin: React.FC = () => {
   const firebaseApp = initializeAPI()
   return (
     <AuthContextProvider firebaseApp={firebaseApp}>
-      <AdminPanel>
+     
         <Routes>
           <Route
             path={'/login'}
@@ -23,13 +23,20 @@ export const Admin: React.FC = () => {
               </Page>
             }
           />
+           
           <Route element={<RequireAuth />}>
+            <Route element={<AdminPanel />}>
             <Route index element={<AdminArticles />} />
             <Route path="/admin/create" element={<AdminArticlesItem />} />
             <Route path="/admin/edit/:id" element={<AdminArticlesItem />} />
+            </Route>
+            
           </Route>
+         
         </Routes>
-      </AdminPanel>
+      
     </AuthContextProvider>
   )
 }
+
+export default Admin
