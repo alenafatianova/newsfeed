@@ -68,7 +68,7 @@ module.exports = {
       chunks: 'all',
     },
     // eslint-disable-next-line quotes
-    minimizer: [`...`, new minimizerCSSWebpackPlugin()]
+    minimizer: [`...`, new minimizerCSSWebpackPlugin()],
   },
   plugins: [
     new MiniCssExtractPlugin({

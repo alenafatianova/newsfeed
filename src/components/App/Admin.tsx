@@ -13,28 +13,24 @@ const Admin: React.FC = () => {
   const firebaseApp = initializeAPI()
   return (
     <AuthContextProvider firebaseApp={firebaseApp}>
-     
-        <Routes>
-          <Route
-            path={'/login'}
-            element={
-              <Page>
-                <LoginContainer />
-              </Page>
-            }
-          />
-           
-          <Route element={<RequireAuth />}>
-            <Route element={<AdminPanel />}>
+      <Routes>
+        <Route
+          path={'/login'}
+          element={
+            <Page>
+              <LoginContainer />
+            </Page>
+          }
+        />
+
+        <Route element={<RequireAuth />}>
+          <Route element={<AdminPanel />}>
             <Route index element={<AdminArticles />} />
             <Route path="/admin/create" element={<AdminArticlesItem />} />
             <Route path="/admin/edit/:id" element={<AdminArticlesItem />} />
-            </Route>
-            
           </Route>
-         
-        </Routes>
-      
+        </Route>
+      </Routes>
     </AuthContextProvider>
   )
 }
