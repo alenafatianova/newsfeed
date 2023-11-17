@@ -4,8 +4,7 @@ import { Homepage } from '../../features/articlesList/components/Homepage/Homepa
 import { Article } from '../../features/articleItem/components/ArticlePage/ArticlesPage'
 import { Page } from '../Page/Page'
 import { CategoryPage } from '../../features/categoryArticles/CategoryPage/CategoryPage'
-import { TransitionGroup, CSSTransition } from 'react-transition-group'
-import './App.css'
+
 const Admin = React.lazy(() => import('./Admin'))
 
 export const App: React.FC = () => {
@@ -21,9 +20,6 @@ export const App: React.FC = () => {
   }, [pathname])
 
   return (
-    <TransitionGroup>
-      <CSSTransition key={pathname} timeout={1000} classNames={'page-animation'}>
-        <div>
           <React.Fragment>
             <Routes location={location}>
               <Route
@@ -60,8 +56,5 @@ export const App: React.FC = () => {
               />
             </Routes>
           </React.Fragment>
-        </div>
-      </CSSTransition>
-    </TransitionGroup>
   )
 }
