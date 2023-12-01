@@ -20,41 +20,41 @@ export const App: React.FC = () => {
   }, [pathname])
 
   return (
-          <React.Fragment>
-            <Routes location={location}>
-              <Route
-                path="/:category"
-                element={
-                  <Page>
-                    <CategoryPage />
-                  </Page>
-                }
-              />
-              <Route
-                path="/"
-                element={
-                  <Page>
-                    <Homepage />
-                  </Page>
-                }
-              />
-              <Route
-                path="/article/:id"
-                element={
-                  <Page>
-                    <Article />
-                  </Page>
-                }
-              />
-              <Route
-                path="/admin/*"
-                element={
-                  <React.Suspense fallback={<div>Loading...</div>}>
-                    <Admin />
-                  </React.Suspense>
-                }
-              />
-            </Routes>
-          </React.Fragment>
+    <React.Fragment>
+      <Routes location={location}>
+        <Route
+          path="/:category"
+          element={
+            <Page>
+              <CategoryPage />
+            </Page>
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <Page>
+              <Homepage />
+            </Page>
+          }
+        />
+        <Route
+          path="/article/:id"
+          element={
+            <Page>
+              <Article />
+            </Page>
+          }
+        />
+        <Route
+          path="/admin/*"
+          element={
+            <React.Suspense fallback={<div>Loading...</div>}>
+              <Admin />
+            </React.Suspense>
+          }
+        />
+      </Routes>
+    </React.Fragment>
   )
 }

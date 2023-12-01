@@ -5,34 +5,42 @@ import { RelatedArticlesType } from '../features/relatedNews/types'
 import { ArticleItemType } from '../features/articleItem/types'
 import { PartnersPostsType } from '@features/partnersArticles/types'
 
+const API_VERSION = 'v3'
+
 export const apiFetchNews = (lang: string): Promise<NewsResponse> => {
-  return fetch(`https://frontend.karpovcourses.net/api/v2/${lang}/news`).then((response) => response.json())
+  return fetch(`https://frontend.karpovcourses.net/api/${API_VERSION}/${lang}/news`).then((response) => response.json())
 }
 
 export const apiFetchTrends = (lang: string): Promise<NewsResponse> => {
-  return fetch(`https://frontend.karpovcourses.net/api/v2/${lang}/trends`).then((response) => response.json())
+  return fetch(`https://frontend.karpovcourses.net/api/${API_VERSION}/${lang}/trends`).then((response) =>
+    response.json()
+  )
 }
 
 export const apiFetchCategory = (lang: string, id: number): Promise<NewsResponse> => {
-  return fetch(`https://frontend.karpovcourses.net/api/v2/${lang}/news/${id}`).then((response) => response.json())
+  return fetch(`https://frontend.karpovcourses.net/api/${API_VERSION}/${lang}/news/${id}`).then((response) =>
+    response.json()
+  )
 }
 
 export const apiFetchCategories = (): Promise<CategoriesType[]> => {
-  return fetch('https://frontend.karpovcourses.net/api/v2/categories').then((response) => response.json())
+  return fetch('https://frontend.karpovcourses.net/api/${API_VERSION}/categories').then((response) => response.json())
 }
 
 export const apiFetchSources = (): Promise<SourcesType[]> => {
-  return fetch('https://frontend.karpovcourses.net/api/v2/sources').then((response) => response.json())
+  return fetch('https://frontend.karpovcourses.net/api/${API_VERSION}/sources').then((response) => response.json())
 }
 
 export const apiFetchRelatedArticles = (id: number): Promise<RelatedArticlesType> => {
-  return fetch(`https://frontend.karpovcourses.net/api/v2/news/related/${id}?count=9`).then((response) =>
+  return fetch(`https://frontend.karpovcourses.net/api/${API_VERSION}/news/related/${id}?count=9`).then((response) =>
     response.json()
   )
 }
 
 export const apiFetchArticleItem = (id: number): Promise<ArticleItemType> => {
-  return fetch(`https://frontend.karpovcourses.net/api/v2/news/full/${id}`).then((response) => response.json())
+  return fetch(`https://frontend.karpovcourses.net/api/${API_VERSION}/news/full/${id}`).then((response) =>
+    response.json()
+  )
 }
 
 export const apiFetchSortedPartnerArticle = (): Promise<Record<keyof PartnersPostsType, { stringValue: string }>> => {
