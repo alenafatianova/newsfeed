@@ -2,10 +2,10 @@ import React from 'react'
 import './SidebarArticleCard.css'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames'
-import { beautifyDate } from '@components/utils'
-import { ImageComponent } from '@components/Image/ImageComponent'
+import { beautifyDate } from '../../components/utils'
+import { ImageComponent } from '../../components/Image/ImageComponent'
 import { useTranslation } from 'react-i18next'
-import { ExtendedImageType } from '@features/articleItem/types'
+import { ExtendedImageType } from '../../features/articleItem/types'
 
 type ArticleCardType = {
   id: number

@@ -5,9 +5,9 @@ import classNames from 'classnames'
 import { beautifyDate } from '../utils'
 import { categoryNames } from '../../features/categories/types'
 import { Source } from '../../features/source/components/Source'
-import { ImageComponent } from '@components/Image/ImageComponent'
+import { ImageComponent } from '../../components/Image/ImageComponent'
 import { useTranslation } from 'react-i18next'
-import { ExtendedImageType } from '@features/articleItem/types'
+import { ExtendedImageType } from '../../features/articleItem/types'
 
 type ArticleCardType = {
   id: number

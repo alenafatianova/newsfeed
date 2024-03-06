@@ -5,8 +5,9 @@ import './common.css'
 import { App } from './App/App'
 import { Provider } from 'react-redux'
 import { store } from './store'
-import { NetworkStatusContextProvider } from '@features/networkStatusContext/NetworkStatusContextProvider'
-import { initI18n } from '@features/locale/utils'
+import { NetworkStatusContextProvider } from '../features/networkStatusContext/NetworkStatusContextProvider'
+import { initI18n } from '../features/locale/utils'
+
 import * as Sentry from '@sentry/react'
 
 if ('serviceWorker' in navigator) {

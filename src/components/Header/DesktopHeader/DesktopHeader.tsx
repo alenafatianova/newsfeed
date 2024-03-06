@@ -1,9 +1,9 @@
-import { Logo } from '@components/Logo/Logo'
-import { Navigation } from '@components/Navigation/Navigation'
+import { Logo } from '../../../components/Logo/Logo'
+import { Navigation } from '../../../components/Navigation/Navigation'
 import { ColorSchemeSwitcherDesktop } from '../../../features/colorScheme/components/ColorSchemeSwitcher/ColorSchemeSwitcherDesktop/ColorSchemeSwitcherDesktop'
 
 import React, { FC } from 'react'
-import { LocaleSwitcherDesktop } from '@features/locale/components/LocaleSwitcherDesktop/LocaleSwitcherDesktop'
+import { LocaleSwitcherDesktop } from '../../../features/locale/components/LocaleSwitcherDesktop/LocaleSwitcherDesktop'
 
 export const DesktopHeader: FC = () => {
   return (

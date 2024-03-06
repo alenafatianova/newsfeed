@@ -1,6 +1,6 @@
 import React, { Dispatch, useEffect, useState } from 'react'
-import { applyLocale, getSavedLocale } from '@features/locale/utils'
-import { Locale } from '@features/locale/types'
+import { applyLocale, getSavedLocale } from '../../features/locale/utils'
+import { Locale } from '../../features/locale/types'
 
 export const useLocale = (): {
   locale: Locale

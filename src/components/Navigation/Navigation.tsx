@@ -2,9 +2,9 @@ import React, { FC } from 'react'
 import './Navigation.css'
 import classNames from 'classnames'
 import { NavLink } from 'react-router-dom'
-import { categoryNames } from '@features/categories/types'
+import { categoryNames } from '../../features/categories/types'
 import { useTranslation } from 'react-i18next'
-import { Locale } from '@features/locale/types'
+import { Locale } from '../../features/locale/types'
 
 type NavigationType = {
   className: string

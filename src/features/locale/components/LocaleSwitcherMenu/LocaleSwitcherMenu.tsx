@@ -1,6 +1,6 @@
 import React from 'react'
 import './LocaleSwitcherMenu.css'
-import { Locale } from '@features/locale/types'
+import { Locale } from '../../../../features/locale/types'
 import classNames from 'classnames'
 
 interface LocaleSwitcherMenuType {

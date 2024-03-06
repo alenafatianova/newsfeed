@@ -1,9 +1,9 @@
 import React, { memo } from 'react'
 import './Hero.css'
 import classNames from 'classnames'
-import { Title } from '@components/Title/Title'
-import { ImageComponent } from '@components/Image/ImageComponent'
-import { ExtendedImageType } from '@features/articleItem/types'
+import { Title } from '../../components/Title/Title'
+import { ImageComponent } from '../../components/Image/ImageComponent'
+import { ExtendedImageType } from '../../features/articleItem/types'
 
 type HeroPropsType = {
   image?: ExtendedImageType | string

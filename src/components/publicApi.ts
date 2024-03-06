@@ -3,7 +3,7 @@ import { NewsResponse } from '../features/articlesList/types'
 import { CategoriesType } from '../features/categories/types'
 import { RelatedArticlesType } from '../features/relatedNews/types'
 import { ArticleItemType } from '../features/articleItem/types'
-import { PartnersPostsType } from '@features/partnersArticles/types'
+import { PartnersPostsType } from '../features/partnersArticles/types'
 
 const API_VERSION = 'v3'
 

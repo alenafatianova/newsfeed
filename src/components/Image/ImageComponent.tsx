@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import './ImageComponent.css'
 import React, { CSSProperties, ImgHTMLAttributes, useMemo, useState } from 'react'
-import { ArticleImageType, ExtendedImageType } from '@features/articleItem/types'
+import { ArticleImageType, ExtendedImageType } from '../../features/articleItem/types'
 
 interface ImageType extends ImgHTMLAttributes<HTMLImageElement> {
   className?: string
