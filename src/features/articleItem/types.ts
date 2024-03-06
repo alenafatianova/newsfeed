@@ -17,7 +17,7 @@ export type ArticleItemType = {
 
 export type ArticleImageType = {
   width: number
-  heigth: number
+  height: number
   type: string
   format: string
   size: number

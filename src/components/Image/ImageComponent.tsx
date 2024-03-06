@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import './ImageComponent.css'
-import React, { ImgHTMLAttributes, useMemo, useState } from 'react'
+import React, { CSSProperties, ImgHTMLAttributes, useMemo, useState } from 'react'
 import { ArticleImageType, ExtendedImageType } from '@features/articleItem/types'
 
 interface ImageType extends ImgHTMLAttributes<HTMLImageElement> {
@@ -56,8 +56,17 @@ export const ImageComponent: React.FC<ImageType> = ({
     })
   }, [data, maxWidth])
 
+  const styleFromAPI = useMemo(() => {
+    const style: Record<string, CSSProperties> = {}
+    if (data && data?.variants.length) {
+      return (style['--image-container-height'] = ((100 * imagesVariants[0].height) / imagesVariants[0].width +
+        'vw') as CSSProperties)
+    }
+  }, [data])
+
   return (
     <div
+      style={styleFromAPI}
       className={classNames(
         'image',
         {

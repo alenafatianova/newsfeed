@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import './Hero.css'
 import classNames from 'classnames'
 import { Title } from '@components/Title/Title'
@@ -12,7 +12,7 @@ type HeroPropsType = {
   className?: string
 }
 
-export const Hero: React.FC<HeroPropsType> = ({ image, title, text, className }) => {
+export const Hero = memo<HeroPropsType>(({ image, title, text, className }: HeroPropsType) => {
   const hasSimpleImage = image && typeof image === 'string' && image.length > 0
   const hasExtendedImage = image && typeof image === 'object' && image.source.length > 0
   return (
@@ -29,4 +29,6 @@ export const Hero: React.FC<HeroPropsType> = ({ image, title, text, className })
       </div>
     </section>
   )
-}
+})
+
+Hero.displayName = 'Hero'
