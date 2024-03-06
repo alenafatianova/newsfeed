@@ -4,6 +4,7 @@ const ESLintPlugin = require('eslint-webpack-plugin')
 const StylelintPlugin = require('stylelint-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlInlinePlugin = require('html-inline-script-webpack-plugin')
+const minimizerCSSWebpackPlugin = require('css-minimizer-webpack-plugin')
 
 const mode = process.env.NODE_ENV || 'production'
 
@@ -63,6 +64,11 @@ module.exports = {
   },
   optimization: {
     runtimeChunk: mode === 'production' ? false : 'single',
+    splitChunks: {
+      chunks: 'all',
+    },
+    // eslint-disable-next-line quotes
+    minimizer: [`...`, new minimizerCSSWebpackPlugin()],
   },
   plugins: [
     new MiniCssExtractPlugin({
@@ -90,4 +96,5 @@ module.exports = {
       disableDotRule: true,
     },
   },
+  devtool: mode === 'production' ? false : 'eval-cheap-module-source-map',
 }

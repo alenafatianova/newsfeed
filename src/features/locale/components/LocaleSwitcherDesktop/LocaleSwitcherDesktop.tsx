@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import './LocaleSwitcherDesktop.css'
-import { useLocale } from '@features/locale/hooks'
-import { Dropdown } from '@components/Dropdown/Dropdown'
+import { useLocale } from '../../../../features/locale/hooks'
+import { Dropdown } from '../../../../components/Dropdown/Dropdown'
 import { LocaleSwitcherMenu } from '../LocaleSwitcherMenu/LocaleSwitcherMenu'
 import { LocaleSwitcherButton } from '../LocaleSwitcherButton/LocaleSwitcherButton'
 

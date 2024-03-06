@@ -26,7 +26,7 @@ export const AdminPanel: React.FC = ({ children }) => {
   const navigate = useNavigate()
   const onLogoutClick = () => {
     logout()
-    navigate('/login')
+    navigate('/admin/login')
   }
 
   return (

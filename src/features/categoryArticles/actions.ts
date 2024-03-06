@@ -1,4 +1,4 @@
-import { apiFetchCategory } from '@components/api'
+import { apiFetchCategory } from '@components/publicApi'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { setCategoryArticles } from './slice'
 

@@ -1,8 +1,8 @@
 import React, { ForwardedRef, forwardRef } from 'react'
 import './LocaleSwitcherButton.css'
-import { Locale } from '@features/locale/types'
+import { Locale } from '../../../../features/locale/types'
 import classNames from 'classnames'
-import { Arrow } from '@components/Icons/Arrow'
+import { Arrow } from '../../../../components/Icons/Arrow'
 
 interface LocaleSwitcherButtonType {
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => any

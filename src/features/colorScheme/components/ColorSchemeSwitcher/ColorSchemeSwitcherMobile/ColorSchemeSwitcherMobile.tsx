@@ -1,4 +1,4 @@
-import { useColorScheme } from '@features/colorScheme/hooks'
+import { useColorScheme } from '../../../../../features/colorScheme/hooks'
 import React, { FC } from 'react'
 import { ColorSchemeSwitcherMenu } from '../ColorSchemeSwitcherMenu/ColorSchemeSwitcherMenu'
 import { ColorSchemeSwitcherButton } from '../ColorSchemeSwitcherButton/ColorSchemeSwitcherButton'

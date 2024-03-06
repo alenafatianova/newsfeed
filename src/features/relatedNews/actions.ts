@@ -1,4 +1,4 @@
-import { apiFetchRelatedArticles } from '@components/api'
+import { apiFetchRelatedArticles } from '@components/publicApi'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { setRelatedArticles } from './slice'
 

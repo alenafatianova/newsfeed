@@ -5,13 +5,14 @@ import classNames from 'classnames'
 import { beautifyDate } from '../utils'
 import { categoryNames } from '../../features/categories/types'
 import { Source } from '../../features/source/components/Source'
-import { ImageComponent } from '@components/Image/ImageComponent'
+import { ImageComponent } from '../../components/Image/ImageComponent'
 import { useTranslation } from 'react-i18next'
+import { ExtendedImageType } from '../../features/articleItem/types'
 
 type ArticleCardType = {
   id: number
   title: string
-  image?: string
+  image?: ExtendedImageType
   category?: categoryNames
   description?: string
   source?: string
@@ -22,7 +23,7 @@ type ArticleCardType = {
 export const ArticleCard: React.FC<ArticleCardType> = ({
   id,
   title = '',
-  image = '',
+  image,
   category,
   description = '',
   source = '',
@@ -30,7 +31,7 @@ export const ArticleCard: React.FC<ArticleCardType> = ({
   className = '',
 }) => {
   const hasDescription = description && description?.length > 0
-  const hasImage = image && image.length > 0
+  const hasImage = image && image.source.length > 0
   const { t, i18n } = useTranslation()
   return (
     <Link
@@ -38,7 +39,7 @@ export const ArticleCard: React.FC<ArticleCardType> = ({
       className={classNames('article-card', { 'article-card__has-description': hasDescription }, className)}
     >
       <article className="article-card__in">
-        {hasImage && <ImageComponent className="article-card__image" src={image} alt={title} />}
+        {hasImage && <ImageComponent className="article-card__image" data={image} maxWidth={200} alt={title} />}
         <div className="article-card__content">
           <h3 className="article-card__title">{title}</h3>
           {hasDescription && <span className="article-card__description">{description}</span>}

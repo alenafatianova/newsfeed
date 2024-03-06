@@ -1,4 +1,4 @@
-import { Locale } from '@features/locale/types'
+import { Locale } from '../../features/locale/types'
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import en from './translations/en.json'
