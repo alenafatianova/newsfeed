@@ -68,6 +68,10 @@ export const Dropdown: React.FC<DropdownType> = ({
     }
   }, [shown, onShownChange])
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  ololo
+
   return createPortal(
     <CSSTransition in={shown} classNames={'dropdown-animation'} mountOnEnter={true} unmountOnExit={true} timeout={200}>
       <div ref={ref} className={classNames('dropdown', className)} style={{ ...style, ...coords }} {...rest}>

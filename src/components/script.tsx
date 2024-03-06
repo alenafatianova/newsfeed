@@ -9,6 +9,7 @@ import { Provider } from 'react-redux'
 import { store } from './store'
 import { NetworkStatusContextProvider } from '@features/networkStatusContext/NetworkStatusContextProvider'
 import { initI18n } from '@features/locale/utils'
+import { Error } from './Error/Error'
 
 const firebaseApp = initializeAPI()
 
@@ -19,17 +20,35 @@ if ('serviceWorker' in navigator) {
     .catch(() => console.log('some error has occured'))
 }
 
+class ErrorBoundary extends React.Component<any, any> {
+  constructor(props: any) {
+    super(props)
+    this.state = {
+      error: false,
+    }
+  }
+
+  componentDidCatch() {
+    this.setState({ error: true })
+  }
+  render() {
+    return this.state.error ? <Error /> : this.props.children
+  }
+}
+
 initI18n(() => {
   ReactDOM.render(
-    <Provider store={store}>
-      <NetworkStatusContextProvider>
-        <AuthContextProvider firebaseApp={firebaseApp}>
-          <Router>
-            <App />
-          </Router>
-        </AuthContextProvider>
-      </NetworkStatusContextProvider>
-    </Provider>,
+    <ErrorBoundary>
+      <Provider store={store}>
+        <NetworkStatusContextProvider>
+          <AuthContextProvider firebaseApp={firebaseApp}>
+            <Router>
+              <App />
+            </Router>
+          </AuthContextProvider>
+        </NetworkStatusContextProvider>
+      </Provider>
+    </ErrorBoundary>,
     document.getElementById('root')
   )
 })
