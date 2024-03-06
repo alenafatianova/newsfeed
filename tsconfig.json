@@ -2,8 +2,11 @@
   "compilerOptions": {
     "jsx": "react",
     "strict": true,
+    "module": "ES2020",
+    "moduleResolution": "Node",
     "esModuleInterop": true,
     "resolveJsonModule": true,
+    "sourceMap": true,
     "lib": ["es2019", "dom", "dom.iterable", "WebWorker"],
     "baseUrl": "src",
     "skipLibCheck": true,
