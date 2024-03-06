@@ -7,7 +7,7 @@ export type ArticleItemType = {
   date: string
   title: string
   description?: string
-  image: string
+  image: ExtendedImageType
   link: string
   text: string
   category: CategoriesType
@@ -15,13 +15,26 @@ export type ArticleItemType = {
   author?: string
 }
 
+export type ArticleImageType = {
+  width: number
+  height: number
+  type: string
+  format: string
+  size: number
+  url: string
+}
+
+export type ExtendedImageType = {
+  variants: ArticleImageType[]
+  source: string
+}
+
 export interface ArticleType {
   id: number
-  lang: string
   date: string
   title: string
   description: string
-  image: string
+  image: ExtendedImageType
   source_id: number
   category_id: number
 }

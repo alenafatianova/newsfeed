@@ -21,7 +21,7 @@ export const RequireAuth: React.FC<PrivateRoutesType> = ({ children }) => {
 
   return (
     <React.Fragment>
-      {!isAuth ? <Navigate to={'/login'} replace state={{ from: location.state }} /> : children}
+      {!isAuth ? <Navigate to={'/admin/login'} replace state={{ from: location.state }} /> : children}
     </React.Fragment>
   )
 }
