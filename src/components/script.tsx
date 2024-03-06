@@ -7,8 +7,8 @@ import { App } from './App/App'
 import { AuthContextProvider } from '../features/auth/AuthContextProvider'
 import { Provider } from 'react-redux'
 import { store } from './store'
-import { NetworkStatusContextProvider } from '@features/networkStatusContext/NetworkStatusContextProvider'
-import { initI18n } from '@features/locale/utils'
+import { NetworkStatusContextProvider } from '../features/networkStatusContext/NetworkStatusContextProvider'
+import { initI18n } from '../features/locale/utils'
 import { Error } from './Error/Error'
 
 const firebaseApp = initializeAPI()
