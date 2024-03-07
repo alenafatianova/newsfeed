@@ -5,12 +5,11 @@ const StylelintPlugin = require('stylelint-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlInlinePlugin = require('html-inline-script-webpack-plugin')
 const minimizerCSSWebpackPlugin = require('css-minimizer-webpack-plugin')
-const { config } = require('process')
 const SentryPlugin = require('@sentry/webpack-plugin')
 
 const mode = process.env.NODE_ENV || 'production'
 
-module.exports = {
+const config = {
   mode: process.env.NODE_ENV || 'production',
   entry: {
     main: './src/components/script.tsx',
@@ -103,7 +102,7 @@ module.exports = {
 }
 
 if (process.env.SENTRY_RELEASE) {
-  config.plugins.push(
+  config?.plugins?.push(
     new SentryPlugin({
       include: './dist',
       release: process.env.SENTRY_RELEASE,
@@ -113,3 +112,5 @@ if (process.env.SENTRY_RELEASE) {
     })
   )
 }
+
+module.exports = config
