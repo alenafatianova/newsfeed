@@ -1,0 +1,26 @@
+.error__title {
+  font-size: 24px;
+  color: coral;
+  position: absolute;
+  z-index: 1;
+  top: 30%;
+  left: 40%;
+}
+
+.error__text {
+  font-size: 18px;
+  color: darkblue;
+  position: absolute;
+  z-index: 1;
+  top: 25%;
+  left: 40%;
+}
+
+.error__image {
+  height: 100vh;
+}
+
+.error__image_wrapper {
+  display: flex;
+  justify-content: center;
+}
