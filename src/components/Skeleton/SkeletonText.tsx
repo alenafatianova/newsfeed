@@ -1,7 +1,7 @@
 import React from 'react'
 import './SkeletonText.css'
 import classNames from 'classnames'
-import { repeat } from '@components/utils'
+import { repeat } from '../../components/utils'
 
 interface SkeletonTextType {
   rowsCount?: number

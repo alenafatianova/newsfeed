@@ -5,6 +5,8 @@ const StylelintPlugin = require('stylelint-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlInlinePlugin = require('html-inline-script-webpack-plugin')
 const minimizerCSSWebpackPlugin = require('css-minimizer-webpack-plugin')
+const { config } = require('process')
+const SentryPlugin = require('@sentry/webpack-plugin')
 
 const mode = process.env.NODE_ENV || 'production'
 
@@ -16,6 +18,7 @@ module.exports = {
     serviceWorker: './src/features/serviceWorker/service.worker.ts',
   },
   output: {
+    clean: true,
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[contenthash].js',
     publicPath: '/',
@@ -96,5 +99,17 @@ module.exports = {
       disableDotRule: true,
     },
   },
-  devtool: mode === 'production' ? false : 'eval-cheap-module-source-map',
+  devtool: mode === 'production' ? 'hidden-source-map' : 'eval-cheap-module-source-map',
+}
+
+if (process.env.SENTRY_RELEASE) {
+  config.plugins.push(
+    new SentryPlugin({
+      include: './dist',
+      release: process.env.SENTRY_RELEASE,
+      authToken: process.env.SENTRY_AUTH_TOKEN,
+      org: 'no-org-7u',
+      project: 'newsfeed',
+    })
+  )
 }

@@ -1,9 +1,8 @@
 import React, { FormEvent, useState } from 'react'
 import './EmailModal.css'
-import cross from '../../images/cross.svg'
-import { MODAl_DESCRIPTION_ID, MODAl_LABEL_ID, ModalWrapper } from '@components/ModalWrapper/ModalWrapper'
-import { Button } from '@components/Button/Button'
-import { subscribeUrl } from '@components/apiUrls'
+import { MODAl_DESCRIPTION_ID, MODAl_LABEL_ID, ModalWrapper } from '../../components/ModalWrapper/ModalWrapper'
+import { Button } from '../../components/Button/Button'
+import { subscribeUrl } from '../../components/apiUrls'
 import { useTranslation } from 'react-i18next'
 
 interface EmailModalType {
@@ -38,7 +37,11 @@ export const EmailModal: React.FC<EmailModalType> = ({ onModalClose, shown }) =>
       <ModalWrapper onModalClose={_onClose} shown={shown}>
         <div className="email-modal">
           <button className="email-modal__cross" onClick={_onClose}>
-            <img src={cross} className="email-modal__cross-img" alt={t(`email_modal_button_close`)} />
+            <img
+              src={require('../../images/cross.svg')}
+              className="email-modal__cross-img"
+              alt={t(`email_modal_button_close`)}
+            />
           </button>
           <h2
             className="email-modal__title"

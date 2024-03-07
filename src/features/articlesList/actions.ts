@@ -1,4 +1,4 @@
-import { apiFetchNews, apiFetchTrends } from '@components/publicApi'
+import { apiFetchNews, apiFetchTrends } from '../../components/publicApi'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { setNews, setTrends } from './slice'
 

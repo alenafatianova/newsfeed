@@ -1,4 +1,4 @@
-import { RootState } from '@components/store'
+import { RootState } from '../../components/store'
 import { getCategories } from '../categories/selectors'
 import { CategoriesType } from '../categories/types'
 import { getSources } from '../source/selectors'

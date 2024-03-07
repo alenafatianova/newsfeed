@@ -9,7 +9,12 @@ import { NetworkStatusContextProvider } from '../features/networkStatusContext/N
 import { initI18n } from '../features/locale/utils'
 import { Error } from './Error/Error'
 import * as Sentry from '@sentry/react'
-import { AuthContextProvider } from '../features/auth/AuthContextProvider'
+
+declare global {
+  interface Window {
+    SENTRY_RELEASE: string
+  }
+}
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker
@@ -18,25 +23,31 @@ if ('serviceWorker' in navigator) {
     .catch(() => console.log('some error has occured'))
 }
 
-class ErrorBoundary extends React.Component<any, any> {
-  constructor(props: any) {
-    super(props)
-    this.state = {
-      error: false,
-    }
-  }
-
-  componentDidCatch() {
-    this.setState({ error: true })
-  }
-  render() {
-    return this.state.error ? <Error /> : this.props.children
-  }
+if (window.SENTRY_RELEASE) {
+  Sentry.init({
+    dsn: 'https://851bdf0f7fc5258713184733101fb02b@o4506863370371072.ingest.us.sentry.io/4506863375286272',
+  })
 }
+
+// class ErrorBoundary extends React.Component<any, any> {
+//   constructor(props: any) {
+//     super(props)
+//     this.state = {
+//       error: false,
+//     }
+//   }
+
+//   componentDidCatch() {
+//     this.setState({ error: true })
+//   }
+//   render() {
+//     return this.state.error ? <Error /> : this.props.children
+//   }
+// }
 
 initI18n(() => {
   ReactDOM.render(
-    <ErrorBoundary>
+    <Sentry.ErrorBoundary fallback={<Error />}>
       <Provider store={store}>
         <NetworkStatusContextProvider>
           <Router>
@@ -44,7 +55,7 @@ initI18n(() => {
           </Router>
         </NetworkStatusContextProvider>
       </Provider>
-    </ErrorBoundary>,
+    </Sentry.ErrorBoundary>,
     document.getElementById('root')
   )
 })
