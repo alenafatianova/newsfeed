@@ -5,7 +5,7 @@ const StylelintPlugin = require('stylelint-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlInlinePlugin = require('html-inline-script-webpack-plugin')
 const minimizerCSSWebpackPlugin = require('css-minimizer-webpack-plugin')
-const SentryPlugin = require('@sentry/webpack-plugin')
+const { SentryPlugin } = require('@sentry/webpack-plugin')
 
 const mode = process.env.NODE_ENV || 'production'
 
@@ -88,6 +88,7 @@ const config = {
     new ESLintPlugin({
       files: 'src/{**/*,*}.{tsx,ts}',
     }),
+    new SentryPlugin()
   ],
   devServer: {
     client: {
