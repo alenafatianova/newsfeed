@@ -5,12 +5,12 @@ const StylelintPlugin = require('stylelint-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlInlinePlugin = require('html-inline-script-webpack-plugin')
 const minimizerCSSWebpackPlugin = require('css-minimizer-webpack-plugin')
-const { SentryPlugin } = require('@sentry/webpack-plugin')
+const SentryPlugin = require('@sentry/webpack-plugin')
 
 const mode = process.env.NODE_ENV || 'production'
 
 const config = {
-  mode: process.env.NODE_ENV || 'production',
+  mode,
   entry: {
     main: './src/components/script.tsx',
     initColorScheme: './src/features/colorScheme/initColorScheme.ts',
@@ -108,7 +108,9 @@ if (process.env.SENTRY_RELEASE) {
       include: './dist',
       release: process.env.SENTRY_RELEASE,
       authToken: process.env.SENTRY_AUTH_TOKEN,
-      org: 'no-org-7u',
+      org: 'newsfeed-org',
+      ignore: ['node_modules', 'webpack.config.js'],
+      ignoreFile: '.sentrycliignore',
       project: 'newsfeed',
     })
   )
