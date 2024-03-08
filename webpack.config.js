@@ -88,7 +88,7 @@ const config = {
     new ESLintPlugin({
       files: 'src/{**/*,*}.{tsx,ts}',
     }),
-    new SentryPlugin()
+    new SentryPlugin(),
   ],
   devServer: {
     client: {
