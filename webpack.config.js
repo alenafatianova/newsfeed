@@ -107,7 +107,7 @@ if (process.env.SENTRY_RELEASE) {
     new SentryPlugin({
       include: './dist',
       release: process.env.SENTRY_RELEASE,
-      authToken: process.env.SENTRY_AUTH_TOKEN,
+      token: process.env.SENTRY_AUTH_TOKEN,
       org: 'newsfeed-org',
       ignore: ['node_modules', 'webpack.config.js'],
       ignoreFile: '.sentrycliignore',
