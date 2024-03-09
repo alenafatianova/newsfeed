@@ -1,6 +1,6 @@
 import React, { FC, useRef, useState } from 'react'
 import { ColorSchemeSwitcherButton } from '../ColorSchemeSwitcherButton/ColorSchemeSwitcherButton'
-import { Dropdown } from '@components/Dropdown/Dropdown'
+import { Dropdown } from '../../../../../components/Dropdown/Dropdown'
 import { ColorSchemeSwitcherMenu } from '../ColorSchemeSwitcherMenu/ColorSchemeSwitcherMenu'
 import { useColorScheme } from '../../../hooks'
 

@@ -1,4 +1,4 @@
-import { RootState } from '@components/store'
+import { RootState } from '../../components/store'
 import { ArticleType } from '../articleItem/types'
 
 export const getCategoryNews =

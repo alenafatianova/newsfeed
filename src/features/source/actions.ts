@@ -1,4 +1,4 @@
-import { apiFetchSources } from '@components/publicApi'
+import { apiFetchSources } from '../../components/publicApi'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { setSources } from './slice'
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
-import { Title } from '@components/Title/Title'
-import { ImageComponent } from '@components/Image/ImageComponent'
+import { Title } from '../../components/Title/Title'
+import { ImageComponent } from '../../components/Image/ImageComponent'
 import { SkeletonText } from '../Skeleton/SkeletonText'
 import './Hero.css'
 

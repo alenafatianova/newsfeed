@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './PartnersArticles.css'
 import { PartnersPostsType } from '../types'
 import { useTranslation } from 'react-i18next'
-import { apiFetchSortedPartnerArticle } from '@components/publicApi'
+import { apiFetchSortedPartnerArticle } from '../../../components/publicApi'
 
 export const PartnersArticles: React.FC = () => {
   const [partnersArticle, setPartnersArticle] = useState<Record<
@@ -31,7 +31,7 @@ export const PartnersArticles: React.FC = () => {
 
           <div className="partner-article-content">
             <span className="partner-article-caption">
-              {t(`partner_article_caption`, { name: partnersArticle['company-name'] })}
+              {t(`partner_article_caption`, { name: partnersArticle['company-name'].stringValue })}
             </span>
             <h2 className="partner-article-title">{partnersArticle.articleTitle.stringValue}</h2>
             <p className="partner-article-text">{partnersArticle.description.stringValue}</p>

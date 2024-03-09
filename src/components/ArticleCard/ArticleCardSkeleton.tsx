@@ -1,9 +1,9 @@
 import React from 'react'
 import classNames from 'classnames'
-import { ImageComponent } from '@components/Image/ImageComponent'
+import { ImageComponent } from '../../components/Image/ImageComponent'
 
 import './ArticleCard.css'
-import { SkeletonText } from '@components/Skeleton/SkeletonText'
+import { SkeletonText } from '../../components/Skeleton/SkeletonText'
 
 type ArticleCardSkeletonType = {
   hasImage?: boolean
