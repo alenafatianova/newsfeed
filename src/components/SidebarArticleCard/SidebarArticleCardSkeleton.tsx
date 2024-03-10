@@ -1,8 +1,8 @@
 import React from 'react'
 import './SidebarArticleCard.css'
 import classNames from 'classnames'
-import { ImageComponent } from '@components/Image/ImageComponent'
-import { SkeletonText } from '@components/Skeleton/SkeletonText'
+import { ImageComponent } from '../../components/Image/ImageComponent'
+import { SkeletonText } from '../../components/Skeleton/SkeletonText'
 
 type SidebarArticleCardSkeletonType = {
   className?: string

@@ -1,8 +1,8 @@
 import React, { ForwardedRef, forwardRef } from 'react'
 import './ColorSchemeSwitcherButton.css'
-import { AutoScheme } from '@components/Icons/AutoScheme'
-import { DarkScheme } from '@components/Icons/DarkScheme'
-import { LightScheme } from '@components/Icons/LightScheme'
+import { AutoScheme } from '../../../../../components/Icons/AutoScheme'
+import { DarkScheme } from '../../../../../components/Icons/DarkScheme'
+import { LightScheme } from '../../../../../components/Icons/LightScheme'
 import { ColorSchemeSwitcherValues } from '../../../types'
 import { useTranslation } from 'react-i18next'
 
