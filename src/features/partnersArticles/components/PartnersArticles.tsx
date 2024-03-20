@@ -5,14 +5,11 @@ import { useTranslation } from 'react-i18next'
 import { apiFetchSortedPartnerArticle } from '../../../components/publicApi'
 
 export const PartnersArticles: React.FC = () => {
-  const [partnersArticle, setPartnersArticle] = useState<Record<
-    keyof PartnersPostsType,
-    { stringValue: string }
-  > | null>(null)
+  const [partnersArticle, setPartnersArticle] = useState<Record<keyof PartnersPostsType, { stringValue: string }> | null>(null)
   const { t } = useTranslation()
 
   useEffect(() => {
-    ;(async () => {
+    (async () => {
       const data = await apiFetchSortedPartnerArticle()
 
       setPartnersArticle(data)
@@ -23,7 +20,7 @@ export const PartnersArticles: React.FC = () => {
 
   return (
     <>
-      <article className="partner-article">
+      <article className="partner-article" data-testid="article">
         <div className="partner-article__container container grid">
           <div className="partner-article-image-container">
             <img className="partner-article-image" src={partnersArticle.image.stringValue} alt="Фотография статьи" />
