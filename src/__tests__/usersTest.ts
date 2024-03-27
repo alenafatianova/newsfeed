@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { Users, getUserName } from '../users'
-import { modifyName } from './utils'
 import * as utils from './utils'
 
 // jest.mock('./utils', () => ({

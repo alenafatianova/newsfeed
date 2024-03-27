@@ -2,7 +2,6 @@ import { Button } from './Button'
 import { render, screen } from '@testing-library/react'
 import React from 'react'
 import userEvent from '@testing-library/user-event'
-import { act } from 'react-dom/test-utils'
 
 describe('Button', () => {
   test('Render button', () => {

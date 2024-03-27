@@ -2,7 +2,9 @@
 
 module.exports = {
   preset: 'ts-jest',
-  testEnvironment: 'jsdom',
+  testEnvironment: {
+    customExportConditions: [''],
+  },
   moduleNameMapper: {
     '^@components(.*)$': '<rootDir>/src/components$1',
     '^@features(.*)$': '<rootDir>/src/features$1',

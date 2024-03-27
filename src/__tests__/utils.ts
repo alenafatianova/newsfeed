@@ -19,9 +19,9 @@ describe('check Data:', () => {
     //expect(onSuccess).toHaveReturnedWith(2)
   })
 
-  test('jest Fn', () => {
-    const mock = jest.fn()
-  })
+  // test('jest Fn', () => {
+  //   const mock = jest.fn()
+  // })
 })
 
 export const modifyName = (name: string): string => {

@@ -10,6 +10,7 @@
     "lib": ["es2019", "dom", "dom.iterable", "WebWorker"],
     "baseUrl": "src",
     "skipLibCheck": true,
+    "types": ["node"],
     "paths": {
       "@components/*": ["components/*"],
       "@features/*": ["features/*"]
