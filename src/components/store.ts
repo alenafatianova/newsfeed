@@ -6,16 +6,16 @@ import { categoriesReducer } from '../features/categories/slice'
 import { articlesReducer } from '../features/articlesList/slice'
 import { articlesItemReducer } from '../features/articleItem/slice'
 
-export const store = configureStore({
-  reducer: {
-    articlesList: articlesReducer,
-    categoryArticles: categoryArticlesReducer,
-    categoriesList: categoriesReducer,
-    relatedArticles: relatedArticlesReducer,
-    articleItem: articlesItemReducer,
-    sources: sourcesReducer,
-  },
-})
+export const reducer = {
+  articlesList: articlesReducer,
+  categoryArticles: categoryArticlesReducer,
+  categoriesList: categoriesReducer,
+  relatedArticles: relatedArticlesReducer,
+  articleItem: articlesItemReducer,
+  sources: sourcesReducer,
+}
+
+export const store = configureStore({ reducer })
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatchType = ThunkDispatch<RootState, unknown, PayloadAction>

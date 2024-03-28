@@ -1,7 +1,10 @@
 const MockI18Next = {
-  useTranslation: (): { t: (key: string, options?: Record<string, string>) => string } => ({
+  useTranslation: (): unknown => ({
     t: (key: string, options?: Record<string, string>) => {
       return `${key}${options ? `${Object.values(options).join(' ')}` : ''}`
+    },
+    i18n: {
+      language: 'en',
     },
   }),
 }

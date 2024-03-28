@@ -48,7 +48,7 @@ export const Homepage: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="home-page">
+      <div className="home-page" data-testid={'skeleton'}>
         <HeroSkeleton hasText={true} className="home-page__hero" />
         <section className="container home-page__section">
           <Title Component={'h2'} className="home-page__title">
@@ -102,7 +102,7 @@ export const Homepage: React.FC = () => {
   }
 
   return (
-    <div className="home-page">
+    <div className="home-page" data-testid={'home-page'}>
       {firstArticle && (
         <Link className="home-page__hero-link" to={`/article/${firstArticle.id}`}>
           <Hero
