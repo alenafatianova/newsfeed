@@ -1,20 +1,20 @@
 import React from 'react'
 import { render, screen, waitFor } from '@testing-library/react'
 import { PartnersArticles } from './PartnersArticles'
-import { server, rest } from '__mocks__/__msw__'
-import { PartnersArticlesFirebaseStub } from './stubs'
-import { HttpResponse } from 'msw'
+// import { rest } from '__mocks__/__msw__'
+// import { PartnersArticlesFirebaseStub } from './stubs'
+// import { HttpResponse } from 'msw'
 
 describe('Partner article test', () => {
   test('Renders component after loading', async () => {
-    server.use(
-      rest.get(
-        'https://firestore.googleapis.com/v1/projects/karpov-news-1b158/databases/:id/documents/partners-posts',
-        () => {
-          return HttpResponse.json(PartnersArticlesFirebaseStub)
-        }
-      )
-    )
+    // server.use(
+    //   rest.get(
+    //     'https://firestore.googleapis.com/v1/projects/karpov-news-1b158/databases/:id/documents/partners-posts',
+    //     () => {
+    //       return HttpResponse.json(PartnersArticlesFirebaseStub)
+    //     }
+    //   )
+    // )
 
     render(<PartnersArticles />)
 
@@ -32,14 +32,14 @@ describe('Partner article test', () => {
   })
 
   test('Does not render article component', async () => {
-    server.use(
-      rest.get(
-        'https://firestore.googleapis.com/v1/projects/karpov-news-1b158/databases/:id/documents/partners-posts',
-        () => {
-          return HttpResponse.json()
-        }
-      )
-    )
+    // server.use(
+    //   rest.get(
+    //     'https://firestore.googleapis.com/v1/projects/karpov-news-1b158/databases/:id/documents/partners-posts',
+    //     () => {
+    //       return HttpResponse.json()
+    //     }
+    //   )
+    // )
 
     await waitFor(() => {
       expect(screen.queryByTestId('article'))

@@ -45,7 +45,7 @@ export const ImageComponent: React.FC<ImageType> = ({
         return a.width - b.width
       })
 
-    //const isAllSameType = variants.length && variants[0].type === variants[variants.length - 1].type
+    const isAllSameType = variants.length && variants[0].type === variants[variants.length - 1].type
     const lastType = variants.length && variants[variants.length - 1].type
 
     return variants.map<ExtendedVariantType>((element) => {
@@ -56,12 +56,24 @@ export const ImageComponent: React.FC<ImageType> = ({
     })
   }, [data, maxWidth])
 
+  // const styleFromAPI = useMemo(() => {
+  //   const style: Record<string, CSSProperties> = {}
+  //   if (data && data?.variants.length) {
+  //     return (style['--image-container-height'] = ((100 * imagesVariants[0].height) / imagesVariants[0].width +
+  //       'vw') as CSSProperties)
+  //   }
+
+  // }, [data])
+
   const styleFromAPI = useMemo(() => {
-    const style: Record<string, CSSProperties> = {}
-    if (data && data?.variants.length) {
-      return (style['--image-container-height'] = ((100 * imagesVariants[0].height) / imagesVariants[0].width +
-        'vw') as CSSProperties)
+    if (data && data.variants.length) {
+      const heightInVw = (100 * imagesVariants[0].height) / imagesVariants[0].width + 'vw'
+      return {
+        '--image-container-height': heightInVw,
+      } as CSSProperties
     }
+    // Return an empty object if data or data.variants.length is falsy
+    return {}
   }, [data])
 
   return (

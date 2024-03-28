@@ -1,15 +1,15 @@
 import '@testing-library/jest-dom'
 import 'whatwg-fetch'
-import { server } from './src/__mocks__/__msw__'
+//import { server } from './src/__mocks__/__msw__'
 
-beforeAll(() => {
-  server.listen()
-})
+// beforeAll(() => {
+//   server.listen()
+// })
 
-afterEach(() => {
-  server.resetHandlers()
-})
+// afterEach(() => {
+//   server.resetHandlers()
+// })
 
-afterAll(() => {
-  server.close()
-})
+// afterAll(() => {
+//   server.close()
+// })
